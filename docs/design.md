@@ -102,7 +102,7 @@ Warna neon/lime khas PZN disesuaikan menjadi opsi warna yang lebih **elegan, ten
 
 ## 5. Implementasi CSS / Tailwind Config
 
-Contoh variabel Tailwind / CSS kustom yang akan dipasang:
+Contoh variabel Tailwind / CSS kustom yang dipasang di `resources/css/app.css`:
 
 ```css
 /* Custom Utility Classes untuk Neo-Brutalisme Elegan */
@@ -137,3 +137,56 @@ Contoh variabel Tailwind / CSS kustom yang akan dipasang:
 2. **Padding & White Space Pemurah**: Jarak antar elemen dibuat lega agar pembaca nyaman memindai informasi.
 3. **Sentuhan Warna Royal Blue & Emerald**: Mengganti warna kuning neon mencolok dengan kombinasi Royal Blue (`#2563EB`) dan Emerald (`#059669`) untuk mengesankan kualitas kelas atas.
 4. **Sudut Sedikit Rounded (`rounded-md` / `rounded-lg`)**: Memberikan efek *soft edge* (4px - 8px) pada card dan button agar tidak terlalu kaku namun tetap memiliki kontur yang jelas.
+
+---
+
+## 7. Panduan SEO & Metadata
+
+Dokumentasi ini memudahkan Anda untuk menyesuaikan pengaturan SEO pada website:
+
+### 7.1 Parameter Meta Tag Utama
+- **Meta Title**: `Wahyu Dwi Utomo — Senior Fullstack Web Developer & Software Engineer`
+- **Meta Description**: `Portofolio profesional Wahyu Dwi Utomo. Spesialis pengembangan aplikasi web modern yang scalable, berkinerja tinggi, dan bersih menggunakan Laravel, Vue, Flutter, dan Tailwind CSS.`
+- **Keywords**: `Wahyu Dwi Utomo, Fullstack Developer, Laravel Developer, Portofolio Software Engineer, Web Developer Indonesia, Freelance Web Developer`
+- **Author**: `Wahyu Dwi Utomo`
+- **Canonical URL**: `https://wahyu.dev` (atau domain utama Anda)
+
+### 7.2 Social Media Meta (OpenGraph & Twitter Card)
+- `og:type`: `website`
+- `og:site_name`: `Wahyu Dwi Utomo Portfolio`
+- `og:title`: `Wahyu Dwi Utomo — Senior Fullstack Web Developer`
+- `og:description`: `Membangun sistem web modern, efisien, dan siap berkembang untuk bisnis dan industri.`
+- `og:image`: URL Gambar Banner OpenGraph (`public/images/og-image.jpg`)
+- `twitter:card`: `summary_large_image`
+- `twitter:site`: `@wahyudwi`
+
+---
+
+## 8. Kamus Copywriting & Content Matrix
+
+Dokumentasi ini dibuat agar Anda dapat dengan mudah mengubah semua teks di `HomeController.php` tanpa perlu merusak struktur Blade visual.
+
+### 8.1 Copywriting Section Hero
+| Parameter Key | Teks Default | Catatan / Tips Pengubahan |
+| --- | --- | --- |
+| `availability_badge` | `● TERSEDIA UNTUK FREELANCE & FULL-TIME` | Ubah jika Anda sedang sibuk/tidak menerima project baru |
+| `headline_prefix` | `BUILDING SCALABLE` | Baris pertama headline |
+| `headline_highlight` | `FULLSTACK_` | Kata dengan stroke outline tebal |
+| `headline_suffix` | `WEB APPLICATIONS!` | Baris ketiga headline |
+| `subtitle` | `Mengembangkan aplikasi web modern dari arsitektur backend yang kokoh hingga antarmuka pengguna yang intuitif dan responsif.` | Ringkasan peran profesional Anda |
+| `cta_primary` | `LIHAT PROJECT ->` | Label tombol ke katalog project |
+| `cta_secondary` | `UNDUH CV` | Label tombol ke file CV PDF |
+
+### 8.2 Copywriting Stats Counter Grid
+| Key | Nilai | Label |
+| --- | --- | --- |
+| `stat_1` | `5+` | `TAHUN PENGALAMAN` |
+| `stat_2` | `20+` | `PROJECT SELESAI` |
+| `stat_3` | `10+` | `MITRA & CLIENT` |
+| `stat_4` | `100%` | `KOMITMEN KUALITAS` |
+
+### 8.3 Copywriting Titles & Index Section
+- **Section 01**: `01 / KATALOG PROJECT` — `"PROJECT PILIHAN TERBARU"`
+- **Section 02**: `02 / RIWAYAT KARIER` — `"PENGALAMAN KERJA & PENDIDIKAN"`
+- **Section 03**: `03 / KEUNGGULAN` — `"NILAI UTAMA DALAM BEKERJA"`
+- **Section 04**: `04 / HUBUNGI SAYA` — `"MARI BEKERJA SAMA UNTUK PROJECT ANDA NEXT!"`
