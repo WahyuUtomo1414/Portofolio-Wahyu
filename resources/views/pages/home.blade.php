@@ -11,8 +11,8 @@
     <!-- 3. Section 01: Featured Projects -->
     <x-home.featured-projects :projects="$featured_projects" />
 
-    <!-- 4. Section 02: Career & Education Experience -->
-    <x-home.experience :experiences="$experiences" />
+    <!-- 4. Section 02: My Journey (Education & Experience - 2 Columns) -->
+    <x-home.experience :education="$education" :experience="$experience" />
 
     <!-- 5. Section 03: Core Development Values -->
     <x-home.about-preview :values="$values" />
