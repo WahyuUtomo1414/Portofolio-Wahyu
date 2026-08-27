@@ -1,46 +1,100 @@
 <footer class="bg-[#FAF8F5] text-[#0F172A] border-t-2 border-[#0F172A] mt-auto">
     
-    <!-- Top Big Statement Section with 2-Line Typewriter Animation & Matching Theme Colors -->
-    <div id="footer-typewriter-section" class="bg-[#0F172A] text-white border-b-2 border-[#0F172A] py-16 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Top Statement Section: 2-Column Split (Left: Typewriter Motto, Right: Terminal Quick Contact Card) -->
+    <div id="footer-typewriter-section" class="bg-[#0F172A] text-white border-b-2 border-[#0F172A] py-16 lg:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         
-        <div class="max-w-7xl mx-auto space-y-8 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             
-            <!-- Category Tag Pill -->
-            <div class="inline-flex items-center gap-2 bg-[#2563EB] text-white border-neo px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider shadow-neo-sm">
-                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                <span>MOTTO & KOMITMEN LAYANAN</span>
-            </div>
-
-            <!-- Big 2-Line Headline with Typewriter Animation -->
-            <div class="space-y-2 font-heading font-black text-3xl sm:text-5xl lg:text-7xl tracking-tight uppercase leading-none">
+            <!-- Left Side (7 Columns): Motto & Perfectly Sized Typewriter Headline (No Crop & No Jitter) -->
+            <div class="lg:col-span-7 space-y-6">
                 
-                <!-- Line 1: SEMANGAT BERKEMBANG -->
-                <div class="flex items-center gap-2 min-h-[44px] sm:min-h-[64px] lg:min-h-[80px]">
-                    <span id="typewriter-line-1" class="text-white"></span>
-                    <span id="typewriter-cursor-1" class="text-[#2563EB] animate-pulse font-mono font-bold">|</span>
+                <!-- Category Tag Pill -->
+                <div class="inline-flex items-center gap-2 bg-[#2563EB] text-white border-neo px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider shadow-neo-sm">
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    <span>MOTTO & KOMITMEN LAYANAN</span>
                 </div>
 
-                <!-- Line 2: SEPANJANG MASA -->
-                <div class="flex items-center gap-2 min-h-[44px] sm:min-h-[64px] lg:min-h-[80px] text-stroke-dark text-slate-800">
-                    <span id="typewriter-line-2" class="text-[#2563EB]"></span>
-                    <span id="typewriter-cursor-2" class="text-[#2563EB] animate-pulse font-mono font-bold hidden">|</span>
+                <!-- Headline Container (Zero Cropping & Zero Layout Shift) -->
+                <div class="space-y-3 font-heading font-black tracking-tight uppercase leading-tight select-none">
+                    
+                    <!-- Line 1: SEMANGAT BERKEMBANG -->
+                    <div class="min-h-[44px] sm:min-h-[56px] lg:min-h-[68px] flex items-center gap-2">
+                        <h2 id="typewriter-line-1" class="text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight"></h2>
+                        <span id="typewriter-cursor-1" class="text-[#2563EB] text-2xl sm:text-4xl lg:text-5xl animate-pulse font-mono font-bold">|</span>
+                    </div>
+
+                    <!-- Line 2: SEPANJANG MASA -->
+                    <div class="min-h-[44px] sm:min-h-[56px] lg:min-h-[68px] flex items-center gap-2">
+                        <h2 id="typewriter-line-2" class="text-2xl sm:text-4xl lg:text-5xl font-black text-[#2563EB] leading-tight"></h2>
+                        <span id="typewriter-cursor-2" class="text-[#2563EB] text-2xl sm:text-4xl lg:text-5xl animate-pulse font-mono font-bold hidden">|</span>
+                    </div>
+
+                </div>
+
+                <!-- Subtitle Copywriting -->
+                <p class="font-sans text-slate-300 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
+                    Siap membantu perusahaan, instansi, dan UMKM membangun aplikasi web modern, sistem backend Laravel yang kokoh, serta antarmuka yang cepat dan responsif.
+                </p>
+
+                <!-- Action CTA Button -->
+                <div class="pt-2">
+                    <a href="#contact" class="inline-flex items-center justify-center font-mono font-bold text-sm bg-[#059669] hover:bg-[#047857] text-white px-7 py-3.5 rounded-lg border-neo shadow-neo shadow-neo-hover transition-all duration-200">
+                        <span>KONSULTASI PROJECT SEKARANG</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </a>
                 </div>
 
             </div>
 
-            <!-- Subtitle Copywriting -->
-            <p class="font-sans text-slate-300 text-base sm:text-xl max-w-2xl font-medium leading-relaxed">
-                Siap membantu perusahaan, instansi, dan UMKM membangun aplikasi web modern, sistem backend Laravel yang kokoh, serta antarmuka yang cepat dan responsif.
-            </p>
+            <!-- Right Side (5 Columns): Interactive Terminal & Quick Contact Card -->
+            <div class="lg:col-span-5">
+                <div class="bg-[#1E293B] border-2 border-slate-700 rounded-xl p-6 shadow-2xl space-y-5 font-mono">
+                    
+                    <!-- Terminal Top Bar -->
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-bold">// QUICK_CONTACT.SH</span>
+                    </div>
 
-            <!-- Action CTA Button -->
-            <div class="pt-4">
-                <a href="#contact" class="inline-flex items-center justify-center font-mono font-bold text-sm sm:text-base bg-[#059669] hover:bg-[#047857] text-white px-8 py-4 rounded-lg border-neo shadow-neo shadow-neo-hover transition-all duration-200">
-                    <span>KONSULTASI PROJECT SEKARANG</span>
-                    <svg class="w-5 h-5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                    </svg>
-                </a>
+                    <!-- Code Snippet Box -->
+                    <div class="space-y-2 text-xs sm:text-sm text-slate-300">
+                        <p class="text-slate-400">// Konsultasi Bebas & Respon Cepat (&lt; 2 Jam)</p>
+                        <p><span class="text-[#60A5FA]">$service</span> = <span class="text-[#F59E0B]">new</span> WebDevelopment();</p>
+                        <p><span class="text-[#60A5FA]">$service</span>-&gt;<span class="text-[#34D399]">startProject</span>([</p>
+                        <p class="pl-4"><span class="text-slate-400">'client'</span> =&gt; <span class="text-[#FBBF24]">'Your_Company'</span>,</p>
+                        <p class="pl-4"><span class="text-slate-400">'stack'</span>  =&gt; <span class="text-[#FBBF24]">['Laravel', 'Vue', 'Flutter']</span>,</p>
+                        <p class="pl-4"><span class="text-slate-400">'status'</span> =&gt; <span class="text-[#34D399]">'● READY_TO_BUILD'</span></p>
+                        <p>]);</p>
+                    </div>
+
+                    <!-- Quick Direct Contact Actions -->
+                    <div class="pt-2 space-y-2.5">
+                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" 
+                           class="flex items-center justify-between p-3 bg-[#059669] hover:bg-[#047857] text-white rounded-lg border border-emerald-400/30 text-xs font-bold transition-all shadow-neo-sm">
+                            <span class="flex items-center gap-2">
+                                <span>💬</span>
+                                <span>CHAT WHATSAPP LANGSUNG</span>
+                            </span>
+                            <span>↗</span>
+                        </a>
+
+                        <a href="mailto:wahyudwiutomo1414@gmail.com" 
+                           class="flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-600 text-xs font-bold transition-all">
+                            <span class="flex items-center gap-2">
+                                <span>✉️</span>
+                                <span class="truncate">wahyudwiutomo1414@gmail.com</span>
+                            </span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+
+                </div>
             </div>
 
         </div>
@@ -99,7 +153,7 @@
     </div>
 </footer>
 
-<!-- 2-Line Typewriter Animation Script -->
+<!-- Smooth 2-Line Typewriter Animation Script (No Clip & No Shift) -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const line1Text = "SEMANGAT BERKEMBANG";

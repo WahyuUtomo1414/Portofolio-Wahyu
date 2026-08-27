@@ -31,7 +31,8 @@ class PublicFrontendTest extends TestCase
     public function test_it_validates_the_public_contact_form(): void
     {
         if (\Route::has('contact.store')) {
-            $this->postJson(route('contact.store'), [])
+            $this->withoutMiddleware()
+                ->postJson(route('contact.store'), [])
                 ->assertStatus(422)
                 ->assertJsonValidationErrors(['name', 'email', 'message']);
         } else {
