@@ -256,7 +256,7 @@ Kolom berdasarkan ERD:
 | Kolom | Tipe | Null | Keterangan |
 | --- | --- | --- | --- |
 | id | bigint unsigned | no | primary key |
-| logo | varchar(128) | yes | logo client |
+| logo | varchar(255) | yes | logo client atau URL external |
 | name | varchar(128) | no | nama client |
 | desc | varchar(255) | yes | deskripsi client |
 | active | boolean | no | status data aktif |
@@ -269,7 +269,7 @@ Contoh migration:
 ```php
 Schema::create('client', function (Blueprint $table) {
     $table->id();
-    $table->string('logo', 128)->nullable();
+    $table->string('logo')->nullable();
     $table->string('name', 128);
     $table->string('desc')->nullable();
     $this->base($table);
@@ -291,7 +291,7 @@ Kolom berdasarkan ERD:
 | Kolom | Tipe | Null | Keterangan |
 | --- | --- | --- | --- |
 | id | bigint unsigned | no | primary key |
-| logo | varchar(128) | yes | logo tools atau technology |
+| logo | varchar(255) | yes | logo tools atau technology, bisa URL external |
 | name | varchar(128) | no | nama tools |
 | desc | text | yes | deskripsi tools |
 | active | boolean | no | status data aktif |
@@ -304,7 +304,7 @@ Contoh migration:
 ```php
 Schema::create('tools', function (Blueprint $table) {
     $table->id();
-    $table->string('logo', 128)->nullable();
+    $table->string('logo')->nullable();
     $table->string('name', 128);
     $table->text('desc')->nullable();
     $this->base($table);
@@ -337,7 +337,7 @@ Kolom berdasarkan ERD:
 | Kolom | Tipe | Null | Keterangan |
 | --- | --- | --- | --- |
 | id | bigint unsigned | no | primary key |
-| thumbnail | varchar(128) | yes | thumbnail project |
+| thumbnail | varchar(255) | yes | thumbnail project, bisa URL external |
 | name | varchar(128) | no | nama project |
 | slug | varchar(128) | no | slug unik untuk URL detail project |
 | category_id | bigint unsigned | no | foreign key ke `category.id` |
@@ -357,7 +357,7 @@ Contoh migration:
 ```php
 Schema::create('project', function (Blueprint $table) {
     $table->id();
-    $table->string('thumbnail', 128)->nullable();
+    $table->string('thumbnail')->nullable();
     $table->string('name', 128);
     $table->string('slug', 128)->unique();
     $table->foreignId('category_id')->constrained('category');

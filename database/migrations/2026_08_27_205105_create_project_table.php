@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('project', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail', 128)->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('name', 128);
             $table->string('slug', 128)->unique();
             $table->foreignId('category_id')->constrained('category');

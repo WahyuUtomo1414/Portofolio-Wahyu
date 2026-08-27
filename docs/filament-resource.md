@@ -224,7 +224,7 @@ Page default untuk resource domain:
 
 Pengecualian:
 
-- `AboutResource` dianggap single record. Menu `About` sebaiknya langsung mengarah ke record aktif pertama, dengan fallback create jika belum ada data.
+- `AboutResource` dianggap single record. Menu `About` tidak menampilkan table/list, tetapi langsung redirect ke halaman detail record pertama, dengan fallback create jika belum ada data.
 - `ProjectImageResource` boleh tidak tampil di sidebar jika gambar project dikelola lewat relation manager pada `ProjectResource`.
 - `ProjectTool` tidak dibuat sebagai resource sidebar.
 - Halaman detail memakai `Infolist`.
@@ -769,12 +769,13 @@ Catatan:
 Ketentuan khusus `AboutResource`:
 
 - Data about dianggap single record.
-- Menu `Profil Utama` tidak perlu menampilkan list panjang.
-- Route index `/admin/about` boleh langsung redirect ke halaman view record about aktif pertama.
+- Menu `Profil Utama` tidak menampilkan table/list.
+- Route index `/setting/abouts` langsung redirect ke halaman view record about pertama.
 - Jika record about belum ada, route index boleh redirect ke halaman create sebagai fallback.
+- Halaman create redirect kembali ke view record pertama jika data about sudah ada, sehingga admin tidak membuat data kedua dari UI.
 - Halaman view/infolist menjadi halaman utama untuk membaca data profil.
 - Halaman edit tetap tersedia untuk mengubah data profil.
-- Seeder `AboutSeeder` sebaiknya menyiapkan satu record awal agar halaman about langsung bisa dibuka.
+- Seeder `PortfolioSeeder` menyiapkan satu record awal agar halaman about langsung bisa dibuka.
 
 ## 18. Catatan Khusus Repo
 

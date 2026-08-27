@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tools', function (Blueprint $table) {
             $table->id();
-            $table->string('logo', 128)->nullable();
+            $table->string('logo')->nullable();
             $table->string('name', 128)->unique();
             $table->text('desc')->nullable();
             $this->base($table);
