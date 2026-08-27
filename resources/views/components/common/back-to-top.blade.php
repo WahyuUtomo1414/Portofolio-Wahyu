@@ -10,12 +10,12 @@
             <div id="scroll-progress-bar" class="h-full bg-[#2563EB] transition-all duration-150" style="width: 0%;"></div>
         </div>
 
-        <!-- Button Content (Rectangular & Neo-Brutalist, NOT round!) -->
+        <!-- Button Content (Rectangular & Neo-Brutalist in Bahasa Indonesia) -->
         <div class="px-3.5 py-2.5 flex items-center gap-2.5 font-mono text-xs font-extrabold text-[#0F172A]">
             <div class="w-6 h-6 rounded bg-[#2563EB] text-white flex items-center justify-center border-neo text-xs shadow-neo-sm group-hover:-translate-y-0.5 transition-transform">
                 ↑
             </div>
-            <span class="tracking-wider uppercase">TOP</span>
+            <span class="tracking-wider uppercase">KE ATAS</span>
             <span id="scroll-percentage-text" class="bg-[#0F172A] text-white text-[10px] px-2 py-0.5 rounded border-neo font-mono">
                 0%
             </span>

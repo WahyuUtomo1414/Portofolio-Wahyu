@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\PortfolioData;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -19,7 +19,7 @@ class HomeController extends Controller
             'name' => 'Wahyu Dwi Utomo',
             'role' => 'Senior Fullstack Web Developer',
             'availability_badge' => '● TERSEDIA UNTUK FREELANCE & FULL-TIME',
-            'tagline' => 'Building Scalable Fullstack Web Applications!',
+            'tagline' => 'Mengembangkan Aplikasi Web Fullstack Scalable & Modern!',
             'bio' => 'Mengembangkan aplikasi web modern dari arsitektur backend Laravel yang kokoh hingga antarmuka pengguna frontend yang responsif, cepat, dan intuitif.',
             'description' => 'Mengembangkan aplikasi web modern dari arsitektur backend Laravel yang kokoh hingga antarmuka pengguna frontend yang responsif, cepat, dan intuitif.',
             'email' => 'wahyudwiutomo1414@gmail.com',
@@ -35,7 +35,6 @@ class HomeController extends Controller
                 'whatsapp' => 'https://wa.me/6281234567890',
             ],
         ];
-        $profile = array_replace($profile, PortfolioData::profile());
 
         // 2. Data Stats (Pencapaian Ringkas dalam Section Terpisah)
         $stats = [
@@ -48,7 +47,7 @@ class HomeController extends Controller
             [
                 'number' => '20+',
                 'label' => 'PROJECT SELESAI',
-                'desc' => 'Enterprise, SaaS, & Web Apps',
+                'desc' => 'Enterprise, SaaS, & Aplikasi Web',
                 'icon' => 'folder-check',
             ],
             [
@@ -65,11 +64,11 @@ class HomeController extends Controller
             ],
         ];
 
-        // 3. Data Tools / Skills (Sesuai Skema Tabel `tools` di docs/database.md)
+        // 3. Data Tools / Skills (Clean evergreen names without version numbers)
         $skills = [
-            ['id' => 1, 'name' => 'Laravel 13', 'category' => 'Backend', 'logo' => 'images/tools/laravel.svg', 'desc' => 'PHP Framework'],
-            ['id' => 2, 'name' => 'Vue.js 3', 'category' => 'Frontend', 'logo' => 'images/tools/vue.svg', 'desc' => 'JS Framework'],
-            ['id' => 3, 'name' => 'Tailwind CSS v4', 'category' => 'Styling', 'logo' => 'images/tools/tailwind.svg', 'desc' => 'Utility CSS'],
+            ['id' => 1, 'name' => 'Laravel', 'category' => 'Backend', 'logo' => 'images/tools/laravel.svg', 'desc' => 'PHP Framework'],
+            ['id' => 2, 'name' => 'Vue.js', 'category' => 'Frontend', 'logo' => 'images/tools/vue.svg', 'desc' => 'JS Framework'],
+            ['id' => 3, 'name' => 'Tailwind CSS', 'category' => 'Styling', 'logo' => 'images/tools/tailwind.svg', 'desc' => 'Utility CSS'],
             ['id' => 4, 'name' => 'Flutter', 'category' => 'Mobile', 'logo' => 'images/tools/flutter.svg', 'desc' => 'Cross-Platform'],
             ['id' => 5, 'name' => 'MySQL / PostgreSQL', 'category' => 'Database', 'logo' => 'images/tools/mysql.svg', 'desc' => 'RDBMS'],
             ['id' => 6, 'name' => 'Docker', 'category' => 'DevOps', 'logo' => 'images/tools/docker.svg', 'desc' => 'Container'],
@@ -77,7 +76,7 @@ class HomeController extends Controller
             ['id' => 8, 'name' => 'Git & GitHub', 'category' => 'VCS', 'logo' => 'images/tools/git.svg', 'desc' => 'Version Control'],
         ];
 
-        // 4. Data Clients (Simulasi > 4 Client untuk mengaktifkan Running Marquee Slider Ticker)
+        // 4. Data Clients
         $clients = [
             [
                 'id' => 1,
@@ -101,7 +100,7 @@ class HomeController extends Controller
                 'id' => 4,
                 'name' => 'EduTech Learning Center',
                 'logo' => 'images/clients/edutech.png',
-                'desc' => 'SaaS E-Learning & Digital Campus',
+                'desc' => 'SaaS E-Learning & Kampus Digital',
             ],
             [
                 'id' => 5,
@@ -119,7 +118,7 @@ class HomeController extends Controller
                 'id' => 7,
                 'name' => 'Healthcare Medical Portal',
                 'logo' => 'images/clients/health.png',
-                'desc' => 'Hospital & Clinic Information System',
+                'desc' => 'Sistem Informasi Rumah Sakit & Klinik',
             ],
             [
                 'id' => 8,
@@ -188,19 +187,19 @@ class HomeController extends Controller
 
         $journey = array_merge($education, $experience);
 
-        // 6. Data Project (Sesuai Skema Tabel `project` & Relasinya di docs/database.md)
+        // 6. Data Project (Sesuai Skema Tabel `project` & Relasinya di docs/database.md - Tanpa Nomor Versi)
         $featured_projects = [
             [
                 'id' => 1,
                 'name' => 'Keysoft ERP Enterprise System',
                 'slug' => 'keysoft-erp-enterprise-system',
-                'category' => 'Enterprise Web App',
+                'category' => 'Aplikasi Web Enterprise',
                 'client_name' => 'PT Keysoft ERP Indonesia',
                 'client_logo' => 'images/clients/keysoft.png',
                 'thumbnail_url' => asset('images/projects/project-erp.jpg'),
                 'short_description' => 'Sistem ERP manufaktur dan akuntansi terintegrasi untuk mengelola inventaris, pembelian, dan keuangan secara realtime.',
-                'body' => 'Sistem ERP berkonsep enterprise berbasis web yang dikembangkan menggunakan Laravel 13 dan Vue.js. Dilengkapi dengan kontrol akses peran (RBAC), laporan audit trail, dan optimasi performa tinggi.',
-                'tech_stack' => ['Laravel 13', 'Vue 3', 'SQL Server', 'Tailwind CSS'],
+                'body' => 'Sistem ERP berkonsep enterprise berbasis web yang dikembangkan menggunakan Laravel dan Vue.js. Dilengkapi dengan kontrol akses peran (RBAC), laporan audit trail, dan optimasi performa tinggi.',
+                'tech_stack' => ['Laravel', 'Vue.js', 'SQL Server', 'Tailwind CSS'],
                 'demo_url' => 'https://demo-erp.wahyu.dev',
                 'github_url' => 'https://github.com/WahyuUtomo1414/keysoft-erp',
                 'is_featured' => true,
@@ -209,7 +208,7 @@ class HomeController extends Controller
                 'id' => 2,
                 'name' => 'Smart Edu Portal & Learning LMS',
                 'slug' => 'smart-edu-portal-lms',
-                'category' => 'Education SaaS',
+                'category' => 'SaaS Edukasi',
                 'client_name' => 'Universitas BSI',
                 'client_logo' => 'images/clients/ubsi.png',
                 'thumbnail_url' => asset('images/projects/project-lms.jpg'),
@@ -224,7 +223,7 @@ class HomeController extends Controller
                 'id' => 3,
                 'name' => 'AgroSupply Distribution & POS App',
                 'slug' => 'agrosupply-distribution-pos',
-                'category' => 'Mobile & Web POS',
+                'category' => 'Aplikasi Mobile & POS',
                 'client_name' => 'AgroSupply Co.',
                 'client_logo' => 'images/clients/agrosupply.png',
                 'thumbnail_url' => asset('images/projects/project-pos.jpg'),
@@ -236,31 +235,27 @@ class HomeController extends Controller
                 'is_featured' => true,
             ],
         ];
-        $featured_projects = PortfolioData::projects()
-            ->where('is_featured', true)
-            ->values()
-            ->all();
 
         // 7. Data Values (Nilai Tambah Pengembangan)
         $values = [
             [
                 'code' => '⚡',
-                'title' => 'CLEAN & MAINTAINABLE CODE',
+                'title' => 'KODE BERSIH & TERSTRUKTUR',
                 'desc' => 'Penulisan kode yang rapi berstandar PSR, terstruktur modular, serta mudah dirawat dan dikembangkan di masa mendatang.',
             ],
             [
                 'code' => '🎯',
-                'title' => 'RESPONSIVE & ACCESSIBLE',
+                'title' => 'RESPONSIF & CEPAT DIAKSES',
                 'desc' => 'Desain berpola mobile-first yang responsif, cepat diakses dari perangkat apapun, serta memenuhi standar aksesibilitas.',
             ],
             [
                 'code' => '🛡️',
-                'title' => 'SECURE & SCALABLE',
+                'title' => 'AMAN & READY FOR SCALE',
                 'desc' => 'Penerapan praktik keamanan terbaik Laravel, proteksi dari celah umum web, serta arsitektur database yang siap tumbuh.',
             ],
             [
                 'code' => '💬',
-                'title' => 'TRANSPARENT COMMUNICATION',
+                'title' => 'KOMUNIKASI TRANSPARAN',
                 'desc' => 'Proses pengerjaan yang transparan, pembaruan kemajuan berkala, serta komitmen penyelesaian tepat waktu.',
             ],
         ];

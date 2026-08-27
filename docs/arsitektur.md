@@ -50,7 +50,9 @@ Catatan:
 
 - Jangan membuat dashboard admin manual pada tahap awal.
 - Jangan query database langsung dari Blade.
-- Jangan menaruh logic formatting berat di Blade.
+- Jangan menaruh logic formatting di Blade.
+- Jangan memakai blok `@php` atau tag PHP mentah di Blade.
+- Semua pengambilan data dilakukan di controller halaman terkait.
 - Controller menyiapkan data siap tampil.
 - Blade page menyusun section.
 - Component fokus ke tampilan kecil yang reusable.
@@ -146,7 +148,9 @@ Catatan:
 - Controller hanya menyiapkan data.
 - Blade page tidak boleh menampung query database langsung.
 - Blade tidak boleh berisi tag PHP mentah seperti `<?php ... ?>`.
-- Blade directive dan echo seperti `{{ }}`, `@if`, `@foreach`, `route()`, `asset()`, `old()`, dan `@csrf` masih boleh dipakai seperlunya.
+- Blade tidak boleh memakai blok `@php`.
+- Blade directive dan echo seperti `{{ }}`, `@if`, `@foreach`, `route()`, `old()`, `@error`, dan `@csrf` masih boleh dipakai seperlunya.
+- Helper logic seperti `data_get()`, `Str::...`, `Storage::url()`, `collect()`, dan mapping array tidak boleh ditulis di Blade.
 
 ## 6. Domain Halaman Website Publik
 
@@ -255,9 +259,10 @@ Contoh struktur:
 Aturan:
 
 - Jangan memakai tag PHP mentah `<?php ... ?>` di Blade.
-- Hindari blok `@php` kecuali benar-benar darurat.
+- Jangan memakai blok `@php` di Blade.
 - Jangan menaruh query model di Blade.
-- URL gambar dan tanggal terformat disiapkan dari controller, accessor, atau helper khusus.
+- Jangan memakai `data_get()`, `Str::...`, `Storage::url()`, `collect()`, atau mapping array di Blade.
+- URL gambar dan tanggal terformat disiapkan dari controller terkait.
 
 ## 9. Arah Visual Frontend
 
@@ -332,13 +337,15 @@ Route
 Aturan:
 
 - Route hanya mengarahkan request.
-- Controller mengambil dan memformat data.
-- Data source tahap awal boleh berupa config, array, markdown, atau database.
-- Query yang rumit boleh dipindah ke service.
+- Controller terkait mengambil dan memformat data.
+- Data source tahap awal boleh berupa config, array, markdown, atau database, tetapi dipanggil dari controller terkait.
+- Query yang rumit boleh dipindah ke private method controller atau class query, tetapi tetap dipanggil dari controller terkait.
 - Blade page menyusun section.
 - Component fokus ke tampilan kecil yang reusable.
 - Jangan query database langsung di component Blade.
 - Jangan menulis tag PHP mentah `<?php ... ?>` di Blade.
+- Jangan memakai blok `@php` di Blade.
+- Jangan memakai helper logic seperti `data_get()`, `Str`, `Storage`, atau `collect()` di Blade.
 - Blade menerima data siap tampil, misalnya `image_url`, `detail_url`, `formatted_date`, `tech_stack`, dan `external_links`.
 
 ## 12. Route Publik
@@ -562,7 +569,9 @@ Alasan:
 - Gunakan route name agar link mudah dirawat.
 - Jangan query langsung dari Blade.
 - Jangan menulis tag PHP mentah `<?php ... ?>` di Blade.
-- Blade directive dan helper view sederhana masih boleh dipakai.
+- Jangan memakai blok `@php` di Blade.
+- Jangan memakai helper logic seperti `data_get()`, `Str`, `Storage`, atau `collect()` di Blade.
+- Blade directive sederhana seperti `@if`, `@foreach`, `@csrf`, dan `@error` masih boleh dipakai.
 - Gunakan component untuk UI yang berulang.
 - Gunakan data siap tampil dari controller.
 - Gunakan fallback gambar jika data gambar kosong.
