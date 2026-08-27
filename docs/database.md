@@ -572,16 +572,44 @@ Alasan:
 - `project_image` membutuhkan `project`.
 - `about`, `journey`, dan `contact` tidak bergantung ke tabel lain.
 
-## 7. Rekomendasi Index dan Constraint
+## 7. Rekomendasi Seeder
 
-### 7.1 Unique
+Seeder dibuat per tabel agar mudah dijalankan sebagian saat development.
+
+Urutan seeder yang direkomendasikan:
+
+1. `UserSeeder`
+2. `AboutSeeder`
+3. `JourneySeeder`
+4. `CategorySeeder`
+5. `ClientSeeder`
+6. `ToolsSeeder`
+7. `ProjectSeeder`
+8. `ProjectToolSeeder`
+9. `ProjectImageSeeder`
+10. `ContactSeeder`
+
+Wrapper:
+
+- `PortfolioSeeder` memanggil seluruh seeder domain portfolio sesuai urutan di atas.
+- `DatabaseSeeder` memanggil `PortfolioSeeder`.
+
+Catatan:
+
+- Project contoh dibatasi 3 data.
+- Gambar seeder boleh memakai URL external public untuk kebutuhan testing UI.
+- Jangan menjalankan seeder ke database kerja tanpa memastikan migration dan backup data.
+
+## 8. Rekomendasi Index dan Constraint
+
+### 8.1 Unique
 
 - `category.name` jika nama kategori tidak boleh duplikat.
 - `client.name` jika nama client tidak boleh duplikat.
 - `tools.name` jika nama tools tidak boleh duplikat.
 - `project.slug`.
 
-### 7.2 Index
+### 8.2 Index
 
 - `about.active`
 - `journey.key`
@@ -619,7 +647,7 @@ $table->index(['project_id', 'active']);
 $table->index(['tools_id', 'active']);
 ```
 
-## 8. Contoh Model Eloquent
+## 9. Contoh Model Eloquent
 
 Setiap model domain memakai `AuditedBySoftDelete`, `HasFactory`, dan `SoftDeletes`. Model tidak perlu `$fillable`; gunakan `protected $guarded = ['id'];`.
 
@@ -930,7 +958,7 @@ class ProjectImage extends Model
 }
 ```
 
-## 9. Query Publik Yang Direkomendasikan
+## 10. Query Publik Yang Direkomendasikan
 
 Contoh query Home:
 
@@ -972,7 +1000,7 @@ Catatan:
 - Gunakan eager loading untuk menghindari N+1 query.
 - Data gambar sebaiknya dikirim ke view sebagai URL siap tampil.
 
-## 10. Standar Gambar dan File
+## 11. Standar Gambar dan File
 
 Mapping file yang disarankan:
 
@@ -994,7 +1022,7 @@ Aturan:
 - Buat URL gambar dari controller, accessor, presenter, atau helper.
 - Sediakan placeholder jika gambar kosong.
 
-## 11. Catatan Teknis Penting
+## 12. Catatan Teknis Penting
 
 - `about` idealnya hanya punya satu data aktif.
 - `journey.key` sebaiknya memakai nilai konsisten seperti `education`, `experience`, `organization`, dan `certification`.

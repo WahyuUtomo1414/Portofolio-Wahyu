@@ -775,7 +775,8 @@ Ketentuan khusus `AboutResource`:
 - Halaman create redirect kembali ke view record pertama jika data about sudah ada, sehingga admin tidak membuat data kedua dari UI.
 - Halaman view/infolist menjadi halaman utama untuk membaca data profil.
 - Halaman edit tetap tersedia untuk mengubah data profil.
-- Seeder `PortfolioSeeder` menyiapkan satu record awal agar halaman about langsung bisa dibuka.
+- `AboutSeeder` menyiapkan satu record awal agar halaman about langsung bisa dibuka.
+- `PortfolioSeeder` menjadi wrapper untuk menjalankan seluruh seeder portfolio sesuai urutan relasi.
 
 ## 18. Catatan Khusus Repo
 
