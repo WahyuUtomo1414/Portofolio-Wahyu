@@ -15,7 +15,7 @@
 
             <div class="flex items-center gap-3 bg-slate-800 border border-slate-700 px-4 py-1.5 rounded">
                 @if($logo)
-                    <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.style.display='none';">
+                    <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.style.display='none';">
                 @else
                     <span class="text-[#F59E0B]">⚡</span>
                 @endif
@@ -34,7 +34,7 @@
 
             <div class="flex items-center gap-3 bg-slate-800 border border-slate-700 px-4 py-1.5 rounded">
                 @if($logo)
-                    <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.style.display='none';">
+                    <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-5 h-5 object-contain" onerror="this.onerror=null; this.style.display='none';">
                 @else
                     <span class="text-[#F59E0B]">⚡</span>
                 @endif

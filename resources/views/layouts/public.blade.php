@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>{{ $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer' }}</title>
-    <meta name="description" content="{{ $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis pengembangan aplikasi web modern, scalable, dan efisien menggunakan Laravel, Vue, Flutter, dan Tailwind CSS.' }}">
+    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')</title>
+    <meta name="description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis pengembangan aplikasi web modern, scalable, dan efisien menggunakan Laravel, Vue, Flutter, dan Tailwind CSS.')">
     <meta name="keywords" content="Wahyu Dwi Utomo, Fullstack Developer, Laravel Developer, Portofolio Software Engineer, Web Developer Indonesia">
     <meta name="author" content="Wahyu Dwi Utomo">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer' }}">
-    <meta property="og:description" content="{{ $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis aplikasi web scalable menggunakan Laravel & Vue.js.' }}">
+    <meta property="og:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')">
+    <meta property="og:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis aplikasi web scalable menggunakan Laravel & Vue.js.')">
     <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer' }}">
-    <meta property="twitter:description" content="{{ $description ?? 'Portofolio profesional Wahyu Dwi Utomo.' }}">
+    <meta property="twitter:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')">
+    <meta property="twitter:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo.')">
     <meta property="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -33,7 +33,7 @@
 
     <!-- Main Slot Konten -->
     <main class="flex-grow bg-dot-pattern">
-        {{ $slot }}
+        @yield('content')
     </main>
 
     <!-- Global Footer -->

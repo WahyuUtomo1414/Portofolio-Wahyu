@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Support\PortfolioData;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -35,6 +35,7 @@ class HomeController extends Controller
                 'whatsapp' => 'https://wa.me/6281234567890',
             ],
         ];
+        $profile = array_replace($profile, PortfolioData::profile());
 
         // 2. Data Stats (Pencapaian Ringkas dalam Section Terpisah)
         $stats = [
@@ -235,6 +236,10 @@ class HomeController extends Controller
                 'is_featured' => true,
             ],
         ];
+        $featured_projects = PortfolioData::projects()
+            ->where('is_featured', true)
+            ->values()
+            ->all();
 
         // 7. Data Values (Nilai Tambah Pengembangan)
         $values = [

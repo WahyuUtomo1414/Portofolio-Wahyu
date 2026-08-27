@@ -21,9 +21,10 @@
                 <h4 class="text-sm font-bold tracking-wider text-slate-400 uppercase">// NAVIGASI</h4>
                 <ul class="space-y-2 text-sm font-semibold">
                     <li><a href="{{ route('home') }}" class="hover:text-[#2563EB] transition-colors">→ Home Page</a></li>
-                    <li><a href="#projects" class="hover:text-[#2563EB] transition-colors">→ Katalog Project</a></li>
-                    <li><a href="#experience" class="hover:text-[#2563EB] transition-colors">→ Pengalaman Kerja</a></li>
-                    <li><a href="#contact" class="hover:text-[#2563EB] transition-colors">→ Form Kontak</a></li>
+                    <li><a href="{{ route('projects.index') }}" class="hover:text-[#2563EB] transition-colors">→ Katalog Project</a></li>
+                    <li><a href="{{ route('home') }}#experience" class="hover:text-[#2563EB] transition-colors">→ Pengalaman Kerja</a></li>
+                    <li><a href="{{ route('blog.index') }}" class="hover:text-[#2563EB] transition-colors">→ Blog</a></li>
+                    <li><a href="{{ route('contact.index') }}" class="hover:text-[#2563EB] transition-colors">→ Form Kontak</a></li>
                 </ul>
             </div>
 

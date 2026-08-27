@@ -11,6 +11,7 @@
     $thumbnail = data_get($project, 'thumbnail_url') ?? data_get($project, 'thumbnail');
     $techStack = data_get($project, 'tech_stack', []);
     $demoUrl = data_get($project, 'demo_url') ?? data_get($project, 'url');
+    $detailUrl = data_get($project, 'detail_url') ?? (data_get($project, 'slug') ? route('projects.show', data_get($project, 'slug')) : null);
 @endphp
 
 <div class="bg-white border-neo rounded-lg overflow-hidden shadow-neo shadow-neo-hover flex flex-col h-full transition-all duration-200">
@@ -24,7 +25,7 @@
         <!-- Client Logo & Name -->
         <div class="flex items-center gap-2 truncate text-right">
             @if($clientLogo)
-                <img src="{{ Str::startsWith($clientLogo, 'http') ? $clientLogo : asset($clientLogo) }}" alt="{{ $clientName }}" class="w-5 h-5 object-contain rounded border-neo bg-white flex-shrink-0" onerror="this.onerror=null; this.style.display='none';">
+                <img src="{{ str_starts_with($clientLogo, 'http') ? $clientLogo : asset($clientLogo) }}" alt="{{ $clientName }}" class="w-5 h-5 object-contain rounded border-neo bg-white flex-shrink-0" onerror="this.onerror=null; this.style.display='none';">
             @endif
             <span class="text-slate-700 font-bold truncate max-w-[140px]" title="{{ $clientName }}">
                 {{ $clientName ?? 'Personal Project' }}
@@ -69,8 +70,10 @@
             <span class="text-slate-400 font-normal">PROJECT PREVIEW</span>
         @endif
 
-        <span class="inline-flex items-center bg-[#0F172A] text-white px-3 py-1.5 rounded border-neo hover:bg-[#2563EB] transition-colors cursor-pointer">
-            <span>DETAIL</span> →
-        </span>
+        @if($detailUrl)
+            <a href="{{ $detailUrl }}" class="inline-flex items-center bg-[#0F172A] text-white px-3 py-1.5 rounded border-neo hover:bg-[#2563EB] transition-colors">
+                <span>DETAIL</span> →
+            </a>
+        @endif
     </div>
 </div>

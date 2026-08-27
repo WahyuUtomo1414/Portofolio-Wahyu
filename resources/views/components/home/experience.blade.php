@@ -64,7 +64,7 @@
                                     <div class="flex items-start gap-4">
                                         @if($logo)
                                             <div class="w-12 h-12 rounded border-neo bg-slate-100 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                                <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=EDU';">
+                                                <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=EDU';">
                                             </div>
                                         @else
                                             <div class="w-12 h-12 rounded border-neo bg-[#2563EB] text-white flex-shrink-0 flex items-center justify-center font-mono font-bold text-base shadow-neo-sm">
@@ -142,7 +142,7 @@
                                     <div class="flex items-start gap-4">
                                         @if($logo)
                                             <div class="w-12 h-12 rounded border-neo bg-slate-100 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                                <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=WORK';">
+                                                <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=WORK';">
                                             </div>
                                         @else
                                             <div class="w-12 h-12 rounded border-neo bg-[#059669] text-white flex-shrink-0 flex items-center justify-center font-mono font-bold text-base shadow-neo-sm">

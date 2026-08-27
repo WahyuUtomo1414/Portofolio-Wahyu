@@ -1,6 +1,9 @@
-<x-layouts.public 
-    :title="$profile['name'] . ' — ' . $profile['role']"
-    :description="$profile['bio']">
+@extends('layouts.public')
+
+@section('title', $profile['name'] . ' — ' . $profile['role'])
+@section('description', $profile['bio'])
+
+@section('content')
 
     <!-- 1. HERO -->
     <x-home.hero :profile="$profile" />
@@ -26,4 +29,4 @@
     <!-- 8. CONTACT (Section 05: Contact CTA & Direct Form) -->
     <x-home.contact-cta :profile="$profile" />
 
-</x-layouts.public>
+@endsection

@@ -112,21 +112,30 @@
                     <p class="font-sans text-sm text-slate-600 mt-1">Isi form di bawah untuk mengirim pesan langsung ke email saya.</p>
                 </div>
 
-                <form action="#" method="POST" onsubmit="alert('Terima kasih! Pesan Anda telah terkirim (Demo Form).'); return false;" class="space-y-4 font-mono text-sm">
+                <form action="{{ route('contact.store') }}" method="POST" class="space-y-4 font-mono text-sm">
                     @csrf
                     <div>
                         <label for="name" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">NAMA LENGKAP *</label>
-                        <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        <input type="text" id="name" name="name" value="{{ old('name') }}" required placeholder="Masukkan nama Anda" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        @error('name')
+                            <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="email" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">ALAMAT EMAIL *</label>
-                        <input type="email" id="email" name="email" required placeholder="nama@domain.com" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required placeholder="nama@domain.com" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        @error('email')
+                            <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>
                         <label for="message" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">PESAN / DETAIL PROJECT *</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="Jelaskan kebutuhan project atau hal yang ingin didiskusikan..." class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans"></textarea>
+                        <textarea id="message" name="message" rows="4" required placeholder="Jelaskan kebutuhan project atau hal yang ingin didiskusikan..." class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">{{ old('message') }}</textarea>
+                        @error('message')
+                            <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="pt-2">

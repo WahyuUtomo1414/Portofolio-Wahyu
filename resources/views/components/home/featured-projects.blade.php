@@ -20,9 +20,9 @@
                 @endforeach
             </div>
 
-            <!-- View All Projects Button (Navigasi ke Halaman Katalog /projects) -->
+            <!-- View All Projects Button -->
             <div class="pt-12 text-center">
-                <x-common.button-secondary href="#projects" onclick="alert('Ini akan mengarahkan ke halaman katalog /projects ketika halaman /projects dibuat.'); return false;">
+                <x-common.button-secondary href="{{ route('projects.index') }}">
                     <span>LIHAT SEMUA PROJECT (20+)</span>
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>

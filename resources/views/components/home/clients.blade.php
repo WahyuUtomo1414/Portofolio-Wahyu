@@ -32,7 +32,7 @@
                             <!-- Logo Frame -->
                             <div class="w-16 h-16 rounded border-neo bg-white p-2 flex items-center justify-center shadow-neo-sm">
                                 @if($logo)
-                                    <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
+                                    <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
                                 @else
                                     <span class="font-mono font-bold text-xs text-[#0F172A]">CLIENT</span>
                                 @endif

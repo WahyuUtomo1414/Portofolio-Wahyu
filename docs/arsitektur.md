@@ -18,12 +18,13 @@ Project menggunakan Laravel 13 sebagai backend utama.
 Kondisi repo saat ini:
 
 - Laravel 13 sudah terpasang;
-- route publik default `/` masih mengarah ke `resources/views/welcome.blade.php`;
-- belum ada domain model khusus portofolio;
-- belum ada admin panel;
-- belum ada struktur Blade layout dan component khusus portofolio.
+- route publik `/` sudah memakai `HomeController`;
+- route publik `projects`, `blog`, dan `contact` sudah dipisah ke controller masing-masing;
+- model domain portofolio sudah mengikuti `docs/database.md`;
+- Filament panel sudah tersedia untuk admin konten;
+- layout publik, Blade page, dan Blade component portofolio sudah tersedia.
 
-Karena ini website portofolio pribadi, area awal yang dibutuhkan adalah website publik. Admin panel tidak perlu dibuat pada tahap awal kecuali nanti konten ingin dikelola dari database.
+Karena ini website portofolio pribadi, area utama tetap website publik. Admin panel dipakai sebagai area internal untuk mengelola konten portofolio dari database.
 
 ## 3. Prinsip Arsitektur
 
@@ -87,12 +88,14 @@ Struktur frontend publik sebaiknya dibuat seperti ini:
 
 ```text
 app/
-└── Http/
-    └── Controllers/
-        ├── HomeController.php
-        ├── ProjectController.php
-        ├── BlogController.php
-        └── ContactController.php
+├── Http/
+│   └── Controllers/
+│       ├── HomeController.php
+│       ├── ProjectController.php
+│       ├── BlogController.php
+│       └── ContactController.php
+└── Support/
+    └── PortfolioData.php
 
 resources/
 └── views/
@@ -153,7 +156,7 @@ Halaman publik yang disarankan pada tahap awal:
 | --- | --- | --- | --- | --- |
 | Home | `/` | `HomeController` | `index` | profil singkat, skill, project unggulan, pengalaman, CTA kontak |
 | Project | `/projects` | `ProjectController` | `index` | list project, kategori, tech stack |
-| Detail Project | `/projects/{project}` | `ProjectController` | `show` | detail project, gambar, link demo, link repository, tech stack |
+| Detail Project | `/projects/{slug}` | `ProjectController` | `show` | detail project, gambar, link demo, link repository, tech stack |
 | Blog | `/blog` | `BlogController` | `index` | list tulisan, kategori, pagination |
 | Detail Blog | `/blog/{slug}` | `BlogController` | `show` | detail tulisan dan tulisan terkait |
 | Kontak | `/contact` | `ContactController` | `index` | email, WhatsApp, sosial media, form kontak |
@@ -161,20 +164,21 @@ Halaman publik yang disarankan pada tahap awal:
 
 Catatan:
 
-- Untuk tahap awal, konten boleh disiapkan sebagai array di controller atau config file.
-- Jika nanti memakai database, gunakan route model binding slug untuk project dan blog.
+- Untuk tahap awal, konten shared publik boleh disiapkan di presenter sederhana seperti `App\Support\PortfolioData`.
+- Jika nanti semua konten publik sudah diambil dari database, gunakan route model binding slug untuk project.
 - Halaman about terpisah belum wajib jika profil sudah cukup kuat di Home.
 - Jika konten profil panjang, boleh ditambahkan route `/about`.
+- Route blog boleh menjadi placeholder sampai tabel blog/post ditambahkan.
 
 ## 7. Mapping Konten ke Frontend
 
-Jika belum memakai database, data bisa disimpan di file config atau controller presenter sederhana.
+Jika belum semua halaman membaca database, data bisa disimpan di presenter sederhana.
 
 | Konten | Sumber Tahap Awal | Tampilan Publik |
 | --- | --- | --- |
-| Profil | config/controller | hero, about preview, footer |
+| Profil | `App\Support\PortfolioData` atau tabel `about` | hero, about preview, footer, contact |
 | Skill | config/controller | section skill |
-| Project | config/controller | home, project index, project detail |
+| Project | `App\Support\PortfolioData` atau tabel `project` | home, project index, project detail |
 | Experience | config/controller | home |
 | Education | config/controller | home atau about |
 | Certificate | config/controller | home atau about |
@@ -186,14 +190,14 @@ Jika nanti memakai database, domain model yang masuk akal:
 
 | Tabel | Model | Tampilan Publik |
 | --- | --- | --- |
-| `profiles` | `Profile` | home, about, footer |
-| `skills` | `Skill` | home |
-| `projects` | `Project` | home, project index, project detail |
-| `experiences` | `Experience` | home, about |
-| `educations` | `Education` | about |
-| `certificates` | `Certificate` | about |
-| `posts` | `Post` | blog index, blog detail |
-| `contacts` | `Contact` | pesan masuk dari form kontak |
+| `about` | `About` | home, contact, footer |
+| `journey` | `Journey` | education, experience, organization timeline |
+| `category` | `Category` | filter project |
+| `client` | `Client` | client section, detail project |
+| `tools` | `Tools` | skill section, tech stack project |
+| `project` | `Project` | home, project index, project detail |
+| `project_tool` | `ProjectTool` | relasi banyak tools per project |
+| `project_image` | `ProjectImage` | gallery detail project |
 
 Filter data publik jika sudah memakai database:
 
@@ -201,8 +205,8 @@ Filter data publik jika sudah memakai database:
 - jangan tampilkan data soft deleted;
 - project unggulan memakai `is_featured = true`;
 - urutkan project berdasarkan `sort` lalu `created_at`;
-- urutkan blog terbaru berdasarkan `published_at`;
-- eager load relasi yang tampil di halaman.
+- urutkan journey berdasarkan `sort`;
+- eager load relasi yang tampil di halaman, misalnya `project.category`, `project.client`, `project.tools`, dan `project.images`.
 
 ## 8. Layout Global
 
@@ -230,15 +234,15 @@ Contoh struktur:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Wahyu Dwi Utomo' }}</title>
-    <meta name="description" content="{{ $description ?? 'Portofolio pribadi Wahyu Dwi Utomo.' }}">
+    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo')</title>
+    <meta name="description" content="@yield('description', $description ?? 'Portofolio pribadi Wahyu Dwi Utomo.')">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <x-layout.navbar />
 
     <main>
-        {{ $slot }}
+        @yield('content')
     </main>
 
     <x-layout.footer />

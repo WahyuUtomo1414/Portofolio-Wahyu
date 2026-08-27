@@ -17,23 +17,27 @@
                    class="px-4 py-2 rounded-md border-neo transition-all duration-150 {{ request()->routeIs('home') ? 'bg-[#2563EB] text-white shadow-neo-sm' : 'bg-white hover:bg-slate-100 text-[#0F172A]' }}">
                     // HOME
                 </a>
-                <a href="#projects" 
-                   class="px-4 py-2 rounded-md bg-white hover:bg-slate-100 border-neo text-[#0F172A] transition-all duration-150">
+                <a href="{{ route('projects.index') }}"
+                   class="px-4 py-2 rounded-md border-neo transition-all duration-150 {{ request()->routeIs('projects.*') ? 'bg-[#2563EB] text-white shadow-neo-sm' : 'bg-white hover:bg-slate-100 text-[#0F172A]' }}">
                     // PROJECTS
                 </a>
-                <a href="#experience" 
+                <a href="{{ route('home') }}#experience"
                    class="px-4 py-2 rounded-md bg-white hover:bg-slate-100 border-neo text-[#0F172A] transition-all duration-150">
                     // EXPERIENCE
                 </a>
-                <a href="#contact" 
-                   class="px-4 py-2 rounded-md bg-white hover:bg-slate-100 border-neo text-[#0F172A] transition-all duration-150">
+                <a href="{{ route('blog.index') }}"
+                   class="px-4 py-2 rounded-md border-neo transition-all duration-150 {{ request()->routeIs('blog.*') ? 'bg-[#2563EB] text-white shadow-neo-sm' : 'bg-white hover:bg-slate-100 text-[#0F172A]' }}">
+                    // BLOG
+                </a>
+                <a href="{{ route('contact.index') }}"
+                   class="px-4 py-2 rounded-md border-neo transition-all duration-150 {{ request()->routeIs('contact.*') ? 'bg-[#2563EB] text-white shadow-neo-sm' : 'bg-white hover:bg-slate-100 text-[#0F172A]' }}">
                     // CONTACT
                 </a>
             </nav>
 
             <!-- Action Button CTA -->
             <div class="hidden md:flex items-center">
-                <a href="#contact" class="inline-flex items-center justify-center font-mono font-bold text-sm bg-[#059669] text-white px-5 py-2.5 rounded-md border-neo shadow-neo-sm hover:shadow-neo hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+                <a href="{{ route('contact.index') }}" class="inline-flex items-center justify-center font-mono font-bold text-sm bg-[#059669] text-white px-5 py-2.5 rounded-md border-neo shadow-neo-sm hover:shadow-neo hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
                     <span>KONTAK SAYA</span>
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -57,16 +61,19 @@
         <a href="{{ route('home') }}" class="block px-4 py-2.5 rounded-md border-neo bg-[#2563EB] text-white shadow-neo-sm">
             // HOME
         </a>
-        <a href="#projects" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
+        <a href="{{ route('projects.index') }}" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
             // PROJECTS
         </a>
-        <a href="#experience" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
+        <a href="{{ route('home') }}#experience" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
             // EXPERIENCE
         </a>
-        <a href="#contact" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
+        <a href="{{ route('blog.index') }}" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
+            // BLOG
+        </a>
+        <a href="{{ route('contact.index') }}" class="block px-4 py-2.5 rounded-md border-neo bg-white text-[#0F172A]">
             // CONTACT
         </a>
-        <a href="#contact" class="block w-full text-center font-bold bg-[#059669] text-white px-4 py-3 rounded-md border-neo shadow-neo-sm">
+        <a href="{{ route('contact.index') }}" class="block w-full text-center font-bold bg-[#059669] text-white px-4 py-3 rounded-md border-neo shadow-neo-sm">
             KONTAK SAYA →
         </a>
     </div>
