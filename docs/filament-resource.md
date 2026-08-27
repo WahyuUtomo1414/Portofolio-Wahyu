@@ -15,7 +15,7 @@ Scope tahap ini:
 
 Catatan:
 
-- Filament menjadi panel admin utama untuk mengelola about, journey, kategori, client, tools, project, relasi tools project, dan gambar project.
+- Filament menjadi panel admin utama untuk mengelola about, journey, kategori, client, tools, project, relasi tools project, gambar project, dan pesan kontak.
 - Tabel `admin` tidak dibuat. Jika butuh akun panel, gunakan model `User` bawaan Laravel.
 - Kolom audit `created_by`, `updated_by`, dan `deleted_by` berasal dari trait `BaseModelSoftDeleteDefault`.
 - Audit user otomatis diisi oleh trait `AuditedBySoftDelete`.
@@ -32,6 +32,7 @@ Model yang dibuatkan resource:
 - `Tools`
 - `Project`
 - `ProjectImage`
+- `Contact`
 
 Model yang tidak perlu menjadi resource sidebar mandiri:
 
@@ -90,6 +91,7 @@ php artisan make:filament-resource Client --generate --soft-deletes
 php artisan make:filament-resource Tools --generate --soft-deletes
 php artisan make:filament-resource Project --generate --soft-deletes
 php artisan make:filament-resource ProjectImage --generate --soft-deletes
+php artisan make:filament-resource Contact --generate --soft-deletes
 ```
 
 Catatan:
@@ -242,6 +244,7 @@ Pengecualian:
 | `Tools` | `Master Data` |
 | `Project` | `Portofolio` |
 | `ProjectImage` | `Portofolio` |
+| `Contact` | `Konten` |
 
 ## 9. Label dan Icon Resource
 
@@ -254,6 +257,7 @@ Pengecualian:
 | `Tools` | `Tools` | `Tools` | `Tools` | `Master Data` | `heroicon-o-wrench-screwdriver` |
 | `Project` | `Project` | `Project` | `Project` | `Portofolio` | `heroicon-o-briefcase` |
 | `ProjectImage` | `Gambar Project` | `Gambar Project` | `Gambar Project` | `Portofolio` | `heroicon-o-photo` |
+| `Contact` | `Pesan Kontak` | `Pesan Kontak` | `Pesan Kontak` | `Konten` | `heroicon-o-envelope` |
 
 ## 10. Standar Implementasi
 
@@ -337,6 +341,7 @@ Filter:
 - Filter `tools` untuk `Project` jika memakai filter relationship many-to-many.
 - Filter `is_featured` untuk `Project`.
 - Filter tanggal untuk `Project.start_project` dan `Project.end_project`.
+- Filter `read_at` dan `replied_at` untuk `Contact`.
 
 Catatan:
 
@@ -519,6 +524,26 @@ Catatan:
 - `description` memakai text input atau textarea pendek.
 - Jika dikelola lewat relation manager `ProjectResource`, `project_id` tidak perlu tampil karena otomatis mengikuti parent project.
 
+### 14.8 Contact
+
+Field:
+
+- `name`
+- `email`
+- `subject`
+- `message`
+- `read_at`
+- `replied_at`
+- `active`
+
+Catatan:
+
+- Data utama dibuat dari form kontak publik.
+- `subject` opsional.
+- `message` memakai textarea.
+- `read_at` dan `replied_at` boleh diisi dari action table `Tandai Dibaca` dan `Tandai Dibalas`.
+- Admin boleh create manual dari Filament jika perlu mencatat pesan offline.
+
 ## 15. Table Per Resource
 
 ### 15.1 About
@@ -603,6 +628,20 @@ Kolom:
 - `image`
 - `description`
 - `active`
+- `createdBy`
+- `updatedBy`
+
+### 15.8 Contact
+
+Kolom:
+
+- `name`
+- `email`
+- `subject`
+- `message`
+- `active`
+- `read_at`
+- `replied_at`
 - `createdBy`
 - `updatedBy`
 
@@ -694,6 +733,19 @@ Tampilkan:
 - gambar
 - deskripsi
 - status aktif
+- audit data
+
+### 16.8 Contact
+
+Tampilkan:
+
+- nama lengkap
+- email
+- subjek
+- pesan
+- status aktif
+- tanggal dibaca
+- tanggal dibalas
 - audit data
 
 ## 17. Relation Manager

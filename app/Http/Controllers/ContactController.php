@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Support\PortfolioData;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,11 +24,13 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:128'],
             'email' => ['required', 'email', 'max:128'],
+            'subject' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:2000'],
         ]);
 
+        Contact::create($validated);
+
         return back()
-            ->withInput($validated)
-            ->with('status', 'Pesan berhasil divalidasi. Integrasi penyimpanan atau email bisa ditambahkan setelah tabel kontak tersedia.');
+            ->with('status', 'Pesan berhasil dikirim. Saya akan menghubungi Anda kembali melalui email atau WhatsApp.');
     }
 }

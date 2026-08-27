@@ -198,6 +198,7 @@ Jika nanti memakai database, domain model yang masuk akal:
 | `project` | `Project` | home, project index, project detail |
 | `project_tool` | `ProjectTool` | relasi banyak tools per project |
 | `project_image` | `ProjectImage` | gallery detail project |
+| `contact` | `Contact` | pesan masuk dari form kontak publik |
 
 Filter data publik jika sudah memakai database:
 
@@ -207,6 +208,7 @@ Filter data publik jika sudah memakai database:
 - urutkan project berdasarkan `sort` lalu `created_at`;
 - urutkan journey berdasarkan `sort`;
 - eager load relasi yang tampil di halaman, misalnya `project.category`, `project.client`, `project.tools`, dan `project.images`.
+- form kontak publik menyimpan `name`, `email`, `subject`, dan `message` ke tabel `contact`.
 
 ## 8. Layout Global
 

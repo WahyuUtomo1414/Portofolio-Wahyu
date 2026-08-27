@@ -12,7 +12,8 @@ Database ini digunakan untuk menyimpan:
 - kategori project;
 - client;
 - tools atau teknologi yang digunakan, termasuk banyak tools untuk satu project;
-- dokumentasi gambar project.
+- dokumentasi gambar project;
+- pesan kontak dari pengunjung website.
 
 Catatan penting:
 
@@ -28,7 +29,7 @@ Catatan penting:
 
 ## 2. Daftar Tabel
 
-Struktur ERD saat ini memiliki 8 tabel:
+Struktur ERD saat ini memiliki 9 tabel:
 
 - `about`
 - `journey`
@@ -38,6 +39,7 @@ Struktur ERD saat ini memiliki 8 tabel:
 - `project`
 - `project_tool`
 - `project_image`
+- `contact`
 
 ## 3. Base Column
 
@@ -464,6 +466,47 @@ Catatan:
 - `cascadeOnDelete()` menghapus gambar saat project dihapus permanen.
 - Jika memakai soft delete, data child tidak otomatis soft delete saat parent soft delete kecuali dibuat logic tambahan.
 
+### 4.9 contact
+
+Fungsi:
+Menyimpan pesan yang dikirim pengunjung melalui form kontak publik.
+
+Kolom:
+
+| Kolom | Tipe | Null | Keterangan |
+| --- | --- | --- | --- |
+| id | bigint unsigned | no | primary key |
+| name | varchar(128) | no | nama lengkap pengirim |
+| email | varchar(128) | no | email pengirim |
+| subject | varchar(255) | yes | subjek pesan |
+| message | text | no | isi pesan |
+| read_at | timestamp | yes | waktu pesan ditandai sudah dibaca |
+| replied_at | timestamp | yes | waktu pesan ditandai sudah dibalas |
+| active | boolean | no | status data aktif |
+| created_at | timestamp | yes | bawaan Laravel |
+| updated_at | timestamp | yes | bawaan Laravel |
+| deleted_at | timestamp | yes | soft delete |
+
+Contoh migration:
+
+```php
+Schema::create('contact', function (Blueprint $table) {
+    $table->id();
+    $table->string('name', 128);
+    $table->string('email', 128);
+    $table->string('subject')->nullable();
+    $table->text('message');
+    $table->timestamp('read_at')->nullable();
+    $table->timestamp('replied_at')->nullable();
+    $this->base($table);
+});
+```
+
+Catatan:
+
+- Data `contact` dibuat dari form publik.
+- Admin membaca, menandai sudah dibaca, menandai sudah dibalas, menghapus, atau restore pesan dari Filament.
+
 ## 5. Relasi Antar Tabel
 
 Relasi utama berdasarkan ERD:
@@ -484,6 +527,7 @@ project  (1) ----< (n) project_image
 
 about    standalone
 journey  standalone
+contact  standalone
 ```
 
 Relationship summary:
@@ -504,6 +548,7 @@ project_image
 
 about       standalone
 journey     standalone
+contact     standalone
 ```
 
 ## 6. Rekomendasi Migration Order
@@ -518,13 +563,14 @@ Urutan migration yang direkomendasikan:
 6. `create_project_table`
 7. `create_project_tool_table`
 8. `create_project_image_table`
+9. `create_contact_table`
 
 Alasan:
 
 - `project` membutuhkan `category` dan `client`.
 - `project_tool` membutuhkan `project` dan `tools`.
 - `project_image` membutuhkan `project`.
-- `about` dan `journey` tidak bergantung ke tabel lain.
+- `about`, `journey`, dan `contact` tidak bergantung ke tabel lain.
 
 ## 7. Rekomendasi Index dan Constraint
 
@@ -555,6 +601,10 @@ Alasan:
 - `project_tool.tools_id`
 - `project_image.project_id`
 - `project_image.active`
+- `contact.email`
+- `contact.read_at`
+- `contact.replied_at`
+- `contact.active`
 
 Contoh tambahan index:
 

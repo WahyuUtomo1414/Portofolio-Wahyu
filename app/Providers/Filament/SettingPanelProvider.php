@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Resources\Abouts\AboutResource;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Clients\ClientResource;
+use App\Filament\Resources\Contacts\ContactResource;
 use App\Filament\Resources\Journeys\JourneyResource;
 use App\Filament\Resources\ProjectImages\ProjectImageResource;
 use App\Filament\Resources\Projects\ProjectResource;
@@ -48,6 +49,7 @@ class SettingPanelProvider extends PanelProvider
                 JourneyResource::class,
                 CategoryResource::class,
                 ClientResource::class,
+                ContactResource::class,
                 ToolsResource::class,
                 ProjectResource::class,
                 ProjectImageResource::class,

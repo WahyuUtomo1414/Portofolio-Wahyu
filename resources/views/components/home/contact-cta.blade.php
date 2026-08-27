@@ -112,6 +112,12 @@
                     <p class="font-sans text-sm text-slate-600 mt-1">Isi form di bawah untuk mengirim pesan langsung ke email saya.</p>
                 </div>
 
+                @if(session('status'))
+                    <div class="border-neo rounded-md bg-[#ECFDF5] px-4 py-3 font-mono text-xs font-bold text-[#047857]">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <form action="{{ route('contact.store') }}" method="POST" class="space-y-4 font-mono text-sm">
                     @csrf
                     <div>
@@ -126,6 +132,14 @@
                         <label for="email" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">ALAMAT EMAIL *</label>
                         <input type="email" id="email" name="email" value="{{ old('email') }}" required placeholder="nama@domain.com" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
                         @error('email')
+                            <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="subject" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">SUBJEK</label>
+                        <input type="text" id="subject" name="subject" value="{{ old('subject') }}" placeholder="Contoh: Diskusi project Laravel" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        @error('subject')
                             <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
                         @enderror
                     </div>

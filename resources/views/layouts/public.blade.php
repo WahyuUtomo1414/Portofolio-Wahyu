@@ -39,6 +39,9 @@
     <!-- Global Footer -->
     <x-layout.footer />
 
+    <!-- Back To Top Button Component (Pojok Kanan Bawah dengan Progress Indicator) -->
+    <x-common.back-to-top />
+
     <!-- Alpine / Simple Script for Interactivity -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
