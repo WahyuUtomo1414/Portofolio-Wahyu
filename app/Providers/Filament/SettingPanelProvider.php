@@ -2,6 +2,13 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Abouts\AboutResource;
+use App\Filament\Resources\Categories\CategoryResource;
+use App\Filament\Resources\Clients\ClientResource;
+use App\Filament\Resources\Journeys\JourneyResource;
+use App\Filament\Resources\ProjectImages\ProjectImageResource;
+use App\Filament\Resources\Projects\ProjectResource;
+use App\Filament\Resources\Tools\ToolsResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -31,7 +38,15 @@ class SettingPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
+            ->resources([
+                AboutResource::class,
+                JourneyResource::class,
+                CategoryResource::class,
+                ClientResource::class,
+                ToolsResource::class,
+                ProjectResource::class,
+                ProjectImageResource::class,
+            ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
