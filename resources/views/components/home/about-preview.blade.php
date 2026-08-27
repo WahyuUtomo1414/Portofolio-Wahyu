@@ -1,16 +1,47 @@
 @props([
     'values' => [],
+    'profile' => [],
 ])
 
-<section class="py-16 lg:py-24 border-neo-b bg-[#FAF8F5]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="about" class="py-16 lg:py-24 border-neo-b bg-[#FAF8F5]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="03" 
-            tag="KEUNGGULAN KERJA" 
-            title="NILAI UTAMA DALAM PENGEMBANGAN" 
-            subtitle="Prinsip utama yang selalu diterapkan dalam setiap baris kode dan arsitektur sistem yang dibangun." />
+            number="01" 
+            tag="TENTANG SAYA & KEUNGGULAN" 
+            title="FILOSOFI & KEUNGGULAN KERJA" 
+            subtitle="Prinsip utama dan komitmen yang selalu diterapkan dalam setiap baris kode dan arsitektur sistem yang dibangun." />
+
+        <!-- Expanded About Me Bio Card -->
+        <div class="bg-white border-neo p-6 sm:p-8 rounded-xl shadow-neo grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-4 flex flex-col items-center sm:items-start space-y-3 border-neo-b lg:border-neo-b-0 lg:border-neo-r lg:pr-8 pb-6 lg:pb-0">
+                <div class="inline-flex items-center gap-2 bg-[#2563EB] text-white px-3 py-1 rounded border-neo font-mono text-xs font-bold">
+                    <span>💡 TENTANG SAYA</span>
+                </div>
+                <h3 class="font-heading font-extrabold text-2xl text-[#0F172A]">
+                    {{ data_get($profile, 'name', 'Wahyu Dwi Utomo') }}
+                </h3>
+                <p class="font-mono text-xs font-bold text-[#2563EB]">
+                    {{ data_get($profile, 'role', 'Senior Fullstack Web Developer') }}
+                </p>
+                <div class="font-mono text-xs text-slate-500 font-bold">
+                    📍 {{ data_get($profile, 'location', 'Bekasi / Jakarta, Indonesia') }}
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 lg:pl-4 space-y-3 font-sans">
+                <h4 class="font-heading font-bold text-lg text-[#0F172A] uppercase">DESKRIPSI PROFIL:</h4>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
+                    {{ data_get($profile, 'description') ?? data_get($profile, 'bio', 'Mengembangkan aplikasi web modern dari arsitektur backend Laravel yang kokoh hingga antarmuka pengguna frontend yang responsif, cepat, dan intuitif.') }}
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs font-bold">
+                    <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">PSR Standard</span>
+                    <span class="bg-[#ECFDF5] text-[#059669] border-neo px-3 py-1 rounded">Clean Architecture</span>
+                    <span class="bg-[#FEF3C7] text-[#D97706] border-neo px-3 py-1 rounded">High Performance</span>
+                </div>
+            </div>
+        </div>
 
         <!-- 4 Grid Box Values -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

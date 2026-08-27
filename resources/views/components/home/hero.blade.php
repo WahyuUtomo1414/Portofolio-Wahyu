@@ -1,6 +1,5 @@
 @props([
     'profile' => [],
-    'stats' => [],
 ])
 
 <section class="relative py-12 lg:py-20 overflow-hidden border-neo-b bg-[#FAF8F5]">
@@ -46,22 +45,48 @@
                 </div>
             </div>
 
-            <!-- Right Column: Stat Counters Grid (5 Cols) -->
-            <div class="lg:col-span-5">
-                <div class="grid grid-cols-2 gap-4">
-                    @foreach($stats as $stat)
-                        <div class="bg-white border-neo p-5 rounded-lg shadow-neo shadow-neo-hover space-y-1">
-                            <div class="font-mono font-extrabold text-3xl sm:text-4xl text-[#0F172A]">
-                                {{ $stat['number'] }}
-                            </div>
-                            <div class="font-mono font-bold text-xs text-[#2563EB] tracking-wider uppercase">
-                                {{ $stat['label'] }}
-                            </div>
-                            <div class="font-sans text-xs text-slate-500 font-medium">
-                                {{ $stat['desc'] }}
+            <!-- Right Column: Framed Profile Photo Card (5 Cols) -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    
+                    <!-- Profile Card Container -->
+                    <div class="bg-white border-neo rounded-2xl p-4 sm:p-5 shadow-neo shadow-neo-hover space-y-4">
+                        
+                        <!-- Top Bar Signature -->
+                        <div class="flex items-center justify-between font-mono text-xs font-bold border-neo-b pb-3">
+                            <span class="bg-[#0F172A] text-white px-3 py-1 rounded border-neo">
+                                PORTFOLIO OWNER
+                            </span>
+                            <span class="text-[#2563EB] font-extrabold tracking-wider">
+                                WAHYU.DEV
+                            </span>
+                        </div>
+
+                        <!-- Photo Frame -->
+                        <div class="relative rounded-xl border-neo overflow-hidden bg-slate-100 aspect-square group">
+                            <img src="{{ $profile['image_profile'] ?? asset('images/profile/wahyu.png') }}" 
+                                 alt="{{ $profile['name'] ?? 'Wahyu Dwi Utomo' }}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x600/0F172A/FFFFFF?text=Wahyu+Dwi+Utomo';">
+                            
+                            <div class="absolute bottom-3 left-3 right-3 bg-[#0F172A]/90 backdrop-blur-sm text-white p-3 rounded-lg border-neo text-xs font-mono font-bold flex items-center justify-between">
+                                <span class="truncate">{{ $profile['name'] ?? 'Wahyu Dwi Utomo' }}</span>
+                                <span class="text-[#059669]">● ONLINE</span>
                             </div>
                         </div>
-                    @endforeach
+
+                        <!-- Floating Info Chips -->
+                        <div class="flex flex-wrap gap-2 font-mono text-xs font-bold pt-1">
+                            <span class="bg-slate-100 border-neo px-3 py-1 rounded text-[#0F172A]">
+                                📍 {{ $profile['location'] ?? 'Bekasi / Jakarta' }}
+                            </span>
+                            <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">
+                                💻 Fullstack Web Dev
+                            </span>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
