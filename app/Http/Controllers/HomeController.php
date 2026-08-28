@@ -29,7 +29,7 @@ class HomeController extends Controller
             'stats' => $this->statsData(),
             'skills' => $skills,
             'clients' => $clients,
-            'client_chunks' => array_chunk($clients, 4),
+            'client_chunks' => array_chunk($clients, 8),
             'education' => $education,
             'experience' => $experience,
             'journey' => array_merge($education, $experience),
@@ -126,6 +126,14 @@ class HomeController extends Controller
             ['id' => 6, 'name' => 'Logistics Express App', 'logo' => asset('images/clients/logistics.png'), 'desc' => 'Freight & Courier Management'],
             ['id' => 7, 'name' => 'Healthcare Medical Portal', 'logo' => asset('images/clients/health.png'), 'desc' => 'Sistem Informasi Rumah Sakit & Klinik'],
             ['id' => 8, 'name' => 'Retail POS Network', 'logo' => asset('images/clients/retail.png'), 'desc' => 'Omnichannel Retail Store System'],
+            ['id' => 9, 'name' => 'Pesona Media Creative', 'logo' => asset('images/clients/pesona.png'), 'desc' => 'Digital Agency & Branding'],
+            ['id' => 10, 'name' => 'PT Arta Maju Sentosa', 'logo' => asset('images/clients/arta.png'), 'desc' => 'General Trading & Supplier'],
+            ['id' => 11, 'name' => 'SMA Negeri Jakarta', 'logo' => asset('images/clients/sman.png'), 'desc' => 'Instansi Pendidikan Negeri'],
+            ['id' => 12, 'name' => 'Arthur Teknik Indonesia', 'logo' => asset('images/clients/arthur.png'), 'desc' => 'Engineering & Generator Service'],
+            ['id' => 13, 'name' => 'GrowthDigital Marketing', 'logo' => asset('images/clients/growth.png'), 'desc' => 'Performance Growth Partner'],
+            ['id' => 14, 'name' => 'PT Charlyn Jaya', 'logo' => asset('images/clients/charlyn.png'), 'desc' => 'Industrial Equipment & Parts'],
+            ['id' => 15, 'name' => 'HIMSI BSI Official', 'logo' => asset('images/clients/himsi.png'), 'desc' => 'Himpunan Mahasiswa Sistem Informasi'],
+            ['id' => 16, 'name' => 'Dinas Pertamanan & Hutan Kota', 'logo' => asset('images/clients/dinas.png'), 'desc' => 'Instansi Pemerintah Daerah'],
         ];
 
         if (! $this->tableExists('client')) {
