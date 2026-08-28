@@ -19,18 +19,17 @@
                     $client = $clients[$i] ?? null;
                     $name = data_get($client, 'name', 'Client Partner');
                     $logo = data_get($client, 'logo');
-                    $desc = data_get($client, 'desc', 'Mitra Kerja');
 
                     // Tentukan arah rotasi 3D yang berbeda-beda untuk tiap slot card (Y-Axis, X-Axis, -Y-Axis, -X-Axis)
                     $directionTypes = ['rotate-y-180', 'rotate-x-180', 'rotate-y-neg-180', 'rotate-x-neg-180'];
                     $cardDirectionClass = $directionTypes[$i % 4];
                 @endphp
 
-                <div class="client-flip-card perspective-1000 h-44 sm:h-48" data-card-slot="{{ $i }}" data-direction-type="{{ $i % 4 }}">
+                <div class="client-flip-card perspective-1000 h-40 sm:h-44" data-card-slot="{{ $i }}" data-direction-type="{{ $i % 4 }}">
                     <div class="client-card-inner relative w-full h-full transition-transform duration-1000 ease-in-out transform-style-3d">
                         
-                        <!-- Front Card Face (Direct Original Colors) -->
-                        <div class="client-card-front absolute inset-0 bg-[#FAF8F5] border-neo p-5 sm:p-6 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-3 backface-hidden">
+                        <!-- Front Card Face (Direct Original Colors & Logo + Title Only) -->
+                        <div class="client-card-front absolute inset-0 bg-[#FAF8F5] border-neo p-4 sm:p-5 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-2.5 backface-hidden">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-neo bg-white p-2.5 flex items-center justify-center shadow-neo-sm">
                                 <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" 
                                      alt="{{ $name }}" 
@@ -38,25 +37,19 @@
                                      onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
                             </div>
                             <div>
-                                <h4 class="card-name-text font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug">
+                                <h4 class="card-name-text font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug line-clamp-2">
                                     {{ $name }}
                                 </h4>
-                                @if($desc)
-                                    <p class="card-desc-text font-sans text-xs text-slate-500 font-medium mt-1 line-clamp-1">
-                                        {{ $desc }}
-                                    </p>
-                                @endif
                             </div>
                         </div>
 
                         <!-- Back Card Face (Pre-rotated according to direction) -->
-                        <div class="client-card-back absolute inset-0 bg-[#FAF8F5] border-neo p-5 sm:p-6 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-3 backface-hidden {{ $cardDirectionClass }}">
+                        <div class="client-card-back absolute inset-0 bg-[#FAF8F5] border-neo p-4 sm:p-5 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-2.5 backface-hidden {{ $cardDirectionClass }}">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-neo bg-white p-2.5 flex items-center justify-center shadow-neo-sm">
                                 <img src="" alt="" class="card-logo-img w-full h-full object-contain">
                             </div>
                             <div>
-                                <h4 class="card-name-text font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug"></h4>
-                                <p class="card-desc-text font-sans text-xs text-slate-500 font-medium mt-1 line-clamp-1"></p>
+                                <h4 class="card-name-text font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug line-clamp-2"></h4>
                             </div>
                         </div>
 
@@ -99,7 +92,7 @@
     }
 </style>
 
-<!-- Multi-Directional 3D Card Flip Animation Script (Slower Duration: 1.1s, Interval: 6.0s) -->
+<!-- Multi-Directional 3D Card Flip Animation Script -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const clientsData = @json($clients);
@@ -108,7 +101,6 @@
         const cards = document.querySelectorAll('.client-flip-card');
         let currentIndex = 8;
 
-        // Transform CSS strings per direction type (0: Horizontal Y, 1: Vertical X, 2: Reverse Horizontal -Y, 3: Reverse Vertical -X)
         const directionTransforms = [
             'rotateY(180deg)',
             'rotateX(180deg)',
@@ -125,17 +117,15 @@
 
                 if (!inner || !front || !back) return;
 
-                // Populate back face with new client logo and text
+                // Populate back face with new client logo and name
                 const backLogo = back.querySelector('.card-logo-img');
                 const backName = back.querySelector('.card-name-text');
-                const backDesc = back.querySelector('.card-desc-text');
 
                 if (backLogo) {
                     backLogo.src = newClientData.logo || '';
                     backLogo.alt = newClientData.name || '';
                 }
                 if (backName) backName.textContent = newClientData.name || '';
-                if (backDesc) backDesc.textContent = newClientData.desc || '';
 
                 // Apply multi-directional 3D flip transform with 1.1s duration
                 inner.style.transition = 'transform 1.1s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -145,14 +135,12 @@
                 setTimeout(() => {
                     const frontLogo = front.querySelector('.card-logo-img');
                     const frontName = front.querySelector('.card-name-text');
-                    const frontDesc = front.querySelector('.card-desc-text');
 
                     if (frontLogo) {
                         frontLogo.src = newClientData.logo || '';
                         frontLogo.alt = newClientData.name || '';
                     }
                     if (frontName) frontName.textContent = newClientData.name || '';
-                    if (frontDesc) frontDesc.textContent = newClientData.desc || '';
 
                     inner.style.transition = 'none';
                     inner.style.transform = 'rotateY(0deg) rotateX(0deg)';
@@ -165,12 +153,12 @@
             }, delayMs);
         }
 
-        // Trigger multi-directional card flip wave every 6.0 seconds with longer 110ms staggered delay
+        // Trigger multi-directional card flip wave every 6.0 seconds
         setInterval(() => {
             cards.forEach((card, slotIndex) => {
                 const nextClient = clientsData[currentIndex % clientsData.length];
                 currentIndex++;
-                const staggeredDelay = slotIndex * 110; // 110ms staggered delay per card slot
+                const staggeredDelay = slotIndex * 110;
                 flipCardSlot(card, nextClient, staggeredDelay);
             });
         }, 6000);
