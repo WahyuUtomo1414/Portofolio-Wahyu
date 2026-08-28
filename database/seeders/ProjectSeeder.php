@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\Client;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +18,7 @@ class ProjectSeeder extends Seeder
                     'name' => $project['name'],
                     'category_id' => Category::query()->where('name', $project['category'])->value('id'),
                     'body' => $project['body'],
-                    'client_id' => Client::query()->where('name', $project['client'])->value('id'),
+                    'client_id' => 1,
                     'start_project' => $project['start_project'],
                     'end_project' => $project['end_project'],
                     'url' => $project['url'],
@@ -39,7 +38,6 @@ class ProjectSeeder extends Seeder
                 'slug' => 'keysoft-erp-enterprise-system',
                 'category' => 'Enterprise App',
                 'body' => 'Sistem ERP berbasis Laravel untuk mengelola modul inventory, purchase, sales, finance, reporting, dan hak akses user internal.',
-                'client' => 'PT Keysoft ERP Indonesia',
                 'start_project' => '2025-01-10',
                 'end_project' => null,
                 'url' => 'https://example.com/keysoft-erp',
@@ -51,7 +49,6 @@ class ProjectSeeder extends Seeder
                 'slug' => 'personal-portfolio-cms',
                 'category' => 'Web Development',
                 'body' => 'Website portofolio pribadi berbasis Laravel 13, Blade, Tailwind CSS, dan Filament untuk mengelola profil, journey, project, client, tools, dan pesan kontak.',
-                'client' => 'Personal Project',
                 'start_project' => '2026-08-01',
                 'end_project' => null,
                 'url' => 'https://example.com/portfolio',
@@ -63,7 +60,6 @@ class ProjectSeeder extends Seeder
                 'slug' => 'mobile-field-reporting-app',
                 'category' => 'Mobile App',
                 'body' => 'Aplikasi mobile untuk laporan aktivitas lapangan, upload dokumentasi, sinkronisasi data, dan dashboard monitoring berbasis API.',
-                'client' => 'Universitas BSI',
                 'start_project' => '2024-09-15',
                 'end_project' => '2025-02-20',
                 'url' => 'https://example.com/mobile-reporting',

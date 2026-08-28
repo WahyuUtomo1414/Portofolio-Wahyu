@@ -11,10 +11,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::query()->updateOrCreate([
-            'email' => 'admin@example.com',
+            'email' => 'wahyuxd14@gmail.com',
         ], [
-            'name' => 'Admin Portofolio',
-            'password' => Hash::make('password'),
+            'name' => 'Wahyu Dwi Utomo',
+            'password' => Hash::make('wahyu141402'),
         ]);
     }
 }

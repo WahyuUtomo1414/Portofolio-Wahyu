@@ -13,17 +13,16 @@ class AboutSeeder extends Seeder
             ['email' => 'wahyudwiutomo1414@gmail.com'],
             [
                 'name' => 'Wahyu Dwi Utomo',
-                'no_wa' => '+62 812-3456-7890',
+                'no_wa' => '6285891514812',
                 'sosial_media' => [
                     'github' => 'https://github.com/WahyuUtomo1414',
-                    'linkedin' => 'https://linkedin.com/in/wahyu-dwi-utomo',
-                    'instagram' => 'https://instagram.com/wahyudwi',
-                    'website' => 'https://wahyu.dev',
+                    'linkedin' => 'https://www.linkedin.com/in/wahyutomo/',
+                    'instagram' => 'https://www.instagram.com/waahyutomo/',
                 ],
                 'description' => 'Fullstack web developer yang fokus membangun aplikasi Laravel, dashboard admin, API, dan frontend yang rapi untuk kebutuhan bisnis.',
                 'image_profile' => 'https://picsum.photos/seed/wahyu-profile/900/900',
                 'tagline' => 'Building scalable fullstack web applications.',
-                'address' => 'Bekasi / Jakarta, Indonesia',
+                'address' => 'Jakarta, Indonesia',
                 'active' => true,
             ],
         );

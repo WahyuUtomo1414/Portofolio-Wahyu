@@ -26,6 +26,10 @@ class ToolsSeeder extends Seeder
             ['name' => 'Vue.js', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg', 'desc' => 'Frontend framework untuk interface interaktif.'],
             ['name' => 'Flutter', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg', 'desc' => 'Framework mobile cross-platform.'],
             ['name' => 'PostgreSQL', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', 'desc' => 'Relational database untuk aplikasi production.'],
+            ['name' => 'SQL Server', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', 'desc' => 'Relational database untuk aplikasi production.'],
+            ['name' => 'Mysql', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', 'desc' => 'Relational database untuk aplikasi production.'],
+            ['name' => 'Golang', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', 'desc' => 'Relational database untuk aplikasi production.'],
+            ['name' => 'Firebase', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', 'desc' => 'Relational database untuk aplikasi production.'],
         ];
     }
 }
