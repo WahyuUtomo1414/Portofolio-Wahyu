@@ -37,14 +37,6 @@
                     <div class="absolute left-4 top-4 bottom-4 w-1 bg-[#0F172A] -translate-x-1/2 z-0"></div>
 
                     @foreach($education as $edu)
-                        @php
-                            $dateRange = data_get($edu, 'date_range');
-                            $institute = data_get($edu, 'institute') ?? data_get($edu, 'institude');
-                            $title = data_get($edu, 'title');
-                            $desc = data_get($edu, 'description') ?? data_get($edu, 'desc');
-                            $logo = data_get($edu, 'logo');
-                        @endphp
-
                         <div class="relative group">
                             <!-- Timeline Bullet Dot (Centered exactly at left-4 over the vertical line) -->
                             <div class="absolute left-4 top-1.5 -translate-x-1/2 z-10 w-5 h-5 rounded-full bg-[#2563EB] border-neo shadow-neo-sm"></div>
@@ -55,16 +47,16 @@
                                 <div>
                                     <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#FAF8F5] border-neo shadow-neo-sm font-mono text-xs font-bold text-[#0F172A]">
                                         <span class="text-[#2563EB]">🎓</span>
-                                        <span>{{ $dateRange }}</span>
+                                        <span>{{ $edu['date_range'] }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Timeline Card -->
                                 <div class="bg-white p-5 rounded-lg border-neo shadow-neo shadow-neo-hover space-y-3">
                                     <div class="flex items-start gap-4">
-                                        @if($logo)
+                                        @if($edu['logo'])
                                             <div class="w-12 h-12 rounded border-neo bg-slate-100 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                                <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=EDU';">
+                                                <img src="{{ $edu['logo'] }}" alt="{{ $edu['institute'] }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=EDU';">
                                             </div>
                                         @else
                                             <div class="w-12 h-12 rounded border-neo bg-[#2563EB] text-white flex-shrink-0 flex items-center justify-center font-mono font-bold text-base shadow-neo-sm">
@@ -74,14 +66,14 @@
 
                                         <div class="space-y-1">
                                             <h4 class="font-heading font-extrabold text-lg sm:text-xl text-[#0F172A] leading-snug group-hover:text-[#2563EB] transition-colors">
-                                                {{ $institute }}
+                                                {{ $edu['institute'] }}
                                             </h4>
                                             <p class="font-mono text-xs font-bold text-[#2563EB]">
-                                                {{ $title }}
+                                                {{ $edu['title'] }}
                                             </p>
-                                            @if($desc)
+                                            @if($edu['description'])
                                                 <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
-                                                    {{ $desc }}
+                                                    {{ $edu['description'] }}
                                                 </p>
                                             @endif
                                         </div>
@@ -115,14 +107,6 @@
                     <div class="absolute left-4 top-4 bottom-4 w-1 bg-[#0F172A] -translate-x-1/2 z-0"></div>
 
                     @foreach($experience as $exp)
-                        @php
-                            $dateRange = data_get($exp, 'date_range');
-                            $institute = data_get($exp, 'institute') ?? data_get($exp, 'institude');
-                            $title = data_get($exp, 'title');
-                            $desc = data_get($exp, 'description') ?? data_get($exp, 'desc');
-                            $logo = data_get($exp, 'logo');
-                        @endphp
-
                         <div class="relative group">
                             <!-- Timeline Bullet Dot (Centered exactly at left-4 over the vertical line) -->
                             <div class="absolute left-4 top-1.5 -translate-x-1/2 z-10 w-5 h-5 rounded-full bg-[#059669] border-neo shadow-neo-sm"></div>
@@ -133,16 +117,16 @@
                                 <div>
                                     <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-[#FAF8F5] border-neo shadow-neo-sm font-mono text-xs font-bold text-[#0F172A]">
                                         <span class="text-[#059669]">⚡</span>
-                                        <span>{{ $dateRange }}</span>
+                                        <span>{{ $exp['date_range'] }}</span>
                                     </div>
                                 </div>
 
                                 <!-- Timeline Card -->
                                 <div class="bg-white p-5 rounded-lg border-neo shadow-neo shadow-neo-hover space-y-3">
                                     <div class="flex items-start gap-4">
-                                        @if($logo)
+                                        @if($exp['logo'])
                                             <div class="w-12 h-12 rounded border-neo bg-slate-100 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                                                <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $institute }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=WORK';">
+                                                <img src="{{ $exp['logo'] }}" alt="{{ $exp['institute'] }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/0F172A/FFFFFF?text=WORK';">
                                             </div>
                                         @else
                                             <div class="w-12 h-12 rounded border-neo bg-[#059669] text-white flex-shrink-0 flex items-center justify-center font-mono font-bold text-base shadow-neo-sm">
@@ -152,14 +136,14 @@
 
                                         <div class="space-y-1">
                                             <h4 class="font-heading font-extrabold text-lg sm:text-xl text-[#0F172A] leading-snug group-hover:text-[#059669] transition-colors">
-                                                {{ $title }}
+                                                {{ $exp['title'] }}
                                             </h4>
                                             <p class="font-mono text-xs font-bold text-[#059669]">
-                                                @ {{ $institute }}
+                                                @ {{ $exp['institute'] }}
                                             </p>
-                                            @if($desc)
+                                            @if($exp['description'])
                                                 <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed font-medium pt-1">
-                                                    {{ $desc }}
+                                                    {{ $exp['description'] }}
                                                 </p>
                                             @endif
                                         </div>

@@ -1,10 +1,7 @@
 @props([
     'clients' => [],
+    'chunks' => [],
 ])
-
-@php
-    $chunks = array_chunk($clients, 4);
-@endphp
 
 <section class="py-16 lg:py-20 border-neo-b bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -21,18 +18,12 @@
             @foreach($chunks as $index => $chunk)
                 <div class="client-slide-batch {{ $index === 0 ? 'grid' : 'hidden' }} grid-cols-2 md:grid-cols-4 gap-6 transition-all duration-500 ease-in-out">
                     @foreach($chunk as $client)
-                        @php
-                            $name = data_get($client, 'name');
-                            $logo = data_get($client, 'logo');
-                            $desc = data_get($client, 'desc');
-                        @endphp
-
                         <div class="bg-[#FAF8F5] border-neo p-6 rounded-lg shadow-neo shadow-neo-hover flex flex-col items-center justify-center text-center space-y-3 transition-all duration-300">
                             
                             <!-- Logo Frame -->
                             <div class="w-16 h-16 rounded border-neo bg-white p-2 flex items-center justify-center shadow-neo-sm">
-                                @if($logo)
-                                    <img src="{{ str_starts_with($logo, 'http') ? $logo : asset($logo) }}" alt="{{ $name }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
+                                @if($client['logo'])
+                                    <img src="{{ $client['logo'] }}" alt="{{ $client['name'] }}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
                                 @else
                                     <span class="font-mono font-bold text-xs text-[#0F172A]">CLIENT</span>
                                 @endif
@@ -41,11 +32,11 @@
                             <!-- Name & Description -->
                             <div>
                                 <h4 class="font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug">
-                                    {{ $name }}
+                                    {{ $client['name'] }}
                                 </h4>
-                                @if($desc)
+                                @if($client['desc'])
                                     <p class="font-sans text-xs text-slate-500 font-medium mt-1 line-clamp-1">
-                                        {{ $desc }}
+                                        {{ $client['desc'] }}
                                     </p>
                                 @endif
                             </div>

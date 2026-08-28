@@ -21,7 +21,7 @@
     <x-home.experience :education="$education" :experience="$experience" />
 
     <!-- 6. CLIENT (Section 03: Dedicated Clients & Partners Section) -->
-    <x-home.clients :clients="$clients" />
+    <x-home.clients :clients="$clients" :chunks="$client_chunks" />
 
     <!-- 7. PROJECT (Section 04: Featured Projects) -->
     <x-home.featured-projects :projects="$featured_projects" />

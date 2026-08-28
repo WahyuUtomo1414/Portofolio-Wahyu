@@ -18,7 +18,7 @@
                 <div class="p-6 sm:p-8 space-y-6">
                     <div class="space-y-3">
                         <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
-                            <span class="bg-[#2563EB] text-white border-neo px-3 py-1 rounded">{{ strtoupper($project['category']) }}</span>
+                            <span class="bg-[#2563EB] text-white border-neo px-3 py-1 rounded">{{ $project['category_label'] }}</span>
                             <span class="bg-slate-100 text-[#0F172A] border-neo px-3 py-1 rounded">{{ $project['client_name'] }}</span>
                         </div>
 

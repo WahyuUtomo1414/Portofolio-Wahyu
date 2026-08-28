@@ -1,11 +1,8 @@
 @props([
     'href' => null,
     'type' => 'button',
+    'classes' => 'inline-flex items-center justify-center font-mono font-bold text-sm sm:text-base bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-6 py-3 rounded-md border-neo shadow-neo shadow-neo-hover cursor-pointer transition-all duration-200',
 ])
-
-@php
-    $classes = "inline-flex items-center justify-center font-mono font-bold text-sm sm:text-base bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-6 py-3 rounded-md border-neo shadow-neo shadow-neo-hover cursor-pointer transition-all duration-200";
-@endphp
 
 @if($href)
     <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>

@@ -34,7 +34,7 @@
                                class="w-full bg-[#FAF8F5] border-neo rounded-lg pl-10 pr-10 py-3 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans font-medium">
                         
                         @if($search !== '')
-                            <a href="{{ route('projects.index', array_filter(['category' => $selectedCategory])) }}" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-red-500 font-bold">
+                            <a href="{{ $clearSearchUrl }}" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-red-500 font-bold">
                                 ✕
                             </a>
                         @endif
@@ -49,18 +49,15 @@
                 <div class="space-y-2">
                     <div class="font-mono text-xs font-bold text-slate-500 uppercase">// FILTER KATEGORI</div>
                     <div class="flex flex-wrap gap-2.5 font-mono text-xs font-bold">
-                        <a href="{{ route('projects.index', array_filter(['q' => $search])) }}" 
+                        <a href="{{ $allProjectsUrl }}" 
                            class="border-neo px-3.5 py-1.5 rounded-md transition-all shadow-neo-sm {{ $selectedCategory === '' ? 'bg-[#2563EB] text-white' : 'bg-[#FAF8F5] hover:bg-slate-100 text-[#0F172A]' }}">
-                            SEMUA ({{ \App\Support\PortfolioData::projects()->count() }})
+                            SEMUA ({{ $totalProjects }})
                         </a>
                         
                         @foreach($categories as $category)
-                            @php
-                                $count = \App\Support\PortfolioData::projects()->where('category', $category)->count();
-                            @endphp
-                            <a href="{{ route('projects.index', array_filter(['category' => $category, 'q' => $search])) }}" 
-                               class="border-neo px-3.5 py-1.5 rounded-md transition-all shadow-neo-sm {{ $selectedCategory === $category ? 'bg-[#2563EB] text-white' : 'bg-[#FAF8F5] hover:bg-slate-100 text-[#0F172A]' }}">
-                                {{ strtoupper($category) }} ({{ $count }})
+                            <a href="{{ $category['url'] }}" 
+                               class="border-neo px-3.5 py-1.5 rounded-md transition-all shadow-neo-sm {{ $selectedCategory === $category['name'] ? 'bg-[#2563EB] text-white' : 'bg-[#FAF8F5] hover:bg-slate-100 text-[#0F172A]' }}">
+                                {{ $category['label'] }} ({{ $category['count'] }})
                             </a>
                         @endforeach
                     </div>

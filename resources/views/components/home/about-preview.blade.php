@@ -20,20 +20,20 @@
                     <span>💡 TENTANG SAYA</span>
                 </div>
                 <h3 class="font-heading font-extrabold text-2xl text-[#0F172A]">
-                    {{ data_get($profile, 'name', 'Wahyu Dwi Utomo') }}
+                    {{ $profile['name'] }}
                 </h3>
                 <p class="font-mono text-xs font-bold text-[#2563EB]">
-                    {{ data_get($profile, 'role', 'Senior Fullstack Web Developer') }}
+                    {{ $profile['role'] }}
                 </p>
                 <div class="font-mono text-xs text-slate-500 font-bold">
-                    📍 {{ data_get($profile, 'location', 'Bekasi / Jakarta, Indonesia') }}
+                    📍 {{ $profile['location'] }}
                 </div>
             </div>
 
             <div class="lg:col-span-8 lg:pl-4 space-y-3 font-sans">
                 <h4 class="font-heading font-bold text-lg text-[#0F172A] uppercase">DESKRIPSI PROFIL:</h4>
                 <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-medium">
-                    {{ data_get($profile, 'description') ?? data_get($profile, 'bio', 'Mengembangkan aplikasi web modern dari arsitektur backend Laravel yang kokoh hingga antarmuka pengguna frontend yang responsif, cepat, dan intuitif.') }}
+                    {{ $profile['description'] }}
                 </p>
                 <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs font-bold">
                     <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">PSR Standard</span>
