@@ -21,10 +21,10 @@
     <x-home.experience :education="$education" :experience="$experience" />
 
     <!-- 6. CLIENT (Section 03: Dedicated Clients & Partners Section) -->
-    <x-home.clients :clients="$clients" :chunks="$client_chunks" />
+    <x-home.clients :clients="$clients" :visible-clients="$visible_clients" :chunks="$client_chunks" />
 
     <!-- 7. PROJECT (Section 04: Featured Projects) -->
-    <x-home.featured-projects :projects="$featured_projects" />
+    <x-home.featured-projects :projects="$featured_projects" :total-projects="$total_projects" />
 
     <!-- 8. CONTACT (Section 05: Contact CTA & Direct Form) -->
     <x-home.contact-cta :profile="$profile" />

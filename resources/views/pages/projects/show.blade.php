@@ -20,6 +20,9 @@
                         <div class="flex flex-wrap gap-2 font-mono text-xs font-bold">
                             <span class="bg-[#2563EB] text-white border-neo px-3 py-1 rounded">{{ $project['category_label'] }}</span>
                             <span class="bg-slate-100 text-[#0F172A] border-neo px-3 py-1 rounded">{{ $project['client_name'] }}</span>
+                            @if($project['period'])
+                                <span class="bg-[#ECFDF5] text-[#047857] border-neo px-3 py-1 rounded">{{ $project['period'] }}</span>
+                            @endif
                         </div>
 
                         <h1 class="font-heading text-3xl sm:text-5xl font-extrabold uppercase leading-tight text-[#0F172A]">
@@ -36,6 +39,8 @@
                     </div>
 
                     <x-project.tech-stack :items="$project['tech_stack']" />
+
+                    <x-project.gallery :images="$project['images'] ?? []" />
 
                     <div class="flex flex-wrap gap-3 font-mono text-sm font-bold">
                         @if($project['demo_url'])

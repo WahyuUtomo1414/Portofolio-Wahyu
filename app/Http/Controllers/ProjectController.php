@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Project;
 use App\Support\PortfolioData;
+use App\Support\PublicProfileData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class ProjectController extends Controller
 
         return view('pages.projects.index', [
             'projects' => $projects,
+            'footer_profile' => PublicProfileData::get(),
             'categories' => $categories,
             'selectedCategory' => $selectedCategory,
             'search' => $search,
@@ -87,7 +89,8 @@ class ProjectController extends Controller
         return view('pages.projects.show', [
             'project' => $projectData,
             'relatedProjects' => $relatedProjectData,
-            'title' => $projectData['name'] . ' — Project Wahyu Dwi Utomo',
+            'footer_profile' => PublicProfileData::get(),
+            'title' => $projectData['name'].' — Project Wahyu Dwi Utomo',
             'description' => $projectData['short_description'],
         ]);
     }
@@ -226,6 +229,7 @@ class ProjectController extends Controller
             'thumbnail_url' => $this->imageUrl($project->thumbnail),
             'short_description' => str(strip_tags($project->body))->limit(160)->toString(),
             'body' => strip_tags($project->body),
+            'period' => $this->projectPeriod($project->start_project, $project->end_project),
             'tech_stack' => $project->tools->pluck('name')->all(),
             'demo_url' => $project->url,
             'github_url' => null,
@@ -253,6 +257,7 @@ class ProjectController extends Controller
             'thumbnail_url' => $this->imageUrl($project['thumbnail_url'] ?? null),
             'short_description' => $project['short_description'],
             'body' => $project['body'],
+            'period' => $project['period'] ?? null,
             'tech_stack' => $project['tech_stack'],
             'demo_url' => $project['demo_url'] ?? null,
             'github_url' => $project['github_url'] ?? null,
@@ -268,7 +273,8 @@ class ProjectController extends Controller
             && $this->tableExists('category')
             && $this->tableExists('client')
             && $this->tableExists('tools')
-            && $this->tableExists('project_tool');
+            && $this->tableExists('project_tool')
+            && $this->tableExists('project_image');
     }
 
     private function tableExists(string $table): bool
@@ -291,5 +297,17 @@ class ProjectController extends Controller
         }
 
         return asset(ltrim($path, '/'));
+    }
+
+    private function projectPeriod(mixed $startProject, mixed $endProject): ?string
+    {
+        if (blank($startProject) && blank($endProject)) {
+            return null;
+        }
+
+        $start = blank($startProject) ? null : $startProject->format('M Y');
+        $end = blank($endProject) ? 'Sekarang' : $endProject->format('M Y');
+
+        return trim(($start ?? 'Mulai').' - '.$end);
     }
 }

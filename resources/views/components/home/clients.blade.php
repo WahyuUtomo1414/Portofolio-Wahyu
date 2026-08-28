@@ -1,5 +1,6 @@
 @props([
     'clients' => [],
+    'visibleClients' => [],
 ])
 
 <section id="clients" class="py-16 lg:py-24 border-neo-b bg-white select-none">
@@ -14,37 +15,27 @@
 
         <!-- 8 Individual Multi-Directional 3D Flip Cards Grid (4 Cols x 2 Rows) -->
         <div id="clients-card-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            @for($i = 0; $i < 8; $i++)
-                @php
-                    $client = $clients[$i] ?? null;
-                    $name = data_get($client, 'name', 'Client Partner');
-                    $logo = data_get($client, 'logo');
-
-                    // Tentukan arah rotasi 3D yang berbeda-beda untuk tiap slot card (Y-Axis, X-Axis, -Y-Axis, -X-Axis)
-                    $directionTypes = ['rotate-y-180', 'rotate-x-180', 'rotate-y-neg-180', 'rotate-x-neg-180'];
-                    $cardDirectionClass = $directionTypes[$i % 4];
-                @endphp
-
-                <div class="client-flip-card perspective-1000 h-40 sm:h-44" data-card-slot="{{ $i }}" data-direction-type="{{ $i % 4 }}">
+            @foreach($visibleClients as $client)
+                <div class="client-flip-card perspective-1000 h-40 sm:h-44" data-card-slot="{{ $loop->index }}" data-direction-type="{{ $client['direction_type'] ?? 0 }}">
                     <div class="client-card-inner relative w-full h-full transition-transform duration-1000 ease-in-out transform-style-3d">
                         
                         <!-- Front Card Face (Direct Original Colors & Logo + Title Only) -->
                         <div class="client-card-front absolute inset-0 bg-[#FAF8F5] border-neo p-4 sm:p-5 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-2.5 backface-hidden">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-neo bg-white p-2.5 flex items-center justify-center shadow-neo-sm">
-                                <img src="{{ Str::startsWith($logo, 'http') ? $logo : asset($logo) }}" 
-                                     alt="{{ $name }}" 
+                                <img src="{{ $client['logo'] }}" 
+                                     alt="{{ $client['name'] }}" 
                                      class="card-logo-img w-full h-full object-contain" 
                                      onerror="this.onerror=null; this.src='https://placehold.co/120x120/0F172A/FFFFFF?text=CLIENT';">
                             </div>
                             <div>
                                 <h4 class="card-name-text font-heading font-extrabold text-sm sm:text-base text-[#0F172A] leading-snug line-clamp-2">
-                                    {{ $name }}
+                                    {{ $client['name'] }}
                                 </h4>
                             </div>
                         </div>
 
                         <!-- Back Card Face (Pre-rotated according to direction) -->
-                        <div class="client-card-back absolute inset-0 bg-[#FAF8F5] border-neo p-4 sm:p-5 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-2.5 backface-hidden {{ $cardDirectionClass }}">
+                        <div class="client-card-back absolute inset-0 bg-[#FAF8F5] border-neo p-4 sm:p-5 rounded-xl shadow-neo flex flex-col items-center justify-center text-center space-y-2.5 backface-hidden {{ $client['direction_class'] ?? 'rotate-y-180' }}">
                             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg border-neo bg-white p-2.5 flex items-center justify-center shadow-neo-sm">
                                 <img src="" alt="" class="card-logo-img w-full h-full object-contain">
                             </div>
@@ -55,7 +46,7 @@
 
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
 
     </div>

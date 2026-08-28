@@ -1,3 +1,7 @@
+@props([
+    'profile' => [],
+])
+
 <footer class="bg-[#FAF8F5] text-[#0F172A] border-t-2 border-[#0F172A] mt-auto">
     
     <!-- Top Statement Section: 2-Column Split (Left: Typewriter Motto, Right: Terminal Quick Contact Card) -->
@@ -75,7 +79,7 @@
 
                     <!-- Quick Direct Contact Actions -->
                     <div class="pt-2 space-y-2.5">
-                        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" 
+                        <a href="{{ $profile['social_whatsapp'] ?? '#' }}" target="_blank" rel="noopener noreferrer" 
                            class="flex items-center justify-between p-3 bg-[#059669] hover:bg-[#047857] text-white rounded-lg border border-emerald-400/30 text-xs font-bold transition-all shadow-neo-sm">
                             <span class="flex items-center gap-2">
                                 <span>💬</span>
@@ -84,11 +88,11 @@
                             <span>↗</span>
                         </a>
 
-                        <a href="mailto:wahyudwiutomo1414@gmail.com" 
+                        <a href="mailto:{{ $profile['email'] ?? 'wahyudwiutomo1414@gmail.com' }}" 
                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-600 text-xs font-bold transition-all">
                             <span class="flex items-center gap-2">
                                 <span>✉️</span>
-                                <span class="truncate">wahyudwiutomo1414@gmail.com</span>
+                                <span class="truncate">{{ $profile['email'] ?? 'wahyudwiutomo1414@gmail.com' }}</span>
                             </span>
                             <span>↗</span>
                         </a>
@@ -116,7 +120,7 @@
                     Layanan profesional pengembangan aplikasi web, sistem enterprise, aplikasi mobile, dan solusi digital terintegrasi.
                 </p>
                 <div class="pt-1 font-mono text-xs text-slate-500 font-bold">
-                    📍 Bekasi / Jakarta, Indonesia
+                    📍 {{ $profile['location'] ?? 'Bekasi / Jakarta, Indonesia' }}
                 </div>
             </div>
 
@@ -136,10 +140,10 @@
             <div class="md:col-span-3 space-y-3 font-mono">
                 <h4 class="text-xs font-extrabold tracking-widest text-[#2563EB] uppercase">// IKUTI KAMI</h4>
                 <ul class="space-y-2.5 text-sm font-bold text-[#0F172A]">
-                    <li><a href="https://github.com/WahyuUtomo1414" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">GitHub ↗</a></li>
-                    <li><a href="https://linkedin.com/in/wahyu-dwi-utomo" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">LinkedIn ↗</a></li>
-                    <li><a href="https://instagram.com/wahyudwi" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">Instagram ↗</a></li>
-                    <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="hover:text-[#059669] transition-colors">WhatsApp ↗</a></li>
+                    <li><a href="{{ $profile['social_github'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">GitHub ↗</a></li>
+                    <li><a href="{{ $profile['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">LinkedIn ↗</a></li>
+                    <li><a href="{{ $profile['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">Instagram ↗</a></li>
+                    <li><a href="{{ $profile['social_whatsapp'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#059669] transition-colors">WhatsApp ↗</a></li>
                 </ul>
             </div>
 
@@ -147,8 +151,8 @@
 
         <!-- Copyright Line -->
         <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between font-mono text-xs font-bold text-slate-600 gap-2">
-            <p>© {{ date('Y') }} Wahyu Dwi Utomo. All rights reserved.</p>
-            <p class="text-slate-400">BEKASI / JAKARTA, INDONESIA</p>
+            <p>© {{ $profile['current_year'] ?? '2026' }} Wahyu Dwi Utomo. All rights reserved.</p>
+            <p class="text-slate-400">{{ $profile['location_upper'] ?? 'BEKASI / JAKARTA, INDONESIA' }}</p>
         </div>
     </div>
 </footer>

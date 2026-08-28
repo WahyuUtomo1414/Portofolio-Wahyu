@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
 use App\Models\Client;
 use App\Models\Journey;
 use App\Models\Project;
 use App\Models\Tools;
 use App\Support\PortfolioData;
+use App\Support\PublicProfileData;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -17,75 +17,30 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $profile = $this->profileData();
+        $profile = PublicProfileData::get();
         $skills = $this->skillsData();
         $clients = $this->clientsData();
         $education = $this->journeyData(['education']);
         $experience = $this->journeyData(['experience', 'organization']);
         $featuredProjects = $this->featuredProjectData();
+        $totalProjects = $this->totalProjectsData();
+        $totalClients = $this->totalClientsData();
 
         return view('pages.home', [
             'profile' => $profile,
-            'stats' => $this->statsData(),
+            'footer_profile' => $profile,
+            'stats' => $this->statsData($totalProjects, $totalClients),
             'skills' => $skills,
             'clients' => $clients,
+            'visible_clients' => array_slice($clients, 0, 8),
             'client_chunks' => array_chunk($clients, 8),
             'education' => $education,
             'experience' => $experience,
             'journey' => array_merge($education, $experience),
             'featured_projects' => $featuredProjects,
+            'total_projects' => $totalProjects,
             'values' => $this->valuesData(),
         ]);
-    }
-
-    private function profileData(): array
-    {
-        $base = PortfolioData::profile();
-        $fallback = array_replace($base, [
-            'availability_badge' => 'TERSEDIA UNTUK PROJECT FREELANCE & FULL-TIME',
-            'tagline' => 'Membangun Produk Digital Scalable & Modern!',
-            'description' => $base['bio'],
-            'social_github' => $base['social_media']['github'],
-            'social_linkedin' => $base['social_media']['linkedin'],
-            'social_instagram' => $base['social_media']['instagram'],
-            'social_whatsapp' => $base['social_media']['whatsapp'],
-        ]);
-
-        if (! $this->tableExists('about')) {
-            return $fallback;
-        }
-
-        $about = About::query()
-            ->where('active', true)
-            ->latest()
-            ->first();
-
-        if (! $about) {
-            return $fallback;
-        }
-
-        $socials = array_replace($fallback['social_media'], $about->sosial_media ?? []);
-        $whatsapp = $socials['whatsapp'] ?? $this->whatsappUrl($about->no_wa);
-
-        return [
-            'name' => $about->name,
-            'role' => $fallback['role'],
-            'availability_badge' => $fallback['availability_badge'],
-            'tagline' => $about->tagline ?: $fallback['tagline'],
-            'bio' => $about->description,
-            'description' => $about->description,
-            'email' => $about->email,
-            'no_wa' => $about->no_wa,
-            'location' => $about->address ?: $fallback['location'],
-            'address' => $about->address ?: $fallback['address'],
-            'image_profile' => $this->imageUrl($about->image_profile, $fallback['image_profile']),
-            'cv_url' => $fallback['cv_url'],
-            'social_media' => array_replace($socials, ['whatsapp' => $whatsapp]),
-            'social_github' => $socials['github'] ?? $fallback['social_github'],
-            'social_linkedin' => $socials['linkedin'] ?? $fallback['social_linkedin'],
-            'social_instagram' => $socials['instagram'] ?? $fallback['social_instagram'],
-            'social_whatsapp' => $whatsapp,
-        ];
     }
 
     private function skillsData(): array
@@ -134,7 +89,7 @@ class HomeController extends Controller
         ];
 
         if (! $this->tableExists('client')) {
-            return $fallback;
+            return $this->withClientDisplayData($fallback);
         }
 
         $clients = Client::query()
@@ -142,9 +97,11 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        return $clients->isEmpty()
+        $clientData = $clients->isEmpty()
             ? $fallback
             : $clients->map(fn (Client $client): array => $this->clientData($client))->all();
+
+        return $this->withClientDisplayData($clientData);
     }
 
     private function journeyData(array $keys): array
@@ -192,12 +149,12 @@ class HomeController extends Controller
             : $this->projectCollectionData($projects);
     }
 
-    private function statsData(): array
+    private function statsData(int $totalProjects, int $totalClients): array
     {
         return [
             ['number' => '5+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Pengalaman di berbagai stack & industri', 'icon' => 'code'],
-            ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, web, & mobile', 'icon' => 'folder-check'],
-            ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
+            ['number' => $this->counterLabel($totalProjects), 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, web, & mobile', 'icon' => 'folder-check'],
+            ['number' => $this->counterLabel($totalClients), 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
             ['number' => '100%', 'label' => 'KOMITMEN KUALITAS', 'desc' => 'Kode Bersih & Tepat Waktu', 'icon' => 'shield-check'],
         ];
     }
@@ -291,6 +248,46 @@ class HomeController extends Controller
         ];
     }
 
+    private function withClientDisplayData(array $clients): array
+    {
+        $directionClasses = ['rotate-y-180', 'rotate-x-180', 'rotate-y-neg-180', 'rotate-x-neg-180'];
+
+        return collect($clients)
+            ->values()
+            ->map(fn (array $client, int $index): array => array_replace($client, [
+                'direction_class' => $directionClasses[$index % count($directionClasses)],
+                'direction_type' => $index % count($directionClasses),
+            ]))
+            ->all();
+    }
+
+    private function totalProjectsData(): int
+    {
+        if ($this->tableExists('project')) {
+            return Project::query()
+                ->where('active', true)
+                ->count();
+        }
+
+        return PortfolioData::projects()->count();
+    }
+
+    private function totalClientsData(): int
+    {
+        if ($this->tableExists('client')) {
+            return Client::query()
+                ->where('active', true)
+                ->count();
+        }
+
+        return count($this->clientsData());
+    }
+
+    private function counterLabel(int $count): string
+    {
+        return $count > 0 ? $count.'+' : '0';
+    }
+
     private function journeyItemData(Journey $journey): array
     {
         return [
@@ -334,16 +331,5 @@ class HomeController extends Controller
         }
 
         return asset(ltrim($path, '/'));
-    }
-
-    private function whatsappUrl(string $number): string
-    {
-        $digits = preg_replace('/\D+/', '', $number);
-
-        if (str_starts_with($digits, '0')) {
-            $digits = '62'.substr($digits, 1);
-        }
-
-        return 'https://wa.me/'.$digits;
     }
 }

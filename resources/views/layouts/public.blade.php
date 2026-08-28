@@ -37,7 +37,7 @@
     </main>
 
     <!-- Global Footer -->
-    <x-layout.footer />
+    <x-layout.footer :profile="$footer_profile ?? []" />
 
     <!-- Back To Top Button Component (Pojok Kanan Bawah dengan Progress Indicator) -->
     <x-common.back-to-top />
