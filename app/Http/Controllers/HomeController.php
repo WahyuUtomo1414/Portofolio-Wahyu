@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Client;
 use App\Models\Journey;
 use App\Models\Project;
 use App\Models\Tools;
 use App\Support\PortfolioData;
-use App\Support\PublicProfileData;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -17,30 +17,75 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $profile = PublicProfileData::get();
+        $profile = $this->profileData();
         $skills = $this->skillsData();
         $clients = $this->clientsData();
         $education = $this->journeyData(['education']);
-        $experience = $this->journeyData(['experience', 'organization']);
+        $experience = $this->journeyData(['experience']);
         $featuredProjects = $this->featuredProjectData();
-        $totalProjects = $this->totalProjectsData();
-        $totalClients = $this->totalClientsData();
 
         return view('pages.home', [
             'profile' => $profile,
-            'footer_profile' => $profile,
-            'stats' => $this->statsData($totalProjects, $totalClients),
+            'stats' => $this->statsData(),
             'skills' => $skills,
             'clients' => $clients,
-            'visible_clients' => array_slice($clients, 0, 8),
             'client_chunks' => array_chunk($clients, 8),
             'education' => $education,
             'experience' => $experience,
             'journey' => array_merge($education, $experience),
             'featured_projects' => $featuredProjects,
-            'total_projects' => $totalProjects,
             'values' => $this->valuesData(),
         ]);
+    }
+
+    private function profileData(): array
+    {
+        $base = PortfolioData::profile();
+        $fallback = array_replace($base, [
+            'availability_badge' => 'TERSEDIA UNTUK PROJECT FREELANCE & FULL-TIME',
+            'tagline' => 'Mengembangkan Aplikasi Web Fullstack Scalable & Modern!',
+            'description' => $base['bio'],
+            'social_github' => $base['social_media']['github'],
+            'social_linkedin' => $base['social_media']['linkedin'],
+            'social_instagram' => $base['social_media']['instagram'],
+            'social_whatsapp' => $base['social_media']['whatsapp'],
+        ]);
+
+        if (! $this->tableExists('about')) {
+            return $fallback;
+        }
+
+        $about = About::query()
+            ->where('active', true)
+            ->latest()
+            ->first();
+
+        if (! $about) {
+            return $fallback;
+        }
+
+        $socials = array_replace($fallback['social_media'], $about->sosial_media ?? []);
+        $whatsapp = $socials['whatsapp'] ?? $this->whatsappUrl($about->no_wa);
+
+        return [
+            'name' => $about->name,
+            'role' => $fallback['role'],
+            'availability_badge' => $fallback['availability_badge'],
+            'tagline' => $about->tagline ?: $fallback['tagline'],
+            'bio' => $about->description,
+            'description' => $about->description,
+            'email' => $about->email,
+            'no_wa' => $about->no_wa,
+            'location' => $about->address ?: $fallback['location'],
+            'address' => $about->address ?: $fallback['address'],
+            'image_profile' => $this->imageUrl($about->image_profile, $fallback['image_profile']),
+            'cv_url' => $fallback['cv_url'],
+            'social_media' => array_replace($socials, ['whatsapp' => $whatsapp]),
+            'social_github' => $socials['github'] ?? $fallback['social_github'],
+            'social_linkedin' => $socials['linkedin'] ?? $fallback['social_linkedin'],
+            'social_instagram' => $socials['instagram'] ?? $fallback['social_instagram'],
+            'social_whatsapp' => $whatsapp,
+        ];
     }
 
     private function skillsData(): array
@@ -73,23 +118,26 @@ class HomeController extends Controller
     private function clientsData(): array
     {
         $fallback = [
-            ['id' => 1, 'name' => 'Keysoft ERP', 'logo' => asset('images/clients/keysoft.png'), 'desc' => 'Penyedia solusi ERP untuk operasional, inventory, accounting, dan proses bisnis perusahaan.'],
-            ['id' => 2, 'name' => 'Pesona Trip Travel Indonesia', 'logo' => asset('images/clients/pesona-trip.png'), 'desc' => 'Perusahaan travel dengan kebutuhan sistem digital untuk promosi, paket trip, dan operasional booking.'],
-            ['id' => 3, 'name' => 'Dinas Pertamanan Dan Pemakanan DKI Jakarta', 'logo' => asset('images/clients/dinas.png'), 'desc' => 'Instansi pemerintahan daerah yang mengelola layanan pertamanan, pemakaman, data aset, dan informasi publik.'],
-            ['id' => 4, 'name' => 'Himpunan Mahasiswa Sistem Informasi', 'logo' => asset('images/clients/himsi.png'), 'desc' => 'Organisasi mahasiswa sistem informasi yang mengelola kegiatan, publikasi, dan informasi organisasi.'],
-            ['id' => 5, 'name' => 'SMA Harapan Jaya', 'logo' => asset('images/clients/sma-harapan-jaya.png'), 'desc' => 'Institusi pendidikan dengan kebutuhan sistem informasi sekolah dan publikasi digital.'],
-            ['id' => 6, 'name' => 'PT. Charlyn Jaya', 'logo' => asset('images/clients/charlyn.png'), 'desc' => 'Perusahaan swasta dengan kebutuhan digitalisasi proses bisnis dan administrasi internal.'],
-            ['id' => 7, 'name' => 'Gereja Protestan Maluku', 'logo' => asset('images/clients/gpm.png'), 'desc' => 'Lembaga keagamaan dengan kebutuhan media informasi digital untuk kegiatan dan pelayanan.'],
-            ['id' => 8, 'name' => 'PT. Arthur Teknik Indoprima', 'logo' => asset('images/clients/arthur.png'), 'desc' => 'Perusahaan teknik dan konstruksi dengan kebutuhan sistem administrasi project dan operasional lapangan.'],
-            ['id' => 9, 'name' => 'SMK Partriot Nusantara', 'logo' => asset('images/clients/smk-partriot.png'), 'desc' => 'Institusi pendidikan kejuruan dengan kebutuhan sistem informasi sekolah dan profil digital.'],
-            ['id' => 10, 'name' => 'PT. Intikarya Baja Lestari', 'logo' => asset('images/clients/intikarya.png'), 'desc' => 'Perusahaan industri baja dengan kebutuhan sistem operasional, inventory, produksi, dan pelaporan bisnis.'],
-            ['id' => 11, 'name' => 'Roda Nurmala', 'logo' => asset('images/clients/roda-nurmala.png'), 'desc' => 'Bisnis lokal dengan kebutuhan website profil, katalog informasi, dan dukungan digital.'],
-            ['id' => 12, 'name' => 'Hepiso', 'logo' => asset('images/clients/hepiso.png'), 'desc' => 'Brand digital dengan kebutuhan pengembangan aplikasi, website, dan sistem pendukung operasional produk.'],
-            ['id' => 13, 'name' => 'DLDK Kabupaten Lamandau', 'logo' => asset('images/clients/dldk-lamandau.png'), 'desc' => 'Instansi daerah dengan kebutuhan aplikasi, website, dan sistem pendukung layanan publik.'],
+            ['id' => 1, 'name' => 'PT Keysoft ERP Indonesia', 'logo' => asset('images/clients/keysoft.png'), 'desc' => 'Enterprise ERP Provider'],
+            ['id' => 2, 'name' => 'Universitas BSI', 'logo' => asset('images/clients/ubsi.png'), 'desc' => 'Perguruan Tinggi Bina Sarana Informatika'],
+            ['id' => 3, 'name' => 'AgroSupply Co.', 'logo' => asset('images/clients/agrosupply.png'), 'desc' => 'Supply Chain Tech & Distribution'],
+            ['id' => 4, 'name' => 'EduTech Learning Center', 'logo' => asset('images/clients/edutech.png'), 'desc' => 'SaaS E-Learning & Kampus Digital'],
+            ['id' => 5, 'name' => 'Fintech Solution Tech', 'logo' => asset('images/clients/fintech.png'), 'desc' => 'Digital Payment & Banking'],
+            ['id' => 6, 'name' => 'Logistics Express App', 'logo' => asset('images/clients/logistics.png'), 'desc' => 'Freight & Courier Management'],
+            ['id' => 7, 'name' => 'Healthcare Medical Portal', 'logo' => asset('images/clients/health.png'), 'desc' => 'Sistem Informasi Rumah Sakit & Klinik'],
+            ['id' => 8, 'name' => 'Retail POS Network', 'logo' => asset('images/clients/retail.png'), 'desc' => 'Omnichannel Retail Store System'],
+            ['id' => 9, 'name' => 'Pesona Media Creative', 'logo' => asset('images/clients/pesona.png'), 'desc' => 'Digital Agency & Branding'],
+            ['id' => 10, 'name' => 'PT Arta Maju Sentosa', 'logo' => asset('images/clients/arta.png'), 'desc' => 'General Trading & Supplier'],
+            ['id' => 11, 'name' => 'SMA Negeri Jakarta', 'logo' => asset('images/clients/sman.png'), 'desc' => 'Instansi Pendidikan Negeri'],
+            ['id' => 12, 'name' => 'Arthur Teknik Indonesia', 'logo' => asset('images/clients/arthur.png'), 'desc' => 'Engineering & Generator Service'],
+            ['id' => 13, 'name' => 'GrowthDigital Marketing', 'logo' => asset('images/clients/growth.png'), 'desc' => 'Performance Growth Partner'],
+            ['id' => 14, 'name' => 'PT Charlyn Jaya', 'logo' => asset('images/clients/charlyn.png'), 'desc' => 'Industrial Equipment & Parts'],
+            ['id' => 15, 'name' => 'HIMSI BSI Official', 'logo' => asset('images/clients/himsi.png'), 'desc' => 'Himpunan Mahasiswa Sistem Informasi'],
+            ['id' => 16, 'name' => 'Dinas Pertamanan & Hutan Kota', 'logo' => asset('images/clients/dinas.png'), 'desc' => 'Instansi Pemerintah Daerah'],
         ];
 
         if (! $this->tableExists('client')) {
-            return $this->withClientDisplayData($fallback);
+            return $fallback;
         }
 
         $clients = Client::query()
@@ -97,11 +145,9 @@ class HomeController extends Controller
             ->latest()
             ->get();
 
-        $clientData = $clients->isEmpty()
+        return $clients->isEmpty()
             ? $fallback
             : $clients->map(fn (Client $client): array => $this->clientData($client))->all();
-
-        return $this->withClientDisplayData($clientData);
     }
 
     private function journeyData(array $keys): array
@@ -113,8 +159,8 @@ class HomeController extends Controller
         $journey = Journey::query()
             ->where('active', true)
             ->whereIn('key', $keys)
-            ->orderBy('sort')
-            ->latest('id')
+            ->orderBy('sort', 'asc')
+            ->orderBy('id', 'asc')
             ->get();
 
         return $journey->isEmpty()
@@ -149,12 +195,12 @@ class HomeController extends Controller
             : $this->projectCollectionData($projects);
     }
 
-    private function statsData(int $totalProjects, int $totalClients): array
+    private function statsData(): array
     {
         return [
-            ['number' => '5+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Pengalaman di berbagai stack & industri', 'icon' => 'code'],
-            ['number' => $this->counterLabel($totalProjects), 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, web, & mobile', 'icon' => 'folder-check'],
-            ['number' => $this->counterLabel($totalClients), 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
+            ['number' => '5+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Spesialis Laravel & Web Development', 'icon' => 'code'],
+            ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, & Aplikasi Web', 'icon' => 'folder-check'],
+            ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
             ['number' => '100%', 'label' => 'KOMITMEN KUALITAS', 'desc' => 'Kode Bersih & Tepat Waktu', 'icon' => 'shield-check'],
         ];
     }
@@ -162,9 +208,9 @@ class HomeController extends Controller
     private function valuesData(): array
     {
         return [
-            ['code' => '⚡', 'title' => 'KODE BERSIH & TERSTRUKTUR', 'desc' => 'Penulisan kode yang rapi, modular, serta mudah dirawat dan dikembangkan di masa mendatang.'],
+            ['code' => '⚡', 'title' => 'KODE BERSIH & TERSTRUKTUR', 'desc' => 'Penulisan kode yang rapi berstandar PSR, terstruktur modular, serta mudah dirawat dan dikembangkan di masa mendatang.'],
             ['code' => '🎯', 'title' => 'RESPONSIF & CEPAT DIAKSES', 'desc' => 'Desain berpola mobile-first yang responsif, cepat diakses dari perangkat apapun, serta memenuhi standar aksesibilitas.'],
-            ['code' => '🛡️', 'title' => 'AMAN & READY FOR SCALE', 'desc' => 'Praktik keamanan terbaik, proteksi celah umum, serta arsitektur database yang siap tumbuh.'],
+            ['code' => '🛡️', 'title' => 'AMAN & READY FOR SCALE', 'desc' => 'Penerapan praktik keamanan terbaik Laravel, proteksi dari celah umum web, serta arsitektur database yang siap tumbuh.'],
             ['code' => '💬', 'title' => 'KOMUNIKASI TRANSPARAN', 'desc' => 'Proses pengerjaan yang transparan, pembaruan kemajuan berkala, serta komitmen penyelesaian tepat waktu.'],
         ];
     }
@@ -173,13 +219,19 @@ class HomeController extends Controller
     {
         $items = [
             ['id' => 1, 'key' => 'education', 'title' => 'Sistem Informasi (S.Kom)', 'institute' => 'Universitas BSI', 'description' => 'Lulus Predikat Cumlaude. Fokus studi pada Software Engineering, Database Systems, & System Architecture.', 'date_range' => '2021 - 2025', 'logo' => asset('images/journey/ubsi.png'), 'sort' => 1],
-            ['id' => 2, 'key' => 'education', 'title' => 'Teknik Komputer & Jaringan', 'institute' => 'SMK Negeri Indonesia', 'description' => 'Mempelajari dasar-dasar pemrograman, jaringan komputer, server Linux, & troubleshooting hardware.', 'date_range' => '2018 - 2021', 'logo' => asset('images/journey/smk.png'), 'sort' => 2],
-            ['id' => 3, 'key' => 'experience', 'title' => 'Software Engineer', 'institute' => 'PT Keysoft ERP Indonesia', 'description' => 'Memimpin pengembangan modul ERP manufaktur & keuangan, optimasi query database SQL Server, dan integrasi API.', 'date_range' => '2025 - Sekarang', 'logo' => asset('images/journey/keysoft.png'), 'sort' => 1],
-            ['id' => 4, 'key' => 'experience', 'title' => 'Fullstack Developer Freelance', 'institute' => 'Independent / Project-Based', 'description' => 'Membangun 15+ sistem kustom, e-commerce, LMS, dan aplikasi POS untuk UMKM dan perusahaan lokal.', 'date_range' => '2022 - 2025', 'logo' => asset('images/journey/freelance.png'), 'sort' => 2],
-            ['id' => 5, 'key' => 'organization', 'title' => 'Koordinator Komite Kominfo', 'institute' => 'HIMSI Universitas BSI', 'description' => 'Mengelola portal web organisasi dan mengadakan pelatihan coding web untuk 200+ mahasiswa.', 'date_range' => '2023 - 2025', 'logo' => asset('images/journey/himsi.png'), 'sort' => 3],
+            ['id' => 2, 'key' => 'education', 'title' => 'MSIB Batch 6', 'institute' => 'Startup Campus', 'description' => 'Fokus pada software engineering, database, analisis sistem, dan pengembangan aplikasi web.', 'date_range' => 'Feb 2024 - Juni 2024', 'logo' => asset('images/journey/startup.png'), 'sort' => 2],
+            ['id' => 3, 'key' => 'education', 'title' => 'Teknik Komputer & Jaringan', 'institute' => 'SMK Negeri Indonesia', 'description' => 'Mempelajari dasar-dasar pemrograman, jaringan komputer, server Linux, & troubleshooting hardware.', 'date_range' => '2018 - 2021', 'logo' => asset('images/journey/smk.png'), 'sort' => 3],
+            ['id' => 4, 'key' => 'experience', 'title' => 'Senior Fullstack Web Developer', 'institute' => 'PT Keysoft ERP Indonesia', 'description' => 'Memimpin pengembangan modul ERP manufaktur & keuangan, optimasi query database SQL Server, dan integrasi API.', 'date_range' => '2025 - Sekarang', 'logo' => asset('images/journey/keysoft.png'), 'sort' => 1],
+            ['id' => 5, 'key' => 'experience', 'title' => 'Fullstack Developer', 'institute' => 'PT Pesona Trip Travel Indonesia', 'description' => 'Mengembangkan aplikasi travel booking, manajemen sistem, REST API, dan integrasi payment gateway.', 'date_range' => 'Sept 2024 - Jan 2025', 'logo' => asset('images/journey/pesona.png'), 'sort' => 2],
+            ['id' => 6, 'key' => 'experience', 'title' => 'Fullstack Developer', 'institute' => 'PT Jasanya Teknologi Indonesia', 'description' => 'Mengembangkan modul ERP, REST API, dashboard operasional, dan integrasi sistem internal.', 'date_range' => '2023 - Present', 'logo' => asset('images/journey/jasanya.png'), 'sort' => 3],
+            ['id' => 7, 'key' => 'experience', 'title' => 'Koordinator Komite Kominfo', 'institute' => 'HIMSI Universitas BSI', 'description' => 'Mengelola portal web organisasi dan mengadakan pelatihan coding web untuk 200+ mahasiswa.', 'date_range' => '2023 - 2025', 'logo' => asset('images/journey/himsi.png'), 'sort' => 4],
         ];
 
-        return collect($items)->whereIn('key', $keys)->values()->all();
+        return collect($items)
+            ->whereIn('key', $keys)
+            ->sortBy('sort')
+            ->values()
+            ->all();
     }
 
     private function projectCollectionData(EloquentCollection $projects): array
@@ -248,46 +300,6 @@ class HomeController extends Controller
         ];
     }
 
-    private function withClientDisplayData(array $clients): array
-    {
-        $directionClasses = ['rotate-y-180', 'rotate-x-180', 'rotate-y-neg-180', 'rotate-x-neg-180'];
-
-        return collect($clients)
-            ->values()
-            ->map(fn (array $client, int $index): array => array_replace($client, [
-                'direction_class' => $directionClasses[$index % count($directionClasses)],
-                'direction_type' => $index % count($directionClasses),
-            ]))
-            ->all();
-    }
-
-    private function totalProjectsData(): int
-    {
-        if ($this->tableExists('project')) {
-            return Project::query()
-                ->where('active', true)
-                ->count();
-        }
-
-        return PortfolioData::projects()->count();
-    }
-
-    private function totalClientsData(): int
-    {
-        if ($this->tableExists('client')) {
-            return Client::query()
-                ->where('active', true)
-                ->count();
-        }
-
-        return count($this->clientsData());
-    }
-
-    private function counterLabel(int $count): string
-    {
-        return $count > 0 ? $count.'+' : '0';
-    }
-
     private function journeyItemData(Journey $journey): array
     {
         return [
@@ -331,5 +343,16 @@ class HomeController extends Controller
         }
 
         return asset(ltrim($path, '/'));
+    }
+
+    private function whatsappUrl(string $number): string
+    {
+        $digits = preg_replace('/\D+/', '', $number);
+
+        if (str_starts_with($digits, '0')) {
+            $digits = '62' . substr($digits, 1);
+        }
+
+        return 'https://wa.me/' . $digits;
     }
 }

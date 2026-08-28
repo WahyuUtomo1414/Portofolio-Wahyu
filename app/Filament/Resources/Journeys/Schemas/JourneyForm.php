@@ -19,16 +19,14 @@ class JourneyForm
                 Section::make('Informasi Utama')
                     ->schema([
                         Select::make('key')
-                            ->label('Jenis')
+                            ->label('Jenis / Kategori')
                             ->options([
                                 'education' => 'Pendidikan',
-                                'experience' => 'Pengalaman',
-                                'organization' => 'Organisasi',
-                                'certification' => 'Sertifikasi',
+                                'experience' => 'Pengalaman & Kerja',
                             ])
                             ->required(),
                         TextInput::make('title')
-                            ->label('Judul')
+                            ->label('Judul / Peran')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('institute')
@@ -42,7 +40,7 @@ class JourneyForm
                         TextInput::make('sort')
                             ->label('Urutan')
                             ->numeric()
-                            ->default(0)
+                            ->default(1)
                             ->required(),
                         Textarea::make('description')
                             ->label('Deskripsi')
