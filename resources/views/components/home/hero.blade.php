@@ -17,13 +17,13 @@
 
                 <!-- Clean, High-Impact 2-Line Headline (No Crop & No Layout Shift) -->
                 <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0F172A] tracking-tight uppercase leading-tight select-none">
-                    SENIOR FULLSTACK DEVELOPER<br>
-                    <span id="hero-headline-rotator" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">SOLUSI WEB MODERN_</span>
+                    SOFTWARE ENGINEER<br>
+                    <span id="hero-headline-rotator" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">SOLUSI DIGITAL_</span>
                 </h1>
 
                 <!-- Crisp Subtitle Description -->
                 <p class="font-sans text-slate-700 text-base sm:text-lg leading-relaxed max-w-xl font-medium">
-                    Spesialis dalam merancang arsitektur backend Laravel yang tangguh, antarmuka frontend Vue.js yang responsif, serta solusi web berkinerja tinggi.
+                    Membangun sistem digital dari backend, web, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.
                 </p>
 
                 <!-- CTA Action Buttons with Micro-Animations -->
@@ -48,16 +48,16 @@
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative w-full max-w-md my-6">
                     
-                    <!-- Floating Badge 1: Top-Left (Laravel) -->
+                    <!-- Floating Badge 1: Top-Left -->
                     <div class="absolute -top-6 -left-4 z-20 bg-white border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-slow select-none">
                         <span class="text-[#2563EB]">⚡</span>
-                        <span>Laravel</span>
+                        <span>Clean Code</span>
                     </div>
 
-                    <!-- Floating Badge 2: Top-Right (Vue.js) -->
+                    <!-- Floating Badge 2: Top-Right -->
                     <div class="absolute -top-6 -right-4 z-20 bg-[#2563EB] text-white border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-reverse select-none">
                         <span>🔥</span>
-                        <span>Vue.js</span>
+                        <span>Scalable</span>
                     </div>
 
                     <!-- Floating Badge 3: Bottom-Left (100% Kualitas) -->
@@ -107,7 +107,7 @@
                                 📍 {{ $profile['location'] ?? 'Bekasi / Jakarta' }}
                             </span>
                             <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1.5 rounded flex-shrink-0">
-                                💻 Fullstack Web Dev
+                                💻 Software Dev
                             </span>
                         </div>
 
@@ -123,7 +123,7 @@
 <!-- Rotator Script (Single-line Concise Phrases) -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const words = ['SOLUSI WEB MODERN_', 'ARSITEKTUR LARAVEL_', 'FRONTEND VUE.JS_', 'SISTEM SCALABLE_'];
+        const words = ['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'];
         let wordIndex = 0;
         const rotatorEl = document.getElementById('hero-headline-rotator');
 

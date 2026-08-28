@@ -10,7 +10,7 @@
             number="05" 
             tag="HUBUNGI SAYA" 
             title="MARI BEKERJA SAMA UNTUK PROJECT ANDA NEXT!" 
-            subtitle="Punya ide project menarik, butuh pengembang web fullstack, atau ingin berkonsultasi teknis? Jangan ragu untuk menghubungi saya." />
+            subtitle="Punya ide project menarik, butuh developer, atau ingin berkonsultasi teknis? Jangan ragu untuk menghubungi saya." />
 
         <!-- Split Container -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -129,7 +129,7 @@
 
                     <div>
                         <label for="subject" class="block font-bold text-xs uppercase text-[#0F172A] mb-1.5">SUBJEK</label>
-                        <input type="text" id="subject" name="subject" value="{{ old('subject') }}" placeholder="Contoh: Diskusi project Laravel" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
+                        <input type="text" id="subject" name="subject" value="{{ old('subject') }}" placeholder="Contoh: Diskusi kebutuhan website / aplikasi" class="w-full bg-[#FAF8F5] border-neo rounded-md px-4 py-2.5 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans">
                         @error('subject')
                             <p class="mt-1 text-xs text-red-600 font-bold">{{ $message }}</p>
                         @enderror

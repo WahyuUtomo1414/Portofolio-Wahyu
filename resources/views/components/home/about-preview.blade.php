@@ -36,7 +36,7 @@
                     {{ $profile['description'] }}
                 </p>
                 <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs font-bold">
-                    <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">PSR Standard</span>
+                    <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">Clean Code</span>
                     <span class="bg-[#ECFDF5] text-[#059669] border-neo px-3 py-1 rounded">Clean Architecture</span>
                     <span class="bg-[#FEF3C7] text-[#D97706] border-neo px-3 py-1 rounded">High Performance</span>
                 </div>

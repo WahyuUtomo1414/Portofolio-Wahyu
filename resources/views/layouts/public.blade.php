@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')</title>
-    <meta name="description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis pengembangan aplikasi web modern, scalable, dan efisien menggunakan Laravel, Vue, Flutter, dan Tailwind CSS.')">
-    <meta name="keywords" content="Wahyu Dwi Utomo, Fullstack Developer, Laravel Developer, Portofolio Software Engineer, Web Developer Indonesia">
+    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')</title>
+    <meta name="description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis membangun aplikasi web, backend API, mobile, dan sistem digital scalable sesuai kebutuhan bisnis.')">
+    <meta name="keywords" content="Wahyu Dwi Utomo, Software Engineer, Fullstack Developer, Backend Developer, Mobile Developer, Web Developer Indonesia">
     <meta name="author" content="Wahyu Dwi Utomo">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')">
-    <meta property="og:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis aplikasi web scalable menggunakan Laravel & Vue.js.')">
+    <meta property="og:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')">
+    <meta property="og:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis membangun aplikasi web dan sistem digital scalable untuk berbagai kebutuhan bisnis.')">
     <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Senior Fullstack Web Developer')">
+    <meta property="twitter:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')">
     <meta property="twitter:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo.')">
     <meta property="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 

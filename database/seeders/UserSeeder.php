@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             'email' => 'wahyuxd14@gmail.com',
         ], [
             'name' => 'Wahyu Dwi Utomo',
-            'password' => Hash::make('wahyu141402'),
+            'password' => Hash::make((string) env('ADMIN_SEEDER_PASSWORD', 'password')),
         ]);
     }
 }

@@ -33,7 +33,7 @@
 
                 <!-- Subtitle Copywriting -->
                 <p class="font-sans text-slate-300 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
-                    Siap membantu perusahaan, instansi, dan UMKM membangun aplikasi web modern, sistem backend Laravel yang kokoh, serta antarmuka yang cepat dan responsif.
+                    Siap membantu perusahaan, instansi, dan UMKM membangun aplikasi web modern, sistem backend yang kokoh, antarmuka yang cepat dan responsif, serta aplikasi mobile.
                 </p>
 
                 <!-- Action CTA Button -->
@@ -65,10 +65,10 @@
                     <!-- Code Snippet Box -->
                     <div class="space-y-2 text-xs sm:text-sm text-slate-300">
                         <p class="text-slate-400">// Konsultasi Bebas & Respon Cepat (&lt; 2 Jam)</p>
-                        <p><span class="text-[#60A5FA]">$service</span> = <span class="text-[#F59E0B]">new</span> WebDevelopment();</p>
+                        <p><span class="text-[#60A5FA]">$service</span> = <span class="text-[#F59E0B]">new</span> DigitalProduct();</p>
                         <p><span class="text-[#60A5FA]">$service</span>-&gt;<span class="text-[#34D399]">startProject</span>([</p>
                         <p class="pl-4"><span class="text-slate-400">'client'</span> =&gt; <span class="text-[#FBBF24]">'Your_Company'</span>,</p>
-                        <p class="pl-4"><span class="text-slate-400">'stack'</span>  =&gt; <span class="text-[#FBBF24]">['Laravel', 'Vue', 'Flutter']</span>,</p>
+                        <p class="pl-4"><span class="text-slate-400">'scope'</span>  =&gt; <span class="text-[#FBBF24]">['Backend', 'Frontend', 'Mobile']</span>,</p>
                         <p class="pl-4"><span class="text-slate-400">'status'</span> =&gt; <span class="text-[#34D399]">'● READY_TO_BUILD'</span></p>
                         <p>]);</p>
                     </div>
@@ -113,7 +113,7 @@
                     </span>
                 </div>
                 <p class="font-sans text-slate-700 text-sm sm:text-base max-w-md leading-relaxed font-medium">
-                    Layanan profesional pengembangan aplikasi web fullstack, sistem enterprise Laravel, dan solusi digital terintegrasi.
+                    Layanan profesional pengembangan aplikasi web, sistem enterprise, aplikasi mobile, dan solusi digital terintegrasi.
                 </p>
                 <div class="pt-1 font-mono text-xs text-slate-500 font-bold">
                     📍 Bekasi / Jakarta, Indonesia

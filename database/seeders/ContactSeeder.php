@@ -25,7 +25,7 @@ class ContactSeeder extends Seeder
         return [
             ['name' => 'Raka Pratama', 'email' => 'raka@example.com', 'subject' => 'Diskusi website company profile', 'message' => 'Halo, saya ingin berdiskusi tentang kebutuhan website company profile untuk bisnis saya.'],
             ['name' => 'Nadia Putri', 'email' => 'nadia@example.com', 'subject' => 'Pembuatan dashboard admin', 'message' => 'Saya butuh dashboard admin untuk mengelola data internal dan laporan bulanan.'],
-            ['name' => 'Fajar Nugroho', 'email' => 'fajar@example.com', 'subject' => 'Integrasi API Laravel', 'message' => 'Apakah bisa bantu integrasi API Laravel dengan aplikasi mobile yang sudah ada?'],
+            ['name' => 'Fajar Nugroho', 'email' => 'fajar@example.com', 'subject' => 'Integrasi API backend', 'message' => 'Apakah bisa bantu integrasi API backend dengan aplikasi mobile yang sudah ada?'],
         ];
     }
 }

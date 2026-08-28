@@ -12,7 +12,7 @@
                 number="01"
                 tag="KATALOG PROJECT"
                 title="SEMUA PROJECT PORTOFOLIO"
-                subtitle="Kumpulan project web, sistem bisnis enterprise, aplikasi mobile POS, dan solusi digital yang pernah dikembangkan." />
+                subtitle="Kumpulan project website, backend API, sistem bisnis enterprise, aplikasi mobile POS, dashboard, dan solusi digital yang pernah dikembangkan." />
 
             <!-- Search Bar & Filter Controls Container -->
             <div class="bg-white border-neo p-6 rounded-xl shadow-neo space-y-6">
@@ -30,7 +30,7 @@
                         <input type="text" 
                                name="q" 
                                value="{{ $search }}" 
-                               placeholder="Cari nama project, client, atau tech stack (contoh: ERP, Laravel, Vue, POS)..." 
+                               placeholder="Cari nama project, client, atau tech stack (contoh: ERP, POS, dashboard, mobile, API)..." 
                                class="w-full bg-[#FAF8F5] border-neo rounded-lg pl-10 pr-10 py-3 text-[#0F172A] focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#2563EB] font-sans font-medium">
                         
                         @if($search !== '')

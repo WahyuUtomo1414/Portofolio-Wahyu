@@ -35,7 +35,7 @@ class JourneySeeder extends Seeder
             ],
             [
                 'key' => 'experience',
-                'title' => 'Fullstack Web Developer',
+                'title' => 'Fullstack Developer',
                 'logo' => 'https://picsum.photos/seed/keysoft-logo/240/240',
                 'institute' => 'PT Keysoft ERP Indonesia',
                 'description' => 'Mengembangkan modul ERP, REST API, dashboard operasional, dan integrasi sistem internal.',
