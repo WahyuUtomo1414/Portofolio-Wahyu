@@ -9,6 +9,8 @@
     <meta name="description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis membangun aplikasi web, backend API, mobile, dan sistem digital scalable sesuai kebutuhan bisnis.')">
     <meta name="keywords" content="Wahyu Dwi Utomo, Software Engineer, Fullstack Developer, Backend Developer, Mobile Developer, Web Developer Indonesia">
     <meta name="author" content="Wahyu Dwi Utomo">
+    <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg">
+    <link rel="shortcut icon" href="/images/brand/favicon.svg">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">

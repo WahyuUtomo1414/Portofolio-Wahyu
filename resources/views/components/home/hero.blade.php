@@ -80,9 +80,7 @@
                             <span class="bg-[#0F172A] text-white px-3 py-1 rounded border-neo">
                                 PROFIL DEVELOPER
                             </span>
-                            <span class="text-[#2563EB] font-extrabold tracking-wider">
-                                WAHYU.DEV
-                            </span>
+                            <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-8 w-auto">
                         </div>
 
                         <!-- Photo Frame -->

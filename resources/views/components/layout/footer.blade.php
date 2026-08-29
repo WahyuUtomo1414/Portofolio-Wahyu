@@ -111,10 +111,7 @@
             <!-- Left Column: Brand Info (6 Cols) -->
             <div class="md:col-span-6 space-y-4">
                 <div class="inline-flex items-center gap-2 bg-white border-neo px-3.5 py-1.5 rounded-md shadow-neo-sm">
-                    <span class="w-3 h-3 rounded-full bg-[#2563EB]"></span>
-                    <span class="font-heading font-extrabold text-xl text-[#0F172A] tracking-tight uppercase">
-                        WAHYU<span class="text-[#2563EB]">.DEV</span>
-                    </span>
+                    <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-10 w-auto">
                 </div>
                 <p class="font-sans text-slate-700 text-sm sm:text-base max-w-md leading-relaxed font-medium">
                     Layanan profesional pengembangan aplikasi web, sistem enterprise, aplikasi mobile, dan solusi digital terintegrasi.

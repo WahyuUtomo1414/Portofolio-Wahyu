@@ -5,10 +5,7 @@
             <!-- Brand Logo (Clean & Elegant) -->
             <a href="{{ route('home') }}" class="flex items-center gap-2 group">
                 <div class="flex items-center gap-2 py-1 transition-all duration-200">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#2563EB] animate-pulse"></span>
-                    <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-[#0F172A]">
-                        WAHYU<span class="text-[#2563EB]">.DEV</span>
-                    </span>
+                    <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-10 sm:h-12 w-auto">
                 </div>
             </a>
 
