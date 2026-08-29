@@ -229,7 +229,7 @@ class ProjectController extends Controller
             'client_logo' => $this->imageUrl($project->client?->logo),
             'thumbnail_url' => $this->imageUrl($project->thumbnail),
             'short_description' => str(strip_tags($project->body))->limit(160)->toString(),
-            'body' => strip_tags($project->body),
+            'body' => $project->body, // Menyimpan HTML mentah dari RichEditor Filament
             'period' => $this->projectPeriod($project->start_project, $project->end_project),
             'tech_stack' => $project->tools->pluck('name')->all(),
             'demo_url' => $project->url,
