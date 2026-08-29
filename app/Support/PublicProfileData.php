@@ -48,7 +48,7 @@ class PublicProfileData
 
         return self::normalize(array_replace($profile, [
             'availability_badge' => 'TERBUKA UNTUK PROJECT FREELANCE & FULL-TIME',
-            'tagline' => 'Membangun Produk Digital Scalable & Modern!',
+            'tagline' => 'Membangun produk digital yang rapi, scalable, dan mudah dikembangkan.',
             'description' => $profile['bio'],
         ]));
     }
@@ -58,6 +58,7 @@ class PublicProfileData
         $socials = $profile['social_media'] ?? [];
 
         return array_replace($profile, [
+            'cv_url' => $socials['cv'] ?? '#',
             'social_media' => $socials,
             'social_github' => $socials['github'] ?? '#',
             'social_linkedin' => $socials['linkedin'] ?? '#',

@@ -21,6 +21,7 @@ class HomeController extends Controller
         $profile = PublicProfileData::get();
         $skills = $this->skillsData();
         $clients = $this->clientsData();
+        $visibleClients = $this->visibleClientsData($clients);
         $education = $this->journeyData(['education']);
         $experience = $this->journeyData(['experience']);
         $featuredProjects = $this->featuredProjectData();
@@ -29,13 +30,14 @@ class HomeController extends Controller
         return view('pages.home', [
             'profile' => $profile,
             'footer_profile' => $profile,
-            'home_title' => 'Wahyu Dwi Utomo — Software Engineer Fullstack | Portofolio & Studi Kasus Project',
+            'home_title' => 'Wahyu Dwi Utomo — Software Engineer | Portofolio & Studi Kasus Project',
             'home_description' => 'Portofolio Wahyu Dwi Utomo, software engineer Indonesia yang membangun website, backend API, dashboard, aplikasi mobile, dan sistem digital untuk kebutuhan bisnis.',
             'hero' => $this->heroData(),
             'stats' => $this->statsData(),
             'skills' => $skills,
             'clients' => $clients,
-            'client_chunks' => array_chunk($clients, 8),
+            'clients_json' => json_encode($clients, JSON_THROW_ON_ERROR),
+            'visible_clients' => $visibleClients,
             'education' => $education,
             'experience' => $experience,
             'journey' => array_merge($education, $experience),
@@ -106,6 +108,20 @@ class HomeController extends Controller
         return $clients->isEmpty()
             ? $fallback
             : $clients->map(fn (Client $client): array => $this->clientData($client))->all();
+    }
+
+    private function visibleClientsData(array $clients): array
+    {
+        $directionClasses = ['rotate-y-180', 'rotate-x-180', 'rotate-y-neg-180', 'rotate-x-neg-180'];
+
+        return collect($clients)
+            ->take(8)
+            ->values()
+            ->map(fn (array $client, int $index): array => array_replace($client, [
+                'direction_type' => $index % count($directionClasses),
+                'direction_class' => $directionClasses[$index % count($directionClasses)],
+            ]))
+            ->all();
     }
 
     private function journeyData(array $keys): array
@@ -180,9 +196,9 @@ class HomeController extends Controller
     private function heroData(): array
     {
         return [
-            'subtitle' => 'Membangun sistem digital dari backend, web, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.',
-            'rotator_words' => ['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'],
-            'rotator_json' => json_encode(['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'], JSON_THROW_ON_ERROR),
+            'subtitle' => 'Membangun produk digital yang rapi, scalable, dan mudah dikembangkan dengan alur kerja yang jelas, struktur sistem yang bersih, serta pengalaman pengguna yang nyaman untuk kebutuhan bisnis nyata.',
+            'rotator_words' => ['SOLUSI DIGITAL_', 'SISTEM SCALABLE_', 'PRODUK DIGITAL_', 'ARSITEKTUR BERSIH_'],
+            'rotator_json' => json_encode(['SOLUSI DIGITAL_', 'SISTEM SCALABLE_', 'PRODUK DIGITAL_', 'ARSITEKTUR BERSIH_'], JSON_THROW_ON_ERROR),
             'badges' => [
                 ['theme' => 'white-blue', 'icon' => '⚡', 'label' => 'Kode Bersih'],
                 ['theme' => 'blue-white', 'icon' => '🔥', 'label' => 'Scalable'],
@@ -236,11 +252,11 @@ class HomeController extends Controller
     {
         $items = [
             ['id' => 1, 'key' => 'education', 'title' => 'Sistem Informasi (S.Kom)', 'institute' => 'Universitas BSI', 'description' => 'Lulus dengan IPK 3.6. Fokus studi pada software engineering, database, dan arsitektur sistem.', 'date_range' => '2021 - 2025', 'logo' => asset('images/journey/ubsi.png'), 'sort' => 1],
-            ['id' => 2, 'key' => 'education', 'title' => 'MSIB Batch 6', 'institute' => 'Startup Campus', 'description' => 'Fokus pada software engineering, database, analisis sistem, dan pengembangan aplikasi web.', 'date_range' => 'Feb 2024 - Juni 2024', 'logo' => asset('images/journey/startup.png'), 'sort' => 2],
+            ['id' => 2, 'key' => 'education', 'title' => 'MSIB Batch 6', 'institute' => 'Startup Campus', 'description' => 'Fokus pada software engineering, database, analisis sistem, dan pengembangan perangkat lunak.', 'date_range' => 'Feb 2024 - Juni 2024', 'logo' => asset('images/journey/startup.png'), 'sort' => 2],
             ['id' => 3, 'key' => 'education', 'title' => 'Teknik Komputer & Jaringan', 'institute' => 'SMK Negeri Indonesia', 'description' => 'Mempelajari dasar-dasar pemrograman, jaringan komputer, server Linux, & troubleshooting hardware.', 'date_range' => '2018 - 2021', 'logo' => asset('images/journey/smk.png'), 'sort' => 3],
-            ['id' => 4, 'key' => 'experience', 'title' => 'Senior Fullstack Web Developer', 'institute' => 'PT Keysoft ERP Indonesia', 'description' => 'Memimpin pengembangan modul ERP manufaktur & keuangan, optimasi query database SQL Server, dan integrasi API.', 'date_range' => '2025 - Sekarang', 'logo' => asset('images/journey/keysoft.png'), 'sort' => 1],
-            ['id' => 5, 'key' => 'experience', 'title' => 'Fullstack Developer', 'institute' => 'PT Pesona Trip Travel Indonesia', 'description' => 'Mengembangkan aplikasi travel booking, manajemen sistem, REST API, dan integrasi payment gateway.', 'date_range' => 'Sept 2024 - Jan 2025', 'logo' => asset('images/journey/pesona.png'), 'sort' => 2],
-            ['id' => 6, 'key' => 'experience', 'title' => 'Fullstack Developer', 'institute' => 'PT Jasanya Teknologi Indonesia', 'description' => 'Mengembangkan modul ERP, REST API, dashboard operasional, dan integrasi sistem internal.', 'date_range' => '2023 - Present', 'logo' => asset('images/journey/jasanya.png'), 'sort' => 3],
+            ['id' => 4, 'key' => 'experience', 'title' => 'Software Engineer', 'institute' => 'PT Keysoft ERP Indonesia', 'description' => 'Mengembangkan modul ERP manufaktur dan keuangan, optimasi query database, serta integrasi API.', 'date_range' => '2025 - Sekarang', 'logo' => asset('images/journey/keysoft.png'), 'sort' => 1],
+            ['id' => 5, 'key' => 'experience', 'title' => 'Software Engineer', 'institute' => 'PT Pesona Trip Travel Indonesia', 'description' => 'Mengembangkan aplikasi travel booking, manajemen sistem, API, dan integrasi payment gateway.', 'date_range' => 'Sept 2024 - Jan 2025', 'logo' => asset('images/journey/pesona.png'), 'sort' => 2],
+            ['id' => 6, 'key' => 'experience', 'title' => 'Software Engineer', 'institute' => 'PT Jasanya Teknologi Indonesia', 'description' => 'Mengembangkan modul ERP, API, dashboard operasional, dan integrasi sistem internal.', 'date_range' => '2023 - Present', 'logo' => asset('images/journey/jasanya.png'), 'sort' => 3],
             ['id' => 7, 'key' => 'experience', 'title' => 'Koordinator Komite Kominfo', 'institute' => 'HIMSI Universitas BSI', 'description' => 'Mengelola portal web organisasi dan mengadakan pelatihan coding web untuk 200+ mahasiswa.', 'date_range' => '2023 - 2025', 'logo' => asset('images/journey/himsi.png'), 'sort' => 4],
         ];
 

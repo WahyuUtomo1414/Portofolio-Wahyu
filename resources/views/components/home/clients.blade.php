@@ -1,5 +1,5 @@
 @props([
-    'clients' => [],
+    'clientsJson' => '[]',
     'visibleClients' => [],
     'section' => [],
 ])
@@ -15,7 +15,7 @@
             :subtitle="$section['subtitle'] ?? 'Pengalaman membangun website, backend API, sistem internal, dan aplikasi digital untuk berbagai kebutuhan.'" />
 
         <!-- 8 Individual Multi-Directional 3D Flip Cards Grid (4 Cols x 2 Rows) -->
-        <div id="clients-card-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div id="clients-card-grid" data-clients="{{ $clientsJson }}" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             @foreach($visibleClients as $client)
                 <div class="client-flip-card perspective-1000 h-40 sm:h-44" data-card-slot="{{ $loop->index }}" data-direction-type="{{ $client['direction_type'] ?? 0 }}">
                     <div class="client-card-inner relative w-full h-full transition-transform duration-1000 ease-in-out transform-style-3d">
@@ -87,7 +87,8 @@
 <!-- Multi-Directional 3D Card Flip Animation Script -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const clientsData = @json($clients);
+        const grid = document.getElementById('clients-card-grid');
+        const clientsData = JSON.parse(grid?.dataset.clients || '[]');
         if (!clientsData || clientsData.length <= 8) return;
 
         const cards = document.querySelectorAll('.client-flip-card');

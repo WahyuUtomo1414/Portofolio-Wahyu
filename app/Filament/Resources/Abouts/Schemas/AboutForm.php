@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Abouts\Schemas;
 
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -73,6 +73,11 @@ class AboutForm
                         TextInput::make('sosial_media.website')
                             ->label('Website')
                             ->url()
+                            ->maxLength(255),
+                        TextInput::make('sosial_media.cv')
+                            ->label('Link CV')
+                            ->url()
+                            ->helperText('Isi dengan link Google Drive atau URL publik CV.')
                             ->maxLength(255),
                     ])
                     ->columns(2)

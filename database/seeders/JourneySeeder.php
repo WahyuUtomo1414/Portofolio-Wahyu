@@ -35,7 +35,7 @@ class JourneySeeder extends Seeder
                 'title' => 'MSIB Batch 6',
                 'logo' => 'images/journey/startup.png',
                 'institute' => 'Startup Campus',
-                'description' => 'Program Magang & Studi Independen Bersertifikat Kemendikbudristek bidang Fullstack Web Development.',
+                'description' => 'Program Magang & Studi Independen Bersertifikat Kemendikbudristek bidang pengembangan perangkat lunak.',
                 'date_range' => 'Feb 2024 - Juni 2024',
                 'sort' => 2,
             ],
@@ -52,16 +52,16 @@ class JourneySeeder extends Seeder
             // EXPERIENCE & WORK (Key: experience)
             [
                 'key' => 'experience',
-                'title' => 'Senior Fullstack Web Developer',
+                'title' => 'Software Engineer',
                 'logo' => 'images/journey/keysoft.png',
                 'institute' => 'PT Keysoft ERP Indonesia',
-                'description' => 'Memimpin pengembangan modul ERP manufaktur & keuangan, optimasi query database SQL Server, dan integrasi REST API.',
+                'description' => 'Mengembangkan modul ERP manufaktur dan keuangan, optimasi query database, serta integrasi API.',
                 'date_range' => '2025 - Sekarang',
                 'sort' => 1,
             ],
             [
                 'key' => 'experience',
-                'title' => 'Fullstack Web Developer',
+                'title' => 'Software Engineer',
                 'logo' => 'images/journey/pesona.png',
                 'institute' => 'PT Pesona Trip Travel Indonesia',
                 'description' => 'Mengembangkan sistem reservasi online, arsitektur backend, integrasi API, dan antarmuka pengguna frontend.',
@@ -70,7 +70,7 @@ class JourneySeeder extends Seeder
             ],
             [
                 'key' => 'experience',
-                'title' => 'Fullstack Web Developer',
+                'title' => 'Software Engineer',
                 'logo' => 'images/journey/jasanya.png',
                 'institute' => 'PT Jasanya Teknologi Indonesia',
                 'description' => 'Mengembangkan modul ERP, REST API, dashboard operasional, dan integrasi sistem internal.',

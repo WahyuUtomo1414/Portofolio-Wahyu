@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')</title>
+    <title>@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer')</title>
     <meta name="description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis membangun aplikasi web, backend API, mobile, dan sistem digital scalable sesuai kebutuhan bisnis.')">
-    <meta name="keywords" content="Wahyu Dwi Utomo, Software Engineer, Fullstack Developer, Backend Developer, Mobile Developer, Web Developer Indonesia">
+    <meta name="keywords" content="Wahyu Dwi Utomo, Software Engineer, Developer Indonesia, Portofolio Developer, Project Digital">
     <meta name="author" content="Wahyu Dwi Utomo">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0F172A">
@@ -20,14 +20,14 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Wahyu Dwi Utomo">
     <meta property="og:locale" content="id_ID">
-    <meta property="og:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')">
+    <meta property="og:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer')">
     <meta property="og:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo. Spesialis membangun aplikasi web dan sistem digital scalable untuk berbagai kebutuhan bisnis.')">
     <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer & Fullstack Developer')">
+    <meta property="twitter:title" content="@yield('title', $title ?? 'Wahyu Dwi Utomo — Software Engineer')">
     <meta property="twitter:description" content="@yield('description', $description ?? 'Portofolio profesional Wahyu Dwi Utomo.')">
     <meta property="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
@@ -38,7 +38,7 @@
             "name": "Wahyu Dwi Utomo",
             "url": "{{ url('/') }}",
             "image": "{{ $footer_profile['image_profile'] ?? asset('images/brand/wdu-mark.svg') }}",
-            "jobTitle": "Software Engineer & Fullstack Developer",
+            "jobTitle": "Software Engineer",
             "email": "mailto:{{ $footer_profile['email'] ?? 'wahyuxd14@gmail.com' }}",
             "address": {
                 "@@type": "PostalAddress",

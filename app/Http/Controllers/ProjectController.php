@@ -232,6 +232,7 @@ class ProjectController extends Controller
             'body' => $project->body, // Menyimpan HTML mentah dari RichEditor Filament
             'period' => $this->projectPeriod($project->start_project, $project->end_project),
             'tech_stack' => $project->tools->pluck('name')->all(),
+            'tech_stack_labels' => $project->tools->pluck('name')->all(),
             'demo_url' => $project->url,
             'github_url' => null,
             'detail_url' => route('projects.show', $project->slug),
@@ -260,6 +261,7 @@ class ProjectController extends Controller
             'body' => $project['body'],
             'period' => $project['period'] ?? null,
             'tech_stack' => $project['tech_stack'],
+            'tech_stack_labels' => $this->techStackLabels($project['tech_stack'] ?? []),
             'demo_url' => $project['demo_url'] ?? null,
             'github_url' => $project['github_url'] ?? null,
             'detail_url' => route('projects.show', $project['slug']),
@@ -302,5 +304,14 @@ class ProjectController extends Controller
         $end = blank($endProject) ? 'Sekarang' : $endProject->translatedFormat('M Y');
 
         return trim(($start ?? 'Mulai').' - '.$end);
+    }
+
+    private function techStackLabels(array $items): array
+    {
+        return collect($items)
+            ->map(fn (mixed $item): string => is_array($item) ? (string) ($item['name'] ?? '') : (string) $item)
+            ->filter()
+            ->values()
+            ->all();
     }
 }

@@ -21,7 +21,7 @@
     <x-home.experience :education="$education" :experience="$experience" :section="$sections['experience']" />
 
     <!-- 6. CLIENT (Section 03: Dedicated Clients & Partners Section) -->
-    <x-home.clients :clients="$clients" :section="$sections['clients']" />
+    <x-home.clients :clientsJson="$clients_json" :visibleClients="$visible_clients" :section="$sections['clients']" />
 
     <!-- 7. PROJECT (Section 04: Project pilihan) -->
     <x-home.featured-projects :projects="$featured_projects" :totalProjects="$total_projects" :section="$sections['projects']" />

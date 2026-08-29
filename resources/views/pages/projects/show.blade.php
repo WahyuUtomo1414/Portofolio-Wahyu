@@ -125,10 +125,7 @@
                             <div class="space-y-2 pt-1">
                                 <span class="text-slate-400 uppercase block">// Tech Stack Utama</span>
                                 <div class="flex flex-wrap gap-2">
-                                    @foreach($project['tech_stack'] as $tech)
-                                        @php
-                                            $techName = is_array($tech) ? ($tech['name'] ?? '') : $tech;
-                                        @endphp
+                                    @foreach($project['tech_stack_labels'] as $techName)
                                         <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded text-xs">
                                             {{ $techName }}
                                         </span>

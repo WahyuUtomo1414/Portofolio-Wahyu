@@ -10,19 +10,19 @@ class PortfolioData
     {
         return [
             'name' => 'Wahyu Dwi Utomo',
-            'role' => 'Software Engineer & Fullstack Developer',
+            'role' => 'Software Engineer',
             'bio' => 'Membangun sistem digital dari backend API, aplikasi web, dashboard operasional, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.',
             'email' => 'wahyuxd14@gmail.com',
             'no_wa' => '6285891514812',
             'location' => 'Jakarta, Indonesia',
             'address' => 'Jakarta, Indonesia',
             'image_profile' => asset('images/profile/wahyu.png'),
-            'cv_url' => asset('files/cv-wahyu-dwi-utomo.pdf'),
             'social_media' => [
                 'github' => 'https://github.com/WahyuUtomo1414',
                 'linkedin' => 'https://www.linkedin.com/in/wahyutomo/',
                 'instagram' => 'https://www.instagram.com/waahyutomo/',
                 'whatsapp' => 'https://wa.me/6285891514812',
+                'cv' => '#',
             ],
         ];
     }

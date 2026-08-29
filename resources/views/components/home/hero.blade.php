@@ -1,5 +1,6 @@
 @props([
     'profile' => [],
+    'hero' => [],
 ])
 
 <section class="relative py-10 sm:py-16 lg:py-24 overflow-hidden border-neo-b bg-[#FAF8F5]">
@@ -12,18 +13,18 @@
                 <!-- Availability Status Badge (Responsive text size for mobile) -->
                 <div class="inline-flex items-center gap-2 bg-[#ECFDF5] text-[#047857] border-neo px-3 sm:px-4 py-1.5 rounded-full shadow-neo-sm font-mono text-[11px] sm:text-xs font-bold transition-all hover:shadow-neo hover:-translate-y-0.5">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#059669] animate-pulse flex-shrink-0"></span>
-                    <span class="truncate sm:whitespace-normal">{{ $profile['availability_badge'] ?? '● TERSEDIA UNTUK FREELANCE & FULL-TIME' }}</span>
+                    <span class="truncate sm:whitespace-normal">{{ $profile['availability_badge'] ?? 'TERBUKA UNTUK PROJECT FREELANCE & FULL-TIME' }}</span>
                 </div>
 
                 <!-- Clean, High-Impact 2-Line Headline (Responsive scaling for mobile screens) -->
                 <h1 class="font-heading font-extrabold text-2xl sm:text-4xl lg:text-6xl text-[#0F172A] tracking-tight uppercase leading-tight select-none">
-                    SENIOR FULLSTACK DEVELOPER<br>
-                    <span id="hero-headline-rotator" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">SOLUSI WEB MODERN_</span>
+                    SOFTWARE ENGINEER<br>
+                    <span id="hero-headline-rotator" data-rotator="{{ $hero['rotator_json'] ?? '[]' }}" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">{{ $hero['rotator_words'][0] ?? 'SOLUSI DIGITAL_' }}</span>
                 </h1>
 
                 <!-- Subtitle Description -->
                 <p class="font-sans text-slate-700 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl font-medium">
-                    Spesialis dalam merancang arsitektur backend Laravel yang tangguh, antarmuka frontend Vue.js yang responsif, serta solusi web berkinerja tinggi.
+                    {{ $hero['subtitle'] ?? 'Membangun produk digital yang rapi, scalable, mudah dirawat, dan nyaman digunakan.' }}
                 </p>
 
                 <!-- CTA Action Buttons (Full width on small mobile screens, side-by-side on sm+) -->
@@ -48,28 +49,28 @@
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative w-full max-w-md my-4 sm:my-6 px-2 sm:px-0">
                     
-                    <!-- Floating Badge 1: Top-Left (Laravel) -->
+                    <!-- Floating Badge 1: Top-Left -->
                     <div class="absolute -top-4 left-1 sm:-top-6 sm:-left-4 z-20 bg-white border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-slow select-none">
                         <span class="text-[#2563EB]">⚡</span>
-                        <span>Laravel</span>
+                        <span>{{ $hero['badges'][0]['label'] ?? 'Kode Bersih' }}</span>
                     </div>
 
-                    <!-- Floating Badge 2: Top-Right (Vue.js) -->
+                    <!-- Floating Badge 2: Top-Right -->
                     <div class="absolute -top-4 right-1 sm:-top-6 sm:-right-4 z-20 bg-[#2563EB] text-white border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-reverse select-none">
                         <span>🔥</span>
-                        <span>Vue.js</span>
+                        <span>{{ $hero['badges'][1]['label'] ?? 'Scalable' }}</span>
                     </div>
 
-                    <!-- Floating Badge 3: Bottom-Left (100% Kualitas) -->
+                    <!-- Floating Badge 3: Bottom-Left -->
                     <div class="absolute -bottom-4 left-1 sm:-bottom-6 sm:-left-4 z-20 bg-[#FEF3C7] text-[#D97706] border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-reverse select-none">
                         <span>⭐</span>
-                        <span>100% Kualitas</span>
+                        <span>{{ $hero['badges'][2]['label'] ?? 'Fokus Kualitas' }}</span>
                     </div>
 
-                    <!-- Floating Badge 4: Bottom-Right (5+ Thn Exp) -->
+                    <!-- Floating Badge 4: Bottom-Right -->
                     <div class="absolute -bottom-4 right-1 sm:-bottom-6 sm:-right-4 z-20 bg-[#ECFDF5] text-[#059669] border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-slow select-none">
                         <span>🎯</span>
-                        <span>5+ Thn Exp</span>
+                        <span>{{ $hero['badges'][3]['label'] ?? '3+ Thn Exp' }}</span>
                     </div>
 
                     <!-- Profile Card Container -->
@@ -78,11 +79,9 @@
                         <!-- Top Bar Signature -->
                         <div class="flex items-center justify-between font-mono text-xs font-bold border-neo-b pb-2.5 sm:pb-3">
                             <span class="bg-[#0F172A] text-white px-2.5 py-0.5 sm:px-3 sm:py-1 rounded border-neo text-[10px] sm:text-xs">
-                                PROFIL DEVELOPER
+                                {{ $hero['profile_label'] ?? 'PROFIL DEVELOPER' }}
                             </span>
-                            <span class="text-[#2563EB] font-extrabold tracking-wider text-xs sm:text-sm">
-                                WAHYU.DEV
-                            </span>
+                            <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-8 w-auto">
                         </div>
 
                         <!-- Photo Frame -->
@@ -96,7 +95,7 @@
                                 <span class="truncate">{{ $profile['name'] ?? 'Wahyu Dwi Utomo' }}</span>
                                 <span class="text-[#059669] flex items-center gap-1.5 flex-shrink-0">
                                     <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                                    <span>ONLINE</span>
+                                    <span>{{ $hero['status_label'] ?? 'AVAILABLE' }}</span>
                                 </span>
                             </div>
                         </div>
@@ -104,10 +103,10 @@
                         <!-- Clean Info Chips -->
                         <div class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-bold pt-0.5 sm:pt-1 gap-2">
                             <span class="bg-slate-100 border-neo px-2.5 sm:px-3 py-1 sm:py-1.5 rounded text-[#0F172A] truncate">
-                                📍 {{ $profile['location'] ?? 'Bekasi / Jakarta' }}
+                                📍 {{ $profile['location'] ?? 'Jakarta, Indonesia' }}
                             </span>
                             <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-2.5 sm:px-3 py-1 sm:py-1.5 rounded flex-shrink-0">
-                                💻 Fullstack Web Dev
+                                💻 {{ $hero['skill_chip'] ?? 'Software Engineer' }}
                             </span>
                         </div>
 
@@ -123,11 +122,12 @@
 <!-- Rotator Script -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const words = ['SOLUSI WEB MODERN_', 'ARSITEKTUR LARAVEL_', 'FRONTEND VUE.JS_', 'SISTEM SCALABLE_'];
         let wordIndex = 0;
         const rotatorEl = document.getElementById('hero-headline-rotator');
 
         if (!rotatorEl) return;
+        const words = JSON.parse(rotatorEl.dataset.rotator || '[]');
+        if (!words.length) return;
 
         setInterval(() => {
             rotatorEl.style.opacity = '0';
