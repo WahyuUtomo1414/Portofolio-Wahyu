@@ -14,10 +14,10 @@
             :title="$section['title'] ?? 'DIPERCAYA BERBAGAI BISNIS DAN INSTITUSI'"
             :subtitle="$section['subtitle'] ?? 'Pengalaman membangun website, backend API, sistem internal, dan aplikasi digital untuk berbagai kebutuhan.'" />
 
-        <!-- 8 Individual Multi-Directional 3D Flip Cards Grid (4 Cols x 2 Rows) -->
+        <!-- Multi-Directional 3D Flip Cards Grid (Mobile: 4 Cards 2x2 | Desktop: 8 Cards 4x2) -->
         <div id="clients-card-grid" data-clients="{{ $clientsJson }}" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             @foreach($visibleClients as $client)
-                <div class="client-flip-card perspective-1000 h-40 sm:h-44" data-card-slot="{{ $loop->index }}" data-direction-type="{{ $client['direction_type'] ?? 0 }}">
+                <div class="client-flip-card perspective-1000 h-40 sm:h-44 {{ $loop->index >= 4 ? 'hidden md:block' : '' }}" data-card-slot="{{ $loop->index }}" data-direction-type="{{ $client['direction_type'] ?? 0 }}">
                     <div class="client-card-inner relative w-full h-full transition-transform duration-1000 ease-in-out transform-style-3d">
                         
                         <!-- Front Card Face (Direct Original Colors & Logo + Title Only) -->
@@ -84,12 +84,12 @@
     }
 </style>
 
-<!-- Multi-Directional 3D Card Flip Animation Script -->
+<!-- Multi-Directional 3D Card Flip Animation Script (Smart Visibility Awareness) -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const grid = document.getElementById('clients-card-grid');
         const clientsData = JSON.parse(grid?.dataset.clients || '[]');
-        if (!clientsData || clientsData.length <= 8) return;
+        if (!clientsData || clientsData.length <= 4) return;
 
         const cards = document.querySelectorAll('.client-flip-card');
         let currentIndex = 8;
@@ -146,12 +146,17 @@
             }, delayMs);
         }
 
-        // Trigger multi-directional card flip wave every 6.0 seconds
+        // Trigger multi-directional card flip wave every 6.0 seconds for visible cards
         setInterval(() => {
-            cards.forEach((card, slotIndex) => {
+            let visibleSlotCount = 0;
+            cards.forEach((card) => {
+                // Check if card is currently visible on the screen
+                if (card.offsetWidth === 0 && card.offsetHeight === 0) return;
+
                 const nextClient = clientsData[currentIndex % clientsData.length];
                 currentIndex++;
-                const staggeredDelay = slotIndex * 110;
+                const staggeredDelay = visibleSlotCount * 110;
+                visibleSlotCount++;
                 flipCardSlot(card, nextClient, staggeredDelay);
             });
         }, 6000);
