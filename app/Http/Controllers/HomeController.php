@@ -24,10 +24,14 @@ class HomeController extends Controller
         $education = $this->journeyData(['education']);
         $experience = $this->journeyData(['experience']);
         $featuredProjects = $this->featuredProjectData();
+        $totalProjects = $this->totalProjects();
 
         return view('pages.home', [
             'profile' => $profile,
             'footer_profile' => $profile,
+            'home_title' => 'Wahyu Dwi Utomo — Software Engineer Fullstack | Portofolio & Studi Kasus Project',
+            'home_description' => 'Portofolio Wahyu Dwi Utomo, software engineer Indonesia yang membangun website, backend API, dashboard, aplikasi mobile, dan sistem digital untuk kebutuhan bisnis.',
+            'hero' => $this->heroData(),
             'stats' => $this->statsData(),
             'skills' => $skills,
             'clients' => $clients,
@@ -36,7 +40,9 @@ class HomeController extends Controller
             'experience' => $experience,
             'journey' => array_merge($education, $experience),
             'featured_projects' => $featuredProjects,
+            'total_projects' => $totalProjects,
             'values' => $this->valuesData(),
+            'sections' => $this->sectionData(),
         ]);
     }
 
@@ -150,10 +156,10 @@ class HomeController extends Controller
     private function statsData(): array
     {
         $stats = [
-            ['number' => '5+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Spesialis Laravel & Web Development', 'icon' => 'code'],
-            ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, & Aplikasi Web', 'icon' => 'folder-check'],
-            ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
-            ['number' => '100%', 'label' => 'KOMITMEN KUALITAS', 'desc' => 'Kode Bersih & Tepat Waktu', 'icon' => 'shield-check'],
+            ['number' => '3+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Pengalaman sejak 2023 di berbagai stack dan industri', 'icon' => 'code'],
+            ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Project kuliah, freelance, joki, dan pekerjaan profesional', 'icon' => 'folder-check'],
+            ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Bisnis, organisasi, instansi, dan klien personal', 'icon' => 'users'],
+            ['number' => '100%', 'label' => 'FOKUS KUALITAS', 'desc' => 'Kode bersih, komunikasi jelas, dan hasil siap digunakan', 'icon' => 'shield-check'],
         ];
 
         return collect($stats)
@@ -166,15 +172,70 @@ class HomeController extends Controller
         return [
             ['code' => '⚡', 'title' => 'KODE BERSIH & TERSTRUKTUR', 'desc' => 'Penulisan kode yang rapi berstandar PSR, terstruktur modular, serta mudah dirawat dan dikembangkan di masa mendatang.'],
             ['code' => '🎯', 'title' => 'RESPONSIF & CEPAT DIAKSES', 'desc' => 'Desain berpola mobile-first yang responsif, cepat diakses dari perangkat apapun, serta memenuhi standar aksesibilitas.'],
-            ['code' => '🛡️', 'title' => 'AMAN & READY FOR SCALE', 'desc' => 'Penerapan praktik keamanan terbaik Laravel, proteksi dari celah umum web, serta arsitektur database yang siap tumbuh.'],
+            ['code' => '🛡️', 'title' => 'AMAN & SIAP TUMBUH', 'desc' => 'Penerapan praktik keamanan terbaik, proteksi dari celah umum web, serta arsitektur database yang siap tumbuh.'],
             ['code' => '💬', 'title' => 'KOMUNIKASI TRANSPARAN', 'desc' => 'Proses pengerjaan yang transparan, pembaruan kemajuan berkala, serta komitmen penyelesaian tepat waktu.'],
+        ];
+    }
+
+    private function heroData(): array
+    {
+        return [
+            'subtitle' => 'Membangun sistem digital dari backend, web, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.',
+            'rotator_words' => ['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'],
+            'rotator_json' => json_encode(['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'], JSON_THROW_ON_ERROR),
+            'badges' => [
+                ['theme' => 'white-blue', 'icon' => '⚡', 'label' => 'Kode Bersih'],
+                ['theme' => 'blue-white', 'icon' => '🔥', 'label' => 'Scalable'],
+                ['theme' => 'yellow', 'icon' => '⭐', 'label' => 'Fokus Kualitas'],
+                ['theme' => 'green', 'icon' => '🎯', 'label' => '3+ Thn Exp'],
+            ],
+            'profile_label' => 'PROFIL DEVELOPER',
+            'status_label' => 'AVAILABLE',
+            'skill_chip' => 'Software Engineer',
+        ];
+    }
+
+    private function sectionData(): array
+    {
+        return [
+            'about' => [
+                'number' => '01',
+                'tag' => 'TENTANG SAYA & KEUNGGULAN',
+                'title' => 'FILOSOFI & KEUNGGULAN KERJA',
+                'subtitle' => 'Prinsip utama yang saya terapkan saat membangun kode, arsitektur sistem, dan pengalaman pengguna.',
+                'chips' => ['Kode Bersih', 'Arsitektur Bersih', 'Performa Tinggi'],
+            ],
+            'experience' => [
+                'number' => '02',
+                'tag' => 'RIWAYAT KARIER & PENDIDIKAN',
+                'title' => 'PERJALANAN PENDIDIKAN & KARIER',
+                'subtitle' => 'Jejak pendidikan dan pengalaman kerja profesional di bidang pengembangan perangkat lunak.',
+            ],
+            'clients' => [
+                'number' => '03',
+                'tag' => 'MITRA & CLIENT',
+                'title' => 'DIPERCAYA BERBAGAI BISNIS DAN INSTITUSI',
+                'subtitle' => 'Pengalaman membangun website, backend API, sistem internal, dan aplikasi digital untuk berbagai kebutuhan.',
+            ],
+            'projects' => [
+                'number' => '04',
+                'tag' => 'KATALOG PROJECT',
+                'title' => 'PROJECT PILIHAN & KARYA TERBARU',
+                'subtitle' => 'Koleksi studi kasus, sistem web, dashboard, aplikasi mobile, dan solusi digital yang pernah dikembangkan.',
+            ],
+            'contact' => [
+                'number' => '05',
+                'tag' => 'HUBUNGI SAYA',
+                'title' => 'MARI DISKUSIKAN PROJECT BERIKUTNYA',
+                'subtitle' => 'Punya ide project menarik, butuh developer, atau ingin berkonsultasi teknis? Silakan hubungi saya.',
+            ],
         ];
     }
 
     private function fallbackJourneyData(array $keys): array
     {
         $items = [
-            ['id' => 1, 'key' => 'education', 'title' => 'Sistem Informasi (S.Kom)', 'institute' => 'Universitas BSI', 'description' => 'Lulus Predikat Cumlaude. Fokus studi pada Software Engineering, Database Systems, & System Architecture.', 'date_range' => '2021 - 2025', 'logo' => asset('images/journey/ubsi.png'), 'sort' => 1],
+            ['id' => 1, 'key' => 'education', 'title' => 'Sistem Informasi (S.Kom)', 'institute' => 'Universitas BSI', 'description' => 'Lulus dengan IPK 3.6. Fokus studi pada software engineering, database, dan arsitektur sistem.', 'date_range' => '2021 - 2025', 'logo' => asset('images/journey/ubsi.png'), 'sort' => 1],
             ['id' => 2, 'key' => 'education', 'title' => 'MSIB Batch 6', 'institute' => 'Startup Campus', 'description' => 'Fokus pada software engineering, database, analisis sistem, dan pengembangan aplikasi web.', 'date_range' => 'Feb 2024 - Juni 2024', 'logo' => asset('images/journey/startup.png'), 'sort' => 2],
             ['id' => 3, 'key' => 'education', 'title' => 'Teknik Komputer & Jaringan', 'institute' => 'SMK Negeri Indonesia', 'description' => 'Mempelajari dasar-dasar pemrograman, jaringan komputer, server Linux, & troubleshooting hardware.', 'date_range' => '2018 - 2021', 'logo' => asset('images/journey/smk.png'), 'sort' => 3],
             ['id' => 4, 'key' => 'experience', 'title' => 'Senior Fullstack Web Developer', 'institute' => 'PT Keysoft ERP Indonesia', 'description' => 'Memimpin pengembangan modul ERP manufaktur & keuangan, optimasi query database SQL Server, dan integrasi API.', 'date_range' => '2025 - Sekarang', 'logo' => asset('images/journey/keysoft.png'), 'sort' => 1],
@@ -278,6 +339,17 @@ class HomeController extends Controller
             'target_number' => isset($matches[1]) ? (int) $matches[1] : 0,
             'suffix' => $matches[2] ?? '',
         ];
+    }
+
+    private function totalProjects(): int
+    {
+        if (! $this->projectTablesReady()) {
+            return PortfolioData::projects()->count();
+        }
+
+        return Project::query()
+            ->where('active', true)
+            ->count();
     }
 
     private function projectTablesReady(): bool

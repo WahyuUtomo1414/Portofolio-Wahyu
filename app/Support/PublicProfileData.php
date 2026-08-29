@@ -47,7 +47,7 @@ class PublicProfileData
         $profile = PortfolioData::profile();
 
         return self::normalize(array_replace($profile, [
-            'availability_badge' => 'TERSEDIA UNTUK PROJECT FREELANCE & FULL-TIME',
+            'availability_badge' => 'TERBUKA UNTUK PROJECT FREELANCE & FULL-TIME',
             'tagline' => 'Membangun Produk Digital Scalable & Modern!',
             'description' => $profile['bio'],
         ]));
@@ -63,7 +63,7 @@ class PublicProfileData
             'social_linkedin' => $socials['linkedin'] ?? '#',
             'social_instagram' => $socials['instagram'] ?? '#',
             'social_whatsapp' => $socials['whatsapp'] ?? self::whatsappUrl($profile['no_wa'] ?? ''),
-            'location_upper' => mb_strtoupper($profile['location'] ?? 'Bekasi / Jakarta, Indonesia'),
+            'location_upper' => mb_strtoupper($profile['location'] ?? 'Jakarta, Indonesia'),
             'current_year' => now()->year,
         ]);
     }

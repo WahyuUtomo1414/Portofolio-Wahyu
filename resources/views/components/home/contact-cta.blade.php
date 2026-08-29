@@ -1,5 +1,6 @@
 @props([
     'profile' => [],
+    'section' => [],
 ])
 
 <section id="contact" class="py-16 lg:py-24 bg-white">
@@ -7,10 +8,10 @@
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="05" 
-            tag="HUBUNGI SAYA" 
-            title="MARI BEKERJA SAMA UNTUK PROJECT ANDA NEXT!" 
-            subtitle="Punya ide project menarik, butuh developer, atau ingin berkonsultasi teknis? Jangan ragu untuk menghubungi saya." />
+            :number="$section['number'] ?? '05'"
+            :tag="$section['tag'] ?? 'HUBUNGI SAYA'"
+            :title="$section['title'] ?? 'MARI DISKUSIKAN PROJECT BERIKUTNYA'"
+            :subtitle="$section['subtitle'] ?? 'Punya ide project menarik, butuh developer, atau ingin berkonsultasi teknis? Silakan hubungi saya.'" />
 
         <!-- Split Container -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">

@@ -52,10 +52,10 @@
     <div class="border-neo-t bg-slate-50 px-5 py-4 flex items-center justify-between font-mono text-xs font-bold gap-2">
         @if($project['demo_url'])
             <a href="{{ $project['demo_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-[#2563EB] hover:underline">
-                <span>PREVIEW</span> ↗
+                <span>LIHAT</span> ↗
             </a>
         @else
-            <span class="text-slate-400 font-normal">PROJECT PREVIEW</span>
+            <span class="text-slate-400 font-normal">BELUM ADA DEMO</span>
         @endif
 
         @if($project['detail_url'])

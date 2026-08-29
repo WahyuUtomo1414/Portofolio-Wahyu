@@ -225,7 +225,7 @@ class ProjectController extends Controller
             'slug' => $project->slug,
             'category' => $project->category?->name ?? 'Web App',
             'category_label' => mb_strtoupper($project->category?->name ?? 'Web App'),
-            'client_name' => $project->client?->name ?? 'Personal Project',
+            'client_name' => $project->client?->name ?? 'Project Pribadi',
             'client_logo' => $this->imageUrl($project->client?->logo),
             'thumbnail_url' => $this->imageUrl($project->thumbnail),
             'short_description' => str(strip_tags($project->body))->limit(160)->toString(),
@@ -253,7 +253,7 @@ class ProjectController extends Controller
             'slug' => $project['slug'],
             'category' => $project['category'],
             'category_label' => mb_strtoupper($project['category']),
-            'client_name' => $project['client_name'] ?? 'Personal Project',
+            'client_name' => $project['client_name'] ?? 'Project Pribadi',
             'client_logo' => $this->imageUrl($project['client_logo'] ?? null),
             'thumbnail_url' => $this->imageUrl($project['thumbnail_url'] ?? null),
             'short_description' => $project['short_description'],
@@ -298,8 +298,8 @@ class ProjectController extends Controller
             return null;
         }
 
-        $start = blank($startProject) ? null : $startProject->format('M Y');
-        $end = blank($endProject) ? 'Sekarang' : $endProject->format('M Y');
+        $start = blank($startProject) ? null : $startProject->translatedFormat('M Y');
+        $end = blank($endProject) ? 'Sekarang' : $endProject->translatedFormat('M Y');
 
         return trim(($start ?? 'Mulai').' - '.$end);
     }

@@ -1,6 +1,7 @@
 @props([
     'clients' => [],
     'visibleClients' => [],
+    'section' => [],
 ])
 
 <section id="clients" class="py-16 lg:py-24 border-neo-b bg-white select-none">
@@ -8,10 +9,10 @@
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="04" 
-            tag="MITRA & CLIENT" 
-            title="DIPERCAYA OLEH BERBAGAI BISNIS DAN INSTITUSI" 
-            subtitle="Membantu pengembangan website, sistem enterprise, dan aplikasi digital untuk berbagai kebutuhan bisnis dan organisasi." />
+            :number="$section['number'] ?? '03'"
+            :tag="$section['tag'] ?? 'MITRA & CLIENT'"
+            :title="$section['title'] ?? 'DIPERCAYA BERBAGAI BISNIS DAN INSTITUSI'"
+            :subtitle="$section['subtitle'] ?? 'Pengalaman membangun website, backend API, sistem internal, dan aplikasi digital untuk berbagai kebutuhan.'" />
 
         <!-- 8 Individual Multi-Directional 3D Flip Cards Grid (4 Cols x 2 Rows) -->
         <div id="clients-card-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">

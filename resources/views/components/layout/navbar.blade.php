@@ -13,23 +13,23 @@
             <nav class="hidden md:flex items-center space-x-8 font-sans text-sm font-bold">
                 <a href="{{ route('home') }}" 
                    class="transition-colors duration-150 {{ request()->routeIs('home') && !request()->has('page') ? 'text-[#2563EB] border-b-2 border-[#2563EB] pb-0.5' : 'text-[#0F172A] hover:text-[#2563EB]' }}">
-                    Home
+                    Beranda
                 </a>
                 <a href="#about" 
                    class="text-[#0F172A] hover:text-[#2563EB] transition-colors duration-150">
-                    About
+                    Tentang
                 </a>
                 <a href="#experience" 
                    class="text-[#0F172A] hover:text-[#2563EB] transition-colors duration-150">
-                    Journey
+                    Perjalanan
                 </a>
                 <a href="#projects" 
                    class="text-[#0F172A] hover:text-[#2563EB] transition-colors duration-150">
-                    Projects
+                    Project
                 </a>
                 <a href="#contact" 
                    class="text-[#0F172A] hover:text-[#2563EB] transition-colors duration-150">
-                    Contact
+                    Kontak
                 </a>
             </nav>
 
@@ -57,13 +57,13 @@
     <!-- Mobile Drawer Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-b-2 border-[#0F172A] bg-[#FAF8F5] px-4 pt-4 pb-6 space-y-3 font-sans font-bold">
         <a href="{{ route('home') }}" class="block px-4 py-2.5 rounded-lg border-neo bg-[#2563EB] text-white shadow-neo-sm">
-            Home
+            Beranda
         </a>
         <a href="#about" class="block px-4 py-2.5 rounded-lg border-neo bg-white text-[#0F172A] hover:bg-slate-100">
-            About Me
+            Tentang Saya
         </a>
         <a href="#experience" class="block px-4 py-2.5 rounded-lg border-neo bg-white text-[#0F172A] hover:bg-slate-100">
-            My Journey
+            Perjalanan Saya
         </a>
         <a href="#projects" class="block px-4 py-2.5 rounded-lg border-neo bg-white text-[#0F172A] hover:bg-slate-100">
             Katalog Project

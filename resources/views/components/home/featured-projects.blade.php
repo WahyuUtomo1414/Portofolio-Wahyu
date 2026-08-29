@@ -1,6 +1,7 @@
 @props([
     'projects' => [],
     'totalProjects' => 0,
+    'section' => [],
 ])
 
 <section id="projects" class="py-16 lg:py-24 border-neo-b bg-[#FAF8F5]">
@@ -8,10 +9,10 @@
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="04" 
-            tag="KATALOG PROJECT" 
-            title="PROJECT PILIHAN & KARYA TERBARU" 
-            subtitle="Koleksi studi kasus dan sistem web yang dikembangkan menggunakan arsitektur bersih, performa optimal, dan antarmuka modern." />
+            :number="$section['number'] ?? '04'"
+            :tag="$section['tag'] ?? 'KATALOG PROJECT'"
+            :title="$section['title'] ?? 'PROJECT PILIHAN & KARYA TERBARU'"
+            :subtitle="$section['subtitle'] ?? 'Koleksi studi kasus, sistem web, dashboard, aplikasi mobile, dan solusi digital yang pernah dikembangkan.'" />
 
         <!-- Cards Grid -->
         @if(!empty($projects))

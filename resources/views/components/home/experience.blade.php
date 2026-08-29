@@ -1,6 +1,7 @@
 @props([
     'education' => [],
     'experience' => [],
+    'section' => [],
 ])
 
 <section id="experience" class="py-16 lg:py-24 border-neo-b bg-white">
@@ -8,10 +9,10 @@
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="02" 
-            tag="RIWAYAT KARIER & PENDIDIKAN" 
-            title="MY JOURNEY: EDUCATION & EXPERIENCE" 
-            subtitle="Jejak langkah perjalanan pendidikan dan pengalaman kerja profesional dalam industri pengembangan perangkat lunak." />
+            :number="$section['number'] ?? '02'"
+            :tag="$section['tag'] ?? 'RIWAYAT KARIER & PENDIDIKAN'"
+            :title="$section['title'] ?? 'PERJALANAN PENDIDIKAN & KARIER'"
+            :subtitle="$section['subtitle'] ?? 'Jejak pendidikan dan pengalaman kerja profesional di bidang pengembangan perangkat lunak.'" />
 
         <!-- 2 Column Grid Layout (Left: Education, Right: Experience) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 relative font-sans">
@@ -26,9 +27,9 @@
                             <span class="absolute inline-flex w-full h-full animate-ping rounded-full bg-[#2563EB] opacity-75"></span>
                             <span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span>
                         </div>
-                        <span>EDUCATION</span>
+                        <span>PENDIDIKAN</span>
                     </div>
-                    <span class="font-mono text-xs font-bold text-slate-400">// ACADEMIC BACKGROUND</span>
+                    <span class="font-mono text-xs font-bold text-slate-400">// RIWAYAT AKADEMIK</span>
                 </div>
 
                 <!-- Vertical Timeline Container -->
@@ -96,9 +97,9 @@
                             <span class="absolute inline-flex w-full h-full animate-ping rounded-full bg-[#059669] opacity-75"></span>
                             <span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-[#059669]"></span>
                         </div>
-                        <span>EXPERIENCE & WORK</span>
+                        <span>PENGALAMAN KERJA</span>
                     </div>
-                    <span class="font-mono text-xs font-bold text-slate-400">// WORK HISTORY</span>
+                    <span class="font-mono text-xs font-bold text-slate-400">// RIWAYAT PROFESIONAL</span>
                 </div>
 
                 <!-- Vertical Timeline Container -->

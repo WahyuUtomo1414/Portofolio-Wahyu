@@ -10,9 +10,9 @@ class AboutSeeder extends Seeder
     public function run(): void
     {
         About::query()->updateOrCreate(
-            ['email' => 'wahyudwiutomo1414@gmail.com'],
+            ['name' => 'Wahyu Dwi Utomo'],
             [
-                'name' => 'Wahyu Dwi Utomo',
+                'email' => 'wahyuxd14@gmail.com',
                 'no_wa' => '6285891514812',
                 'sosial_media' => [
                     'github' => 'https://github.com/WahyuUtomo1414',
@@ -21,7 +21,7 @@ class AboutSeeder extends Seeder
                 ],
                 'description' => 'Software engineer yang fokus membangun aplikasi web, backend API, dashboard admin, hingga mobile dengan penekanan pada arsitektur bersih dan pengalaman pengguna yang solid.',
                 'image_profile' => 'https://picsum.photos/seed/wahyu-profile/900/900',
-                'tagline' => 'Building scalable digital products.',
+                'tagline' => 'Membangun produk digital yang scalable.',
                 'address' => 'Jakarta, Indonesia',
                 'active' => true,
             ],

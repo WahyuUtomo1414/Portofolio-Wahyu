@@ -1,5 +1,6 @@
 @props([
     'profile' => [],
+    'hero' => [],
 ])
 
 <section class="relative py-16 lg:py-24 overflow-hidden border-neo-b bg-[#FAF8F5]">
@@ -12,18 +13,18 @@
                 <!-- Availability Status Badge with Pulsing Light -->
                 <div class="inline-flex items-center gap-2 bg-[#ECFDF5] text-[#047857] border-neo px-4 py-1.5 rounded-full shadow-neo-sm font-mono text-xs font-bold transition-all hover:shadow-neo hover:-translate-y-0.5">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#059669] animate-pulse"></span>
-                    <span>{{ $profile['availability_badge'] ?? '● TERSEDIA UNTUK PROJECT FREELANCE & FULL-TIME' }}</span>
+                    <span>{{ $profile['availability_badge'] ?? 'TERBUKA UNTUK PROJECT FREELANCE & FULL-TIME' }}</span>
                 </div>
 
                 <!-- Clean, High-Impact 2-Line Headline (No Crop & No Layout Shift) -->
                 <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#0F172A] tracking-tight uppercase leading-tight select-none">
                     SOFTWARE ENGINEER<br>
-                    <span id="hero-headline-rotator" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">SOLUSI DIGITAL_</span>
+                    <span id="hero-headline-rotator" data-rotator="{{ $hero['rotator_json'] ?? '[]' }}" class="inline-block text-[#2563EB] font-black text-stroke-dark transition-all duration-300 transform min-h-[1.2em]">{{ $hero['rotator_words'][0] ?? 'SOLUSI DIGITAL_' }}</span>
                 </h1>
 
                 <!-- Crisp Subtitle Description -->
                 <p class="font-sans text-slate-700 text-base sm:text-lg leading-relaxed max-w-xl font-medium">
-                    Membangun sistem digital dari backend, web, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.
+                    {{ $hero['subtitle'] ?? 'Membangun sistem digital dari backend, web, hingga mobile dengan arsitektur bersih dan pengalaman pengguna yang solid.' }}
                 </p>
 
                 <!-- CTA Action Buttons with Micro-Animations -->
@@ -51,25 +52,25 @@
                     <!-- Floating Badge 1: Top-Left -->
                     <div class="absolute -top-6 -left-4 z-20 bg-white border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-slow select-none">
                         <span class="text-[#2563EB]">⚡</span>
-                        <span>Clean Code</span>
+                        <span>{{ $hero['badges'][0]['label'] ?? 'Clean Code' }}</span>
                     </div>
 
                     <!-- Floating Badge 2: Top-Right -->
                     <div class="absolute -top-6 -right-4 z-20 bg-[#2563EB] text-white border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-reverse select-none">
                         <span>🔥</span>
-                        <span>Scalable</span>
+                        <span>{{ $hero['badges'][1]['label'] ?? 'Scalable' }}</span>
                     </div>
 
-                    <!-- Floating Badge 3: Bottom-Left (100% Kualitas) -->
+                    <!-- Floating Badge 3: Bottom-Left -->
                     <div class="absolute -bottom-6 -left-4 z-20 bg-[#FEF3C7] text-[#D97706] border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-reverse select-none">
                         <span>⭐</span>
-                        <span>100% Kualitas</span>
+                        <span>{{ $hero['badges'][2]['label'] ?? 'Fokus Kualitas' }}</span>
                     </div>
 
-                    <!-- Floating Badge 4: Bottom-Right (5+ Thn Exp) -->
+                    <!-- Floating Badge 4: Bottom-Right -->
                     <div class="absolute -bottom-6 -right-4 z-20 bg-[#ECFDF5] text-[#059669] border-neo px-3.5 py-1.5 rounded-lg shadow-neo text-xs font-mono font-bold flex items-center gap-2 animate-float-slow select-none">
                         <span>🎯</span>
-                        <span>5+ Thn Exp</span>
+                        <span>{{ $hero['badges'][3]['label'] ?? '3+ Thn Exp' }}</span>
                     </div>
 
                     <!-- Profile Card Container -->
@@ -78,7 +79,7 @@
                         <!-- Top Bar Signature -->
                         <div class="flex items-center justify-between font-mono text-xs font-bold border-neo-b pb-3">
                             <span class="bg-[#0F172A] text-white px-3 py-1 rounded border-neo">
-                                PROFIL DEVELOPER
+                                {{ $hero['profile_label'] ?? 'PROFIL DEVELOPER' }}
                             </span>
                             <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-8 w-auto">
                         </div>
@@ -94,7 +95,7 @@
                                 <span class="truncate">{{ $profile['name'] ?? 'Wahyu Dwi Utomo' }}</span>
                                 <span class="text-[#059669] flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                                    <span>ONLINE</span>
+                                    <span>{{ $hero['status_label'] ?? 'AVAILABLE' }}</span>
                                 </span>
                             </div>
                         </div>
@@ -102,10 +103,10 @@
                         <!-- Clean Info Chips -->
                         <div class="flex items-center justify-between font-mono text-xs font-bold pt-1 gap-2">
                             <span class="bg-slate-100 border-neo px-3 py-1.5 rounded text-[#0F172A] truncate">
-                                📍 {{ $profile['location'] ?? 'Bekasi / Jakarta' }}
+                                📍 {{ $profile['location'] ?? 'Jakarta, Indonesia' }}
                             </span>
                             <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1.5 rounded flex-shrink-0">
-                                💻 Software Dev
+                                💻 {{ $hero['skill_chip'] ?? 'Software Engineer' }}
                             </span>
                         </div>
 
@@ -121,11 +122,12 @@
 <!-- Rotator Script (Single-line Concise Phrases) -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const words = ['SOLUSI DIGITAL_', 'WEB & MOBILE_', 'SISTEM SCALABLE_', 'CLEAN ARCHITECTURE_'];
         let wordIndex = 0;
         const rotatorEl = document.getElementById('hero-headline-rotator');
 
         if (!rotatorEl) return;
+        const words = JSON.parse(rotatorEl.dataset.rotator || '[]');
+        if (!words.length) return;
 
         setInterval(() => {
             rotatorEl.style.opacity = '0';

@@ -1,6 +1,7 @@
 @props([
     'values' => [],
     'profile' => [],
+    'section' => [],
 ])
 
 <section id="about" class="py-16 lg:py-24 border-neo-b bg-[#FAF8F5]">
@@ -8,12 +9,12 @@
         
         <!-- Header Section -->
         <x-common.section-header 
-            number="01" 
-            tag="TENTANG SAYA & KEUNGGULAN" 
-            title="FILOSOFI & KEUNGGULAN KERJA" 
-            subtitle="Prinsip utama dan komitmen yang selalu diterapkan dalam setiap baris kode dan arsitektur sistem yang dibangun." />
+            :number="$section['number'] ?? '01'"
+            :tag="$section['tag'] ?? 'TENTANG SAYA & KEUNGGULAN'"
+            :title="$section['title'] ?? 'FILOSOFI & KEUNGGULAN KERJA'"
+            :subtitle="$section['subtitle'] ?? 'Prinsip utama yang saya terapkan saat membangun kode, arsitektur sistem, dan pengalaman pengguna.'" />
 
-        <!-- Expanded About Me Bio Card -->
+        <!-- Kartu profil ringkas -->
         <div class="bg-white border-neo p-6 sm:p-8 rounded-xl shadow-neo grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div class="lg:col-span-4 flex flex-col items-center sm:items-start space-y-3 border-neo-b lg:border-neo-b-0 lg:border-neo-r lg:pr-8 pb-6 lg:pb-0">
                 <div class="inline-flex items-center gap-2 bg-[#2563EB] text-white px-3 py-1 rounded border-neo font-mono text-xs font-bold">
@@ -36,9 +37,9 @@
                     {{ $profile['description'] }}
                 </p>
                 <div class="pt-2 flex flex-wrap gap-2 font-mono text-xs font-bold">
-                    <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">Clean Code</span>
-                    <span class="bg-[#ECFDF5] text-[#059669] border-neo px-3 py-1 rounded">Clean Architecture</span>
-                    <span class="bg-[#FEF3C7] text-[#D97706] border-neo px-3 py-1 rounded">High Performance</span>
+                    @foreach($section['chips'] ?? [] as $chip)
+                        <span class="bg-[#EFF6FF] text-[#2563EB] border-neo px-3 py-1 rounded">{{ $chip }}</span>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -60,7 +61,7 @@
                     </div>
 
                     <div class="pt-2 font-mono text-[11px] font-bold text-[#059669] uppercase tracking-wider">
-                        ✔ VERIFIED STANDARD
+                        ✔ STANDAR TERUJI
                     </div>
                 </div>
             @endforeach

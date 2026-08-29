@@ -15,7 +15,7 @@
                 <!-- Category Tag Pill -->
                 <div class="inline-flex items-center gap-2 bg-[#2563EB] text-white border-neo px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-wider shadow-neo-sm">
                     <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                    <span>MOTTO & KOMITMEN LAYANAN</span>
+                    <span>MOTTO & PRINSIP KERJA</span>
                 </div>
 
                 <!-- Headline Container (Zero Cropping & Zero Layout Shift) -->
@@ -37,13 +37,13 @@
 
                 <!-- Subtitle Copywriting -->
                 <p class="font-sans text-slate-300 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
-                    Siap membantu perusahaan, instansi, dan UMKM membangun aplikasi web modern, sistem backend yang kokoh, antarmuka yang cepat dan responsif, serta aplikasi mobile.
+                    Fokus membangun aplikasi web, backend API, sistem internal, dan aplikasi mobile yang scalable, bersih, dan mudah dirawat.
                 </p>
 
                 <!-- Action CTA Button -->
                 <div class="pt-2">
                     <a href="#contact" class="inline-flex items-center justify-center font-mono font-bold text-sm bg-[#059669] hover:bg-[#047857] text-white px-7 py-3.5 rounded-lg border-neo shadow-neo shadow-neo-hover transition-all duration-200">
-                        <span>KONSULTASI PROJECT SEKARANG</span>
+                        <span>DISKUSI PROJECT BARU</span>
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                         </svg>
@@ -63,17 +63,17 @@
                             <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                             <span class="w-3 h-3 rounded-full bg-green-500"></span>
                         </div>
-                        <span class="text-xs text-slate-400 font-bold">// QUICK_CONTACT.SH</span>
+                        <span class="text-xs text-slate-400 font-bold">// KONTAK_CEPAT.SH</span>
                     </div>
 
                     <!-- Code Snippet Box -->
                     <div class="space-y-2 text-xs sm:text-sm text-slate-300">
-                        <p class="text-slate-400">// Konsultasi Bebas & Respon Cepat (&lt; 2 Jam)</p>
-                        <p><span class="text-[#60A5FA]">$service</span> = <span class="text-[#F59E0B]">new</span> DigitalProduct();</p>
-                        <p><span class="text-[#60A5FA]">$service</span>-&gt;<span class="text-[#34D399]">startProject</span>([</p>
-                        <p class="pl-4"><span class="text-slate-400">'client'</span> =&gt; <span class="text-[#FBBF24]">'Your_Company'</span>,</p>
-                        <p class="pl-4"><span class="text-slate-400">'scope'</span>  =&gt; <span class="text-[#FBBF24]">['Backend', 'Frontend', 'Mobile']</span>,</p>
-                        <p class="pl-4"><span class="text-slate-400">'status'</span> =&gt; <span class="text-[#34D399]">'● READY_TO_BUILD'</span></p>
+                        <p class="text-slate-400">// Diskusi project baru</p>
+                        <p><span class="text-[#60A5FA]">$wahyu</span> = <span class="text-[#F59E0B]">new</span> SoftwareEngineer();</p>
+                        <p><span class="text-[#60A5FA]">$wahyu</span>-&gt;<span class="text-[#34D399]">kolaborasi</span>([</p>
+                        <p class="pl-4"><span class="text-slate-400">'fokus'</span> =&gt; <span class="text-[#FBBF24]">['Backend', 'Frontend', 'Mobile']</span>,</p>
+                        <p class="pl-4"><span class="text-slate-400">'cara_kerja'</span> =&gt; <span class="text-[#FBBF24]">'Jelas & Terstruktur'</span>,</p>
+                        <p class="pl-4"><span class="text-slate-400">'status'</span> =&gt; <span class="text-[#34D399]">'● TERBUKA_UNTUK_PROJECT'</span></p>
                         <p>]);</p>
                     </div>
 
@@ -88,11 +88,11 @@
                             <span>↗</span>
                         </a>
 
-                        <a href="mailto:{{ $profile['email'] ?? 'wahyudwiutomo1414@gmail.com' }}" 
+                        <a href="mailto:{{ $profile['email'] ?? 'wahyuxd14@gmail.com' }}" 
                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-600 text-xs font-bold transition-all">
                             <span class="flex items-center gap-2">
                                 <span>✉️</span>
-                                <span class="truncate">{{ $profile['email'] ?? 'wahyudwiutomo1414@gmail.com' }}</span>
+                                <span class="truncate">{{ $profile['email'] ?? 'wahyuxd14@gmail.com' }}</span>
                             </span>
                             <span>↗</span>
                         </a>
@@ -114,10 +114,10 @@
                     <img src="/images/brand/wdu-logo.svg" alt="Wahyu Dwi Utomo" class="h-10 w-auto">
                 </div>
                 <p class="font-sans text-slate-700 text-sm sm:text-base max-w-md leading-relaxed font-medium">
-                    Layanan profesional pengembangan aplikasi web, sistem enterprise, aplikasi mobile, dan solusi digital terintegrasi.
+                    Software engineer yang fokus di pengembangan aplikasi web, backend API, sistem internal, aplikasi mobile, dan solusi digital terintegrasi.
                 </p>
                 <div class="pt-1 font-mono text-xs text-slate-500 font-bold">
-                    📍 {{ $profile['location'] ?? 'Bekasi / Jakarta, Indonesia' }}
+                    📍 {{ $profile['location'] ?? 'Jakarta, Indonesia' }}
                 </div>
             </div>
 
@@ -125,7 +125,7 @@
             <div class="md:col-span-3 space-y-3 font-mono">
                 <h4 class="text-xs font-extrabold tracking-widest text-[#2563EB] uppercase">// NAVIGASI</h4>
                 <ul class="space-y-2.5 text-sm font-bold text-[#0F172A]">
-                    <li><a href="{{ route('home') }}" class="hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"><span class="text-[#2563EB]">→</span> Home Page</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"><span class="text-[#2563EB]">→</span> Beranda</a></li>
                     <li><a href="#about" class="hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"><span class="text-[#2563EB]">→</span> Tentang Saya</a></li>
                     <li><a href="#experience" class="hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"><span class="text-[#2563EB]">→</span> Riwayat Karier</a></li>
                     <li><a href="#projects" class="hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"><span class="text-[#2563EB]">→</span> Katalog Project</a></li>
@@ -135,7 +135,7 @@
 
             <!-- Right Column: Ikuti Kami / Sosmed (3 Cols) -->
             <div class="md:col-span-3 space-y-3 font-mono">
-                <h4 class="text-xs font-extrabold tracking-widest text-[#2563EB] uppercase">// IKUTI KAMI</h4>
+                <h4 class="text-xs font-extrabold tracking-widest text-[#2563EB] uppercase">// IKUTI SAYA</h4>
                 <ul class="space-y-2.5 text-sm font-bold text-[#0F172A]">
                     <li><a href="{{ $profile['social_github'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">GitHub ↗</a></li>
                     <li><a href="{{ $profile['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="hover:text-[#2563EB] transition-colors">LinkedIn ↗</a></li>
@@ -148,8 +148,8 @@
 
         <!-- Copyright Line -->
         <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between font-mono text-xs font-bold text-slate-600 gap-2">
-            <p>© {{ $profile['current_year'] ?? '2026' }} Wahyu Dwi Utomo. All rights reserved.</p>
-            <p class="text-slate-400">{{ $profile['location_upper'] ?? 'BEKASI / JAKARTA, INDONESIA' }}</p>
+            <p>© {{ $profile['current_year'] ?? '2026' }} Wahyu Dwi Utomo. Semua hak dilindungi.</p>
+            <p class="text-slate-400">{{ $profile['location_upper'] ?? 'JAKARTA, INDONESIA' }}</p>
         </div>
     </div>
 </footer>

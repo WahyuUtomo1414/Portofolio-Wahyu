@@ -99,11 +99,11 @@
                         <!-- Previous Page Link -->
                         @if ($projects->onFirstPage())
                             <span class="bg-slate-200 text-slate-400 border-neo px-4 py-2 rounded-md cursor-not-allowed">
-                                « PREV
+                                « SEBELUMNYA
                             </span>
                         @else
                             <a href="{{ $projects->previousPageUrl() }}" class="bg-white text-[#0F172A] hover:bg-[#2563EB] hover:text-white border-neo px-4 py-2 rounded-md shadow-neo-sm transition-all">
-                                « PREV
+                                « SEBELUMNYA
                             </a>
                         @endif
 
@@ -117,11 +117,11 @@
                         <!-- Next Page Link -->
                         @if ($projects->hasMorePages())
                             <a href="{{ $projects->nextPageUrl() }}" class="bg-white text-[#0F172A] hover:bg-[#2563EB] hover:text-white border-neo px-4 py-2 rounded-md shadow-neo-sm transition-all">
-                                NEXT »
+                                BERIKUTNYA »
                             </a>
                         @else
                             <span class="bg-slate-200 text-slate-400 border-neo px-4 py-2 rounded-md cursor-not-allowed">
-                                NEXT »
+                                BERIKUTNYA »
                             </span>
                         @endif
                     </div>

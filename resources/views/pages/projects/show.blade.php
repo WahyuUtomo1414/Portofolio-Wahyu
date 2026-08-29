@@ -45,7 +45,7 @@
                     <div class="flex flex-wrap gap-3 font-mono text-sm font-bold">
                         @if($project['demo_url'])
                             <a href="{{ $project['demo_url'] }}" target="_blank" rel="noopener" class="inline-flex items-center bg-[#2563EB] text-white border-neo shadow-neo-sm px-5 py-3 rounded-md hover:bg-[#1D4ED8]">
-                                PREVIEW PROJECT ↗
+                                LIHAT DEMO PROJECT ↗
                             </a>
                         @endif
 
