@@ -42,7 +42,7 @@ class SettingPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 PanelsRenderHook::STYLES_AFTER,
-                fn () => view('filament.theme'),
+                fn() => view('filament.theme'),
             )
             ->resources([
                 AboutResource::class,
@@ -63,6 +63,7 @@ class SettingPanelProvider extends PanelProvider
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
+            ->darkMode(false)
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
