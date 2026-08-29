@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
 use App\Models\Client;
 use App\Models\Journey;
 use App\Models\Project;
 use App\Models\Tools;
 use App\Support\PortfolioData;
+use App\Support\PublicProfileData;
+use App\Support\PublicStorageUrl;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -17,7 +18,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $profile = $this->profileData();
+        $profile = PublicProfileData::get();
         $skills = $this->skillsData();
         $clients = $this->clientsData();
         $education = $this->journeyData(['education']);
@@ -26,6 +27,7 @@ class HomeController extends Controller
 
         return view('pages.home', [
             'profile' => $profile,
+            'footer_profile' => $profile,
             'stats' => $this->statsData(),
             'skills' => $skills,
             'clients' => $clients,
@@ -36,56 +38,6 @@ class HomeController extends Controller
             'featured_projects' => $featuredProjects,
             'values' => $this->valuesData(),
         ]);
-    }
-
-    private function profileData(): array
-    {
-        $base = PortfolioData::profile();
-        $fallback = array_replace($base, [
-            'availability_badge' => 'TERSEDIA UNTUK PROJECT FREELANCE & FULL-TIME',
-            'tagline' => 'Mengembangkan Aplikasi Web Fullstack Scalable & Modern!',
-            'description' => $base['bio'],
-            'social_github' => $base['social_media']['github'],
-            'social_linkedin' => $base['social_media']['linkedin'],
-            'social_instagram' => $base['social_media']['instagram'],
-            'social_whatsapp' => $base['social_media']['whatsapp'],
-        ]);
-
-        if (! $this->tableExists('about')) {
-            return $fallback;
-        }
-
-        $about = About::query()
-            ->where('active', true)
-            ->latest()
-            ->first();
-
-        if (! $about) {
-            return $fallback;
-        }
-
-        $socials = array_replace($fallback['social_media'], $about->sosial_media ?? []);
-        $whatsapp = $socials['whatsapp'] ?? $this->whatsappUrl($about->no_wa);
-
-        return [
-            'name' => $about->name,
-            'role' => $fallback['role'],
-            'availability_badge' => $fallback['availability_badge'],
-            'tagline' => $about->tagline ?: $fallback['tagline'],
-            'bio' => $about->description,
-            'description' => $about->description,
-            'email' => $about->email,
-            'no_wa' => $about->no_wa,
-            'location' => $about->address ?: $fallback['location'],
-            'address' => $about->address ?: $fallback['address'],
-            'image_profile' => $this->imageUrl($about->image_profile, $fallback['image_profile']),
-            'cv_url' => $fallback['cv_url'],
-            'social_media' => array_replace($socials, ['whatsapp' => $whatsapp]),
-            'social_github' => $socials['github'] ?? $fallback['social_github'],
-            'social_linkedin' => $socials['linkedin'] ?? $fallback['social_linkedin'],
-            'social_instagram' => $socials['instagram'] ?? $fallback['social_instagram'],
-            'social_whatsapp' => $whatsapp,
-        ];
     }
 
     private function skillsData(): array
@@ -197,12 +149,16 @@ class HomeController extends Controller
 
     private function statsData(): array
     {
-        return [
+        $stats = [
             ['number' => '5+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Spesialis Laravel & Web Development', 'icon' => 'code'],
             ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Enterprise, SaaS, & Aplikasi Web', 'icon' => 'folder-check'],
             ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Perusahaan & Klien Freelance', 'icon' => 'users'],
             ['number' => '100%', 'label' => 'KOMITMEN KUALITAS', 'desc' => 'Kode Bersih & Tepat Waktu', 'icon' => 'shield-check'],
         ];
+
+        return collect($stats)
+            ->map(fn (array $stat): array => array_replace($stat, $this->counterData($stat['number'])))
+            ->all();
     }
 
     private function valuesData(): array
@@ -314,6 +270,16 @@ class HomeController extends Controller
         ];
     }
 
+    private function counterData(string $number): array
+    {
+        preg_match('/^(\d+)(.*)$/', $number, $matches);
+
+        return [
+            'target_number' => isset($matches[1]) ? (int) $matches[1] : 0,
+            'suffix' => $matches[2] ?? '',
+        ];
+    }
+
     private function projectTablesReady(): bool
     {
         return $this->tableExists('project')
@@ -334,25 +300,6 @@ class HomeController extends Controller
 
     private function imageUrl(?string $path, ?string $fallback = null): ?string
     {
-        if (blank($path)) {
-            return $fallback;
-        }
-
-        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        return asset(ltrim($path, '/'));
-    }
-
-    private function whatsappUrl(string $number): string
-    {
-        $digits = preg_replace('/\D+/', '', $number);
-
-        if (str_starts_with($digits, '0')) {
-            $digits = '62' . substr($digits, 1);
-        }
-
-        return 'https://wa.me/' . $digits;
+        return PublicStorageUrl::image($path, $fallback);
     }
 }

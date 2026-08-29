@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Project;
 use App\Support\PortfolioData;
 use App\Support\PublicProfileData;
+use App\Support\PublicStorageUrl;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Http\Request;
@@ -288,15 +289,7 @@ class ProjectController extends Controller
 
     private function imageUrl(?string $path, ?string $fallback = null): ?string
     {
-        if (blank($path)) {
-            return $fallback;
-        }
-
-        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        return asset(ltrim($path, '/'));
+        return PublicStorageUrl::image($path, $fallback);
     }
 
     private function projectPeriod(mixed $startProject, mixed $endProject): ?string

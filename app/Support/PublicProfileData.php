@@ -37,7 +37,7 @@ class PublicProfileData
             'no_wa' => $about->no_wa,
             'location' => $about->address ?: $fallback['location'],
             'address' => $about->address ?: $fallback['address'],
-            'image_profile' => self::imageUrl($about->image_profile, $fallback['image_profile']),
+            'image_profile' => PublicStorageUrl::image($about->image_profile, $fallback['image_profile']),
             'social_media' => array_replace($socials, ['whatsapp' => $whatsapp]),
         ]));
     }
@@ -66,19 +66,6 @@ class PublicProfileData
             'location_upper' => mb_strtoupper($profile['location'] ?? 'Bekasi / Jakarta, Indonesia'),
             'current_year' => now()->year,
         ]);
-    }
-
-    private static function imageUrl(?string $path, ?string $fallback = null): ?string
-    {
-        if (blank($path)) {
-            return $fallback;
-        }
-
-        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        return asset(ltrim($path, '/'));
     }
 
     private static function whatsappUrl(string $number): string
