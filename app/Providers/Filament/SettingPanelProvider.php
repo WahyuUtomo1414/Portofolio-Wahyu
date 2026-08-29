@@ -10,6 +10,7 @@ use App\Filament\Resources\Journeys\JourneyResource;
 use App\Filament\Resources\ProjectImages\ProjectImageResource;
 use App\Filament\Resources\Projects\ProjectResource;
 use App\Filament\Resources\Tools\ToolsResource;
+use App\Filament\Widgets\PortfolioStatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -42,7 +43,7 @@ class SettingPanelProvider extends PanelProvider
             ])
             ->renderHook(
                 PanelsRenderHook::STYLES_AFTER,
-                fn() => view('filament.theme'),
+                fn () => view('filament.theme'),
             )
             ->resources([
                 AboutResource::class,
@@ -60,6 +61,7 @@ class SettingPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                PortfolioStatsOverview::class,
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
