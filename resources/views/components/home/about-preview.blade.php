@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <!-- 4 Grid Box Values -->
+        <!-- 4 Grid Box Values (Client Trust Signals) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach($values as $val)
                 <div class="bg-white border-neo p-6 rounded-lg shadow-neo shadow-neo-hover space-y-3 flex flex-col justify-between">
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="pt-2 font-mono text-[11px] font-bold text-[#059669] uppercase tracking-wider">
-                        ✔ STANDAR TERUJI
+                        ✔ {{ $val['badge'] ?? 'KOMITMEN KERJA' }}
                     </div>
                 </div>
             @endforeach

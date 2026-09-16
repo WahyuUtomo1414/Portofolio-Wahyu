@@ -5,28 +5,34 @@
 
 @section('content')
 
-    <!-- 1. HERO -->
+    <!-- HERO -->
     <x-home.hero :profile="$profile" :hero="$hero" />
 
-    <!-- 2. SKILL (Tech Stack Marquee Running Banner) -->
+    <!-- TECH STACK MARQUEE -->
     <x-home.skills :skills="$skills" />
 
-    <!-- 3. COUNT (Dedicated Stats Counter Banner) -->
+    <!-- STATS COUNTER BANNER -->
     <x-home.stats :stats="$stats" />
 
-    <!-- 4. TENTANG (Section 01: Profil & nilai kerja) -->
+    <!-- 01. KENAPA HIRE SAYA (Values reframed → client concern) -->
     <x-home.about-preview :values="$values" :profile="$profile" :section="$sections['about']" />
 
-    <!-- 5. JOURNEY (Section 02: Education & Experience 2-Column Timeline) -->
-    <x-home.experience :education="$education" :experience="$experience" :section="$sections['experience']" />
+    <!-- 02. YANG BISA SAYA BANTU (Services) -->
+    <x-home.services :services="$services" :section="$sections['services']" :profile="$profile" />
 
-    <!-- 6. CLIENT (Section 03: Dedicated Clients & Partners Section) -->
-    <x-home.clients :clientsJson="$clients_json" :visibleClients="$visible_clients" :section="$sections['clients']" />
+    <!-- 03. CARA KERJA SAYA (Workflow) -->
+    <x-home.workflow :workflow="$workflow" :section="$sections['workflow']" />
 
-    <!-- 7. PROJECT (Section 04: Project pilihan) -->
+    <!-- 04. STUDI KASUS (Featured Projects) -->
     <x-home.featured-projects :projects="$featured_projects" :totalProjects="$total_projects" :section="$sections['projects']" />
 
-    <!-- 8. KONTAK (Section 05: CTA & form kontak) -->
+    <!-- 05. MITRA & CLIENT -->
+    <x-home.clients :clientsJson="$clients_json" :visibleClients="$visible_clients" :section="$sections['clients']" />
+
+    <!-- 06. LATAR BELAKANG (Journey) -->
+    <x-home.experience :education="$education" :experience="$experience" :section="$sections['experience']" />
+
+    <!-- 07. DISKUSI PROJECT (Contact CTA + Form) -->
     <x-home.contact-cta :profile="$profile" :section="$sections['contact']" />
 
 @endsection

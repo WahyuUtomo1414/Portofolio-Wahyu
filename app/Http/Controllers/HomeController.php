@@ -28,10 +28,10 @@ class HomeController extends Controller
         $totalProjects = $this->totalProjects();
 
         return view('pages.home', [
-            'profile' => $profile,
+            'profile' => $this->augmentProfileForFreelance($profile),
             'footer_profile' => $profile,
-            'home_title' => 'Wahyu Dwi Utomo — Software Engineer | Portofolio & Studi Kasus Project',
-            'home_description' => 'Portofolio Wahyu Dwi Utomo, software engineer Indonesia yang membangun website, backend API, dashboard, aplikasi mobile, dan sistem digital untuk kebutuhan bisnis.',
+            'home_title' => 'Wahyu Dwi Utomo — Software Engineer Freelance | Website, Sistem, & Aplikasi Custom',
+            'home_description' => 'Jasa pembuatan website, dashboard admin, sistem internal, dan aplikasi mobile custom oleh Wahyu Dwi Utomo. Dikerjakan langsung tanpa perantara, transparan, dan tepat waktu.',
             'hero' => $this->heroData(),
             'stats' => $this->statsData(),
             'skills' => $skills,
@@ -44,7 +44,21 @@ class HomeController extends Controller
             'featured_projects' => $featuredProjects,
             'total_projects' => $totalProjects,
             'values' => $this->valuesData(),
+            'services' => $this->servicesData(),
+            'workflow' => $this->workflowData(),
             'sections' => $this->sectionData(),
+        ]);
+    }
+
+    private function augmentProfileForFreelance(array $profile): array
+    {
+        $waNumber = preg_replace('/\D+/', '', $profile['no_wa'] ?? '');
+        $prefilled = rawurlencode('Halo Wahyu, saya '.'[nama]'.' dari '.'[bisnis/perusahaan]'.'. Saya tertarik diskusi project [website/sistem/aplikasi] untuk kebutuhan [tujuan]. Bisa infokan slot diskusi awal?');
+
+        return array_replace($profile, [
+            'availability_badge' => 'TERSEDIA UNTUK PROJECT FREELANCE — SLOT TERBATAS BULAN INI',
+            'wa_direct_url' => $waNumber !== '' ? 'https://wa.me/'.$waNumber.'?text='.$prefilled : ($profile['social_whatsapp'] ?? '#'),
+            'email_direct_url' => 'mailto:'.($profile['email'] ?? '').'?subject='.rawurlencode('Diskusi Project Baru').'&body='.rawurlencode("Halo Wahyu,\n\nSaya tertarik diskusi project. Berikut kebutuhan awal:\n\n- Jenis project: \n- Timeline harapan: \n- Ringkasan kebutuhan: \n\nTerima kasih."),
         ]);
     }
 
@@ -172,10 +186,10 @@ class HomeController extends Controller
     private function statsData(): array
     {
         $stats = [
-            ['number' => '3+', 'label' => 'TAHUN PENGALAMAN', 'desc' => 'Pengalaman sejak 2023 di berbagai stack dan industri', 'icon' => 'code'],
-            ['number' => '20+', 'label' => 'PROJECT SELESAI', 'desc' => 'Project kuliah, freelance, joki, dan pekerjaan profesional', 'icon' => 'folder-check'],
-            ['number' => '10+', 'label' => 'MITRA & CLIENT', 'desc' => 'Bisnis, organisasi, instansi, dan klien personal', 'icon' => 'users'],
-            ['number' => '100%', 'label' => 'FOKUS KUALITAS', 'desc' => 'Kode bersih, komunikasi jelas, dan hasil siap digunakan', 'icon' => 'shield-check'],
+            ['number' => '20+', 'label' => 'PROJECT TERSELESAIKAN', 'desc' => 'Kuliah, freelance, joki, dan pekerjaan profesional sejak 2023', 'icon' => 'folder-check'],
+            ['number' => '15+', 'label' => 'CLIENT DIPERCAYA', 'desc' => 'Instansi, UMKM, startup, dan organisasi dari berbagai industri', 'icon' => 'users'],
+            ['number' => '24', 'label' => 'JAM RESPON WHATSAPP', 'desc' => 'Balas pertanyaan project maksimal 1 hari kerja', 'icon' => 'message'],
+            ['number' => '5+', 'label' => 'TECH STACK AKTIF', 'desc' => 'Laravel, Filament, Flutter, Vue, PostgreSQL, SQL Server, dan lainnya', 'icon' => 'stack'],
         ];
 
         return collect($stats)
@@ -186,28 +200,96 @@ class HomeController extends Controller
     private function valuesData(): array
     {
         return [
-            ['code' => '⚡', 'title' => 'KODE BERSIH & TERSTRUKTUR', 'desc' => 'Penulisan kode yang rapi berstandar PSR, terstruktur modular, serta mudah dirawat dan dikembangkan di masa mendatang.'],
-            ['code' => '🎯', 'title' => 'RESPONSIF & CEPAT DIAKSES', 'desc' => 'Desain berpola mobile-first yang responsif, cepat diakses dari perangkat apapun, serta memenuhi standar aksesibilitas.'],
-            ['code' => '🛡️', 'title' => 'AMAN & SIAP TUMBUH', 'desc' => 'Penerapan praktik keamanan terbaik, proteksi dari celah umum web, serta arsitektur database yang siap tumbuh.'],
-            ['code' => '💬', 'title' => 'KOMUNIKASI TRANSPARAN', 'desc' => 'Proses pengerjaan yang transparan, pembaruan kemajuan berkala, serta komitmen penyelesaian tepat waktu.'],
+            ['code' => '💬', 'title' => 'RESPONSIF & KOMUNIKATIF', 'desc' => 'Balas pertanyaan dan update progress lewat WhatsApp maksimal 1 hari kerja, tanpa ghosting di tengah project.', 'badge' => 'RESPONS < 24 JAM'],
+            ['code' => '⏱️', 'title' => 'TEPAT WAKTU', 'desc' => 'Timeline yang disepakati di awal dipenuhi dengan update mingguan. Kalau meleset karena kesalahan saya, ada kompensasi.', 'badge' => 'ON-TIME DELIVERY'],
+            ['code' => '👀', 'title' => 'TRANSPARAN', 'desc' => 'Akses ke staging server kapan saja, update progress rutin, dan breakdown biaya yang jelas tanpa hidden cost.', 'badge' => 'STAGING ACCESS'],
+            ['code' => '📦', 'title' => 'SIAP DELIVER', 'desc' => 'Handover lengkap: source code, dokumentasi teknis, video walkthrough, dan support gratis 30 hari setelah launch.', 'badge' => 'HANDOVER LENGKAP'],
         ];
     }
 
     private function heroData(): array
     {
+        $rotatorWords = ['PROJECT BISNIS_', 'SISTEM CUSTOM_', 'APLIKASI MOBILE_', 'DASHBOARD ADMIN_'];
+
         return [
-            'subtitle' => 'Membangun produk digital yang rapi, scalable, dan mudah dikembangkan dengan alur kerja yang jelas, struktur sistem yang bersih, serta pengalaman pengguna yang nyaman untuk kebutuhan bisnis nyata.',
-            'rotator_words' => ['SOLUSI DIGITAL_', 'SISTEM SCALABLE_', 'PRODUK DIGITAL_', 'ARSITEKTUR BERSIH_'],
-            'rotator_json' => json_encode(['SOLUSI DIGITAL_', 'SISTEM SCALABLE_', 'PRODUK DIGITAL_', 'ARSITEKTUR BERSIH_'], JSON_THROW_ON_ERROR),
+            'subtitle' => 'Bantu kamu bangun website, dashboard admin, sistem internal, dan aplikasi mobile custom sesuai kebutuhan bisnis. Dikerjakan langsung tanpa perantara agency, komunikasi transparan, dan delivery tepat waktu.',
+            'micro_copy' => 'Biasanya balas WhatsApp dalam 24 jam kerja.',
+            'rotator_words' => $rotatorWords,
+            'rotator_json' => json_encode($rotatorWords, JSON_THROW_ON_ERROR),
             'badges' => [
-                ['theme' => 'white-blue', 'icon' => '⚡', 'label' => 'Kode Bersih'],
-                ['theme' => 'blue-white', 'icon' => '🔥', 'label' => 'Scalable'],
-                ['theme' => 'yellow', 'icon' => '⭐', 'label' => 'Fokus Kualitas'],
-                ['theme' => 'green', 'icon' => '🎯', 'label' => '3+ Thn Exp'],
+                ['theme' => 'white-blue', 'icon' => '🎓', 'label' => 'S.Kom · BSI 2025'],
+                ['theme' => 'blue-white', 'icon' => '💼', 'label' => 'Fullstack SE · Keysoft'],
             ],
             'profile_label' => 'PROFIL DEVELOPER',
             'status_label' => 'AVAILABLE',
             'skill_chip' => 'Software Engineer',
+            'cta_primary_label' => 'DISKUSI PROJECT',
+            'cta_secondary_label' => 'LIHAT STUDI KASUS',
+            'ghost_link_label' => 'atau email langsung',
+        ];
+    }
+
+    private function servicesData(): array
+    {
+        return [
+            [
+                'icon' => '🌐',
+                'title' => 'WEBSITE BISNIS & COMPANY PROFILE',
+                'desc' => 'Landing page profesional, company profile, katalog produk, atau microsite kampanye. SEO-ready dan mobile-first.',
+                'timeline' => '1–3 minggu',
+                'fit_for' => 'UMKM, startup, personal brand',
+            ],
+            [
+                'icon' => '⚙️',
+                'title' => 'DASHBOARD ADMIN & SISTEM INTERNAL',
+                'desc' => 'Sistem custom untuk kelola data operasional, laporan bisnis, manajemen user, dan proses internal perusahaan.',
+                'timeline' => '2–8 minggu',
+                'fit_for' => 'Perusahaan yang mau digitalisasi',
+            ],
+            [
+                'icon' => '📱',
+                'title' => 'APLIKASI MOBILE FLUTTER',
+                'desc' => 'Aplikasi mobile cross-platform untuk field operation, delivery, absensi lapangan, atau consumer app dengan API backend.',
+                'timeline' => '1–3 bulan',
+                'fit_for' => 'Bisnis yang butuh solusi mobile',
+            ],
+            [
+                'icon' => '🔗',
+                'title' => 'INTEGRASI API & MODUL BACKEND',
+                'desc' => 'REST API, integrasi payment gateway, modul ERP tambahan, atau maintenance sistem existing yang butuh optimasi.',
+                'timeline' => '1–4 minggu',
+                'fit_for' => 'Sistem existing yang mau di-upgrade',
+            ],
+        ];
+    }
+
+    private function workflowData(): array
+    {
+        return [
+            [
+                'step' => '01',
+                'title' => 'DISKUSI KEBUTUHAN',
+                'desc' => 'Ngobrol tentang problem bisnis yang mau di-solve. Konsultasi awal gratis via WhatsApp atau Zoom, tanpa komitmen.',
+                'duration' => 'Gratis · 30 menit',
+            ],
+            [
+                'step' => '02',
+                'title' => 'PROPOSAL & QUOTATION',
+                'desc' => 'Breakdown scope, timeline, milestone, dan harga transparan. Kalau setuju, mulai dengan DP dan sisa dibayar bertahap per milestone.',
+                'duration' => '1–3 hari kerja',
+            ],
+            [
+                'step' => '03',
+                'title' => 'DEVELOPMENT + UPDATE MINGGUAN',
+                'desc' => 'Progress update rutin via WhatsApp, akses staging server 24/7 untuk review real-time. Feedback bisa masuk tiap milestone.',
+                'duration' => 'Sesuai scope project',
+            ],
+            [
+                'step' => '04',
+                'title' => 'DELIVERY & SUPPORT',
+                'desc' => 'Deploy ke server production, handover source code + dokumentasi + video walkthrough, dan support gratis 30 hari setelah launch.',
+                'duration' => '30 hari support gratis',
+            ],
         ];
     }
 
@@ -216,34 +298,46 @@ class HomeController extends Controller
         return [
             'about' => [
                 'number' => '01',
-                'tag' => 'TENTANG SAYA & KEUNGGULAN',
-                'title' => 'FILOSOFI & KEUNGGULAN KERJA',
-                'subtitle' => 'Prinsip utama yang saya terapkan saat membangun kode, arsitektur sistem, dan pengalaman pengguna.',
-                'chips' => ['Kode Bersih', 'Arsitektur Bersih', 'Performa Tinggi'],
+                'tag' => 'KENAPA HIRE SAYA',
+                'title' => 'KENAPA BISNIS MEMILIH FREELANCE, BUKAN AGENCY',
+                'subtitle' => 'Empat komitmen kerja yang saya pegang untuk semua project client, dari UMKM sampai perusahaan enterprise.',
+                'chips' => ['Personal', 'Transparan', 'On-time'],
             ],
-            'experience' => [
+            'services' => [
                 'number' => '02',
-                'tag' => 'RIWAYAT KARIER & PENDIDIKAN',
-                'title' => 'PERJALANAN PENDIDIKAN & KARIER',
-                'subtitle' => 'Jejak pendidikan dan pengalaman kerja profesional di bidang pengembangan perangkat lunak.',
+                'tag' => 'YANG BISA SAYA BANTU',
+                'title' => 'LAYANAN PENGEMBANGAN CUSTOM UNTUK BISNIS ANDA',
+                'subtitle' => 'Pilih jenis project sesuai kebutuhan. Semua paket sudah termasuk hosting setup, SSL, dokumentasi, dan support 30 hari.',
             ],
-            'clients' => [
+            'workflow' => [
                 'number' => '03',
-                'tag' => 'MITRA & CLIENT',
-                'title' => 'DIPERCAYA BERBAGAI BISNIS DAN INSTITUSI',
-                'subtitle' => 'Pengalaman membangun website, backend API, sistem internal, dan aplikasi digital untuk berbagai kebutuhan.',
+                'tag' => 'CARA KERJA SAYA',
+                'title' => 'ALUR KERJA TRANSPARAN DARI DISKUSI HINGGA DELIVERY',
+                'subtitle' => 'Empat langkah sederhana yang memastikan project berjalan on-track, komunikasi lancar, dan hasil sesuai ekspektasi.',
             ],
             'projects' => [
                 'number' => '04',
-                'tag' => 'KATALOG PROJECT',
-                'title' => 'PROJECT PILIHAN & KARYA TERBARU',
-                'subtitle' => 'Koleksi studi kasus, sistem web, dashboard, aplikasi mobile, dan solusi digital yang pernah dikembangkan.',
+                'tag' => 'STUDI KASUS',
+                'title' => 'PROJECT YANG PERNAH SAYA KERJAKAN',
+                'subtitle' => 'Beberapa project pilihan dari berbagai industri: enterprise ERP, sistem operasional, hingga aplikasi mobile.',
+            ],
+            'clients' => [
+                'number' => '05',
+                'tag' => 'MITRA & CLIENT',
+                'title' => 'MITRA YANG PERNAH SAYA KERJAKAN PROJECT-NYA',
+                'subtitle' => 'Berbagai bisnis, instansi, dan organisasi yang pernah mempercayakan project digital mereka.',
+            ],
+            'experience' => [
+                'number' => '06',
+                'tag' => 'LATAR BELAKANG',
+                'title' => 'PENDIDIKAN & PENGALAMAN PROFESIONAL',
+                'subtitle' => 'Jejak pendidikan dan pengalaman kerja sebagai konteks tambahan tentang latar belakang teknis saya.',
             ],
             'contact' => [
-                'number' => '05',
-                'tag' => 'HUBUNGI SAYA',
-                'title' => 'MARI DISKUSIKAN PROJECT BERIKUTNYA',
-                'subtitle' => 'Punya ide project menarik, butuh developer, atau ingin berkonsultasi teknis? Silakan hubungi saya.',
+                'number' => '07',
+                'tag' => 'DISKUSI PROJECT',
+                'title' => 'SIAP DISKUSI PROJECT BARU KAMU?',
+                'subtitle' => 'Ceritakan kebutuhan project via WhatsApp untuk respon cepat, atau kirim email dengan detail lengkap lewat form di bawah.',
             ],
         ];
     }

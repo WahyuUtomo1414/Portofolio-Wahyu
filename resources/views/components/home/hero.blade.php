@@ -27,21 +27,32 @@
                     {{ $hero['subtitle'] ?? 'Membangun produk digital yang rapi, scalable, mudah dirawat, dan nyaman digunakan.' }}
                 </p>
 
-                <!-- CTA Action Buttons (Full width on small mobile screens, side-by-side on sm+) -->
+                <!-- CTA Action Buttons: Primary WhatsApp Direct + Secondary Studi Kasus -->
                 <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
-                    <x-common.button-primary href="#projects" class="group justify-center">
-                        <span>JELAJAHI PROJECT</span>
+                    <x-common.button-primary href="{{ $profile['wa_direct_url'] ?? '#' }}" target="_blank" rel="noopener" class="group justify-center bg-[#059669] hover:bg-[#047857] border-neo shadow-neo shadow-neo-hover">
+                        <svg class="w-5 h-5 mr-2 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.705 1.754zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l.24.384-1.03 3.762 3.842-1.007.391.232z"/>
+                        </svg>
+                        <span>{{ $hero['cta_primary_label'] ?? 'DISKUSI PROJECT' }}</span>
+                    </x-common.button-primary>
+
+                    <x-common.button-secondary href="#projects" class="group justify-center">
+                        <span>{{ $hero['cta_secondary_label'] ?? 'LIHAT STUDI KASUS' }}</span>
                         <svg class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
-                    </x-common.button-primary>
-
-                    <x-common.button-secondary href="{{ $profile['cv_url'] ?? '#' }}" target="_blank" rel="noopener" class="group justify-center">
-                        <svg class="w-5 h-5 mr-2 transition-transform duration-200 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        <span>UNDUH CV</span>
                     </x-common.button-secondary>
+                </div>
+
+                <!-- Ghost link + Micro copy for trust -->
+                <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 font-mono text-xs">
+                    <a href="{{ $profile['email_direct_url'] ?? '#' }}" class="inline-flex items-center gap-1.5 text-slate-600 hover:text-[#2563EB] font-bold underline underline-offset-4 decoration-slate-300 hover:decoration-[#2563EB] transition">
+                        <span>✉️ {{ $hero['ghost_link_label'] ?? 'atau email langsung' }} →</span>
+                    </a>
+                    <span class="hidden sm:inline text-slate-300">·</span>
+                    <span class="text-slate-500 font-medium">
+                        ⚡ {{ $hero['micro_copy'] ?? 'Biasanya balas WhatsApp dalam 24 jam kerja.' }}
+                    </span>
                 </div>
             </div>
 
@@ -49,28 +60,16 @@
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative w-full max-w-md my-4 sm:my-6 px-2 sm:px-0">
                     
-                    <!-- Floating Badge 1: Top-Left -->
+                    <!-- Floating Badge 1: Top-Left (S.Kom BSI - Unique & Verifiable) -->
                     <div class="absolute -top-4 left-1 sm:-top-6 sm:-left-4 z-20 bg-white border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-slow select-none">
-                        <span class="text-[#2563EB]">⚡</span>
-                        <span>{{ $hero['badges'][0]['label'] ?? 'Kode Bersih' }}</span>
+                        <span class="text-[#2563EB]">{{ $hero['badges'][0]['icon'] ?? '🎓' }}</span>
+                        <span>{{ $hero['badges'][0]['label'] ?? 'S.Kom · BSI 2025' }}</span>
                     </div>
 
-                    <!-- Floating Badge 2: Top-Right -->
-                    <div class="absolute -top-4 right-1 sm:-top-6 sm:-right-4 z-20 bg-[#2563EB] text-white border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-reverse select-none">
-                        <span>🔥</span>
-                        <span>{{ $hero['badges'][1]['label'] ?? 'Scalable' }}</span>
-                    </div>
-
-                    <!-- Floating Badge 3: Bottom-Left -->
-                    <div class="absolute -bottom-4 left-1 sm:-bottom-6 sm:-left-4 z-20 bg-[#FEF3C7] text-[#D97706] border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-reverse select-none">
-                        <span>⭐</span>
-                        <span>{{ $hero['badges'][2]['label'] ?? 'Fokus Kualitas' }}</span>
-                    </div>
-
-                    <!-- Floating Badge 4: Bottom-Right -->
-                    <div class="absolute -bottom-4 right-1 sm:-bottom-6 sm:-right-4 z-20 bg-[#ECFDF5] text-[#059669] border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-slow select-none">
-                        <span>🎯</span>
-                        <span>{{ $hero['badges'][3]['label'] ?? '3+ Thn Exp' }}</span>
+                    <!-- Floating Badge 2: Bottom-Right (Current Role - Kredibilitas) -->
+                    <div class="absolute -bottom-4 right-1 sm:-bottom-6 sm:-right-4 z-20 bg-[#2563EB] text-white border-neo px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-lg shadow-neo text-[10px] sm:text-xs font-mono font-bold flex items-center gap-1.5 sm:gap-2 animate-float-reverse select-none">
+                        <span>{{ $hero['badges'][1]['icon'] ?? '💼' }}</span>
+                        <span>{{ $hero['badges'][1]['label'] ?? 'Fullstack SE · Keysoft' }}</span>
                     </div>
 
                     <!-- Profile Card Container -->
