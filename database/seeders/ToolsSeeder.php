@@ -30,6 +30,8 @@ class ToolsSeeder extends Seeder
             ['name' => 'MySQL', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', 'desc' => 'Relational database untuk aplikasi web dan sistem bisnis.'],
             ['name' => 'Golang', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg', 'desc' => 'Bahasa pemrograman untuk service backend, API, dan sistem performa tinggi.'],
             ['name' => 'Firebase', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg', 'desc' => 'Platform backend-as-a-service untuk autentikasi, database realtime, dan push notification.'],
+            ['name' => 'Alpine.js', 'logo' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/alpinejs/alpinejs-original.svg', 'desc' => 'JavaScript framework ringan untuk interaktivitas UI tanpa overhead besar.'],
+            ['name' => 'OpenAI API', 'logo' => null, 'desc' => 'Integrasi AI untuk fitur asisten virtual, generasi teks, dan pemrosesan bahasa alami.'],
         ];
     }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "Platform Digital Organisasi Mahasiswa dengan Asisten AI",
+  "slug": "himsi-ubsi",
+  "thumbnail": null,
+  "category": "Web Development",
+  "client": "Himpunan Mahasiswa Sistem Informasi",
+  "body": "HIMSI UBSI adalah platform digital yang dikembangkan untuk membantu organisasi mengelola informasi, publikasi, dan proses administrasi dalam satu sistem yang terintegrasi.\n\nWebsite ini dirancang bukan hanya sebagai media informasi, tetapi sebagai pusat aktivitas digital HIMSI. Pengunjung dapat mengenal organisasi, melihat struktur kepengurusan dan cabang, membaca berita serta kegiatan terbaru, mengakses informasi divisi, menghubungi organisasi, hingga melakukan pendaftaran open recruitment secara online.\n\nDi sisi internal, pengurus memiliki panel admin yang memudahkan pengelolaan seluruh konten website tanpa harus melakukan perubahan langsung pada source code. Data organisasi, artikel, cabang, kepengurusan, recruitment, FAQ, dan informasi lainnya dapat diperbarui melalui satu sistem terpusat sehingga pengelolaan website menjadi lebih cepat dan efisien.\n\nUntuk meningkatkan pengalaman pengunjung, website juga dilengkapi DAMARA, asisten virtual berbasis AI yang dapat membantu menjawab pertanyaan seputar HIMSI secara interaktif. DAMARA menggunakan sumber informasi resmi organisasi serta data terbaru dari sistem sehingga pengunjung dapat memperoleh informasi dengan lebih cepat tanpa harus mencari melalui banyak halaman.\n\nPlatform ini dikembangkan secara end-to-end mulai dari website publik, sistem administrasi, pengelolaan data, optimasi performa, integrasi AI, hingga proses deployment ke production.",
+  "start_project": null,
+  "end_project": null,
+  "url": "https://himsiubsi.my.id",
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Filament", "Tailwind CSS", "Alpine.js", "OpenAI API"],
+  "images": []
+}

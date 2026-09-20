@@ -5,70 +5,67 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Project;
+use App\Models\ProjectImage;
+use App\Models\Tools;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach ($this->projects() as $project) {
-            Project::query()->updateOrCreate(
-                ['slug' => $project['slug']],
+        $files = glob(database_path('data/project/*.json'));
+
+        foreach ($files as $file) {
+            $data = json_decode(file_get_contents($file), true, 512, JSON_THROW_ON_ERROR);
+
+            $category = Category::query()->firstOrCreate(
+                ['name' => $data['category']],
+                ['active' => true, 'type' => 'project'],
+            );
+
+            $client = Client::query()->firstOrCreate(
+                ['name' => $data['client']],
+                ['active' => true],
+            );
+
+            $project = Project::query()->updateOrCreate(
+                ['slug' => $data['slug']],
                 [
-                    'thumbnail' => $project['thumbnail'],
-                    'name' => $project['name'],
-                    'category_id' => Category::query()->where('name', $project['category'])->value('id'),
-                    'body' => $project['body'],
-                    'client_id' => Client::query()->where('name', $project['client'])->value('id'),
-                    'start_project' => $project['start_project'],
-                    'end_project' => $project['end_project'],
-                    'url' => $project['url'],
-                    'is_featured' => $project['is_featured'],
-                    'active' => true,
+                    'thumbnail' => $data['thumbnail'],
+                    'name' => $data['name'],
+                    'category_id' => $category->id,
+                    'body' => $data['body'],
+                    'client_id' => $client->id,
+                    'start_project' => $data['start_project'],
+                    'end_project' => $data['end_project'],
+                    'url' => $data['url'],
+                    'is_featured' => $data['is_featured'],
+                    'active' => $data['active'],
                 ],
             );
-        }
-    }
 
-    private function projects(): array
-    {
-        return [
-            [
-                'thumbnail' => 'https://picsum.photos/seed/project-erp/1200/720',
-                'name' => 'Keysoft ERP Enterprise System',
-                'slug' => 'keysoft-erp-enterprise-system',
-                'category' => 'Enterprise App',
-                'client' => 'Keysoft ERP',
-                'body' => 'Sistem ERP enterprise untuk mengelola modul inventory, purchase, sales, finance, reporting, dan hak akses user internal. Dirancang untuk mendukung operasional multi-departemen dengan audit trail dan optimasi performa query.',
-                'start_project' => '2025-01-10',
-                'end_project' => null,
-                'url' => null,
-                'is_featured' => true,
-            ],
-            [
-                'thumbnail' => 'https://picsum.photos/seed/project-portfolio/1200/720',
-                'name' => 'Personal Portfolio CMS',
-                'slug' => 'personal-portfolio-cms',
-                'category' => 'Web Development',
-                'client' => 'Hepiso',
-                'body' => 'Website portofolio pribadi dengan CMS internal untuk mengelola profil, journey, project, client, tools, dan pesan kontak. Dibangun dengan struktur database domain-driven dan admin panel yang scalable.',
-                'start_project' => '2026-08-01',
-                'end_project' => null,
-                'url' => null,
-                'is_featured' => true,
-            ],
-            [
-                'thumbnail' => 'https://picsum.photos/seed/project-mobile/1200/720',
-                'name' => 'Mobile Field Reporting App',
-                'slug' => 'mobile-field-reporting-app',
-                'category' => 'Mobile App',
-                'client' => 'PT. Arthur Teknik Indoprima',
-                'body' => 'Aplikasi mobile untuk laporan aktivitas lapangan, upload dokumentasi, sinkronisasi data, dan dashboard monitoring berbasis API.',
-                'start_project' => '2024-09-15',
-                'end_project' => '2025-02-20',
-                'url' => null,
-                'is_featured' => false,
-            ],
-        ];
+            if (! empty($data['tools'])) {
+                $toolIds = collect($data['tools'])
+                    ->map(fn (string $name) => Tools::query()->firstOrCreate(
+                        ['name' => $name],
+                        ['active' => true],
+                    ))
+                    ->mapWithKeys(fn (Tools $tool) => [
+                        $tool->id => ['active' => true, 'created_by' => 1],
+                    ])
+                    ->all();
+
+                $project->tools()->sync($toolIds);
+            }
+
+            if (! empty($data['images'])) {
+                foreach ($data['images'] as $image) {
+                    ProjectImage::query()->updateOrCreate(
+                        ['project_id' => $project->id, 'image' => $image['image']],
+                        ['description' => $image['description'] ?? null, 'active' => true],
+                    );
+                }
+            }
+        }
     }
 }

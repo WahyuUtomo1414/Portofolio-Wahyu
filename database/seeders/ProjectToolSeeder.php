@@ -34,10 +34,6 @@ class ProjectToolSeeder extends Seeder
 
     private function projectTools(): array
     {
-        return [
-            'keysoft-erp-enterprise-system' => ['Laravel', 'Vue.js', 'Tailwind CSS', 'PostgreSQL'],
-            'personal-portfolio-cms' => ['Laravel', 'Filament', 'Tailwind CSS'],
-            'mobile-field-reporting-app' => ['Flutter', 'Laravel', 'PostgreSQL'],
-        ];
+        return [];
     }
 }
