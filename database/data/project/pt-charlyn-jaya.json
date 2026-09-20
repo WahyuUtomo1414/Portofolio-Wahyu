@@ -1,0 +1,15 @@
+{
+  "name": "Platform B2B dengan Sistem Quotation & Approval Purchase Order Digital",
+  "slug": "pt-charlyn-jaya",
+  "thumbnail": null,
+  "category": "Enterprise App",
+  "client": "PT. Charlyn Jaya",
+  "body": "PT Charlyn Jaya adalah platform digital perusahaan yang dikembangkan untuk menggabungkan kebutuhan company profile dengan proses bisnis B2B dalam satu sistem yang terintegrasi.\n\nMelalui website publik, calon klien dapat mengenal profil perusahaan, layanan yang tersedia, struktur organisasi, sertifikasi, serta berbagai project dan pengalaman kerja PT Charlyn Jaya. Platform ini mendukung kebutuhan perusahaan dalam memperkuat kehadiran digital sekaligus mempermudah calon klien mendapatkan informasi sebelum memulai kerja sama.\n\nTidak hanya sebagai website informasi, sistem juga menyediakan customer portal untuk mendukung proses permintaan layanan secara digital. Customer dapat membuat akun, memilih layanan yang dibutuhkan, mengajukan permintaan penawaran dengan jumlah kebutuhan dan target waktu pengerjaan, melampirkan dokumen pendukung, serta memantau perkembangan penawaran melalui akun masing-masing.\n\nSetelah permintaan diproses, perusahaan dapat memberikan dokumen penawaran resmi kepada customer. Jika penawaran dilanjutkan ke tahap kerja sama, customer dapat membuat Purchase Order (PO) yang terhubung langsung dengan penawaran sebelumnya, mengunggah dokumen PO, serta memantau proses review hingga PO disetujui atau ditolak.\n\nDi sisi internal, admin memiliki sistem terpusat untuk mengelola customer, layanan, penawaran, Purchase Order, project perusahaan, sertifikat, data perusahaan, serta konten website. Dokumen penawaran dan PO juga dapat dikelola dan dicetak dalam format PDF untuk mendukung kebutuhan administrasi bisnis.\n\nPlatform ini membantu mengubah proses komunikasi dan pertukaran dokumen yang sebelumnya dapat dilakukan secara manual menjadi workflow digital yang lebih terstruktur, terdokumentasi, dan mudah dipantau oleh perusahaan maupun customer.",
+  "start_project": null,
+  "end_project": null,
+  "url": "https://ptcharlynjaya.jasanya.id/",
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Filament", "Tailwind CSS"],
+  "images": []
+}
