@@ -1,0 +1,15 @@
+{
+  "name": "Platform Digitalisasi Informasi Bank Sampah & Edukasi Lingkungan Publik",
+  "slug": "sistem-informasi-bank-sampah",
+  "thumbnail": null,
+  "category": "Web Development",
+  "client": "DLDK Kabupaten Lamandau",
+  "body": "Sistem Informasi Bank Sampah adalah platform digital yang dikembangkan untuk membantu penyampaian informasi dan edukasi pengelolaan sampah kepada masyarakat sekaligus mempermudah pengelolaan data oleh instansi terkait.\n\nMelalui website publik, masyarakat dapat memperoleh informasi mengenai berbagai kategori dan jenis sampah, memahami cara pengolahan yang tepat, membaca artikel edukasi lingkungan, serta melihat dokumentasi kegiatan yang berkaitan dengan pengelolaan sampah.\n\nPlatform ini juga menyediakan informasi lokasi Tempat Penampungan Sementara (TPS) dan Tempat Pemrosesan Akhir (TPA) lengkap dengan alamat dan data lokasi, sehingga masyarakat dapat lebih mudah menemukan fasilitas pengelolaan sampah yang tersedia.\n\nSelain sebagai media informasi, sistem menyediakan kanal komunikasi melalui form kontak yang memungkinkan masyarakat menyampaikan pertanyaan atau pesan kepada pengelola secara langsung melalui website.\n\nDi sisi internal, tersedia admin panel terpusat untuk mengelola artikel, kategori dan jenis sampah, informasi TPS dan TPA, galeri kegiatan, pesan masyarakat, serta pengguna sistem. Pengaturan hak akses juga diterapkan agar pengelolaan data dapat dilakukan sesuai kewenangan masing-masing pengguna.\n\nPlatform ini dikembangkan sebagai solusi informasi layanan publik yang membantu proses digitalisasi penyampaian edukasi lingkungan dan pengelolaan informasi persampahan agar lebih terstruktur, mudah diperbarui, dan mudah diakses oleh masyarakat.",
+  "start_project": null,
+  "end_project": null,
+  "url": null,
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Filament", "Tailwind CSS"],
+  "images": []
+}
