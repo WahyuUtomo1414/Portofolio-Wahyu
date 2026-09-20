@@ -18,17 +18,17 @@ class ProjectSeeder extends Seeder
         foreach ($files as $file) {
             $data = json_decode(file_get_contents($file), true, 512, JSON_THROW_ON_ERROR);
 
-            $category = Category::query()->firstOrCreate(
+            $category = Category::withTrashed()->updateOrCreate(
                 ['name' => $data['category']],
-                ['active' => true, 'type' => 'project'],
+                ['active' => true, 'type' => 'project', 'deleted_at' => null],
             );
 
-            $client = Client::query()->firstOrCreate(
+            $client = Client::withTrashed()->updateOrCreate(
                 ['name' => $data['client']],
-                ['active' => true],
+                ['active' => true, 'deleted_at' => null],
             );
 
-            $project = Project::query()->updateOrCreate(
+            $project = Project::withTrashed()->updateOrCreate(
                 ['slug' => $data['slug']],
                 [
                     'thumbnail' => $data['thumbnail'],
@@ -41,14 +41,15 @@ class ProjectSeeder extends Seeder
                     'url' => $data['url'],
                     'is_featured' => $data['is_featured'],
                     'active' => $data['active'],
+                    'deleted_at' => null,
                 ],
             );
 
             if (! empty($data['tools'])) {
                 $toolIds = collect($data['tools'])
-                    ->map(fn (string $name) => Tools::query()->firstOrCreate(
+                    ->map(fn (string $name) => Tools::withTrashed()->updateOrCreate(
                         ['name' => $name],
-                        ['active' => true],
+                        ['active' => true, 'deleted_at' => null],
                     ))
                     ->mapWithKeys(fn (Tools $tool) => [
                         $tool->id => ['active' => true, 'created_by' => 1],
