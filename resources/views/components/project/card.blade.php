@@ -28,7 +28,7 @@
 
     <!-- Body Info -->
     <div class="p-5 flex-grow space-y-3">
-        <h3 class="font-heading font-extrabold text-lg sm:text-xl text-[#0F172A] leading-snug hover:text-[#2563EB] transition-colors">
+        <h3 class="font-heading font-extrabold text-lg sm:text-xl text-[#0F172A] leading-snug hover:text-[#2563EB] transition-colors line-clamp-2" title="{{ $project['name'] }}">
             {{ $project['name'] }}
         </h3>
         

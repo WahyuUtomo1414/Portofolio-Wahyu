@@ -161,6 +161,7 @@ class HomeController extends Controller
         if (! $this->projectTablesReady()) {
             return PortfolioData::projects()
                 ->where('is_featured', true)
+                ->take(3)
                 ->map(fn (array $project): array => $this->fallbackProjectData($project))
                 ->values()
                 ->all();
@@ -171,12 +172,13 @@ class HomeController extends Controller
             ->where('active', true)
             ->where('is_featured', true)
             ->latest()
-            ->limit(6)
+            ->limit(3)
             ->get();
 
         return $projects->isEmpty()
             ? PortfolioData::projects()
                 ->where('is_featured', true)
+                ->take(3)
                 ->map(fn (array $project): array => $this->fallbackProjectData($project))
                 ->values()
                 ->all()

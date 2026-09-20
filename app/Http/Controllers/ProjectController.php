@@ -229,7 +229,7 @@ class ProjectController extends Controller
             'client_logo' => $this->imageUrl($project->client?->logo),
             'thumbnail_url' => $this->imageUrl($project->thumbnail),
             'short_description' => str(strip_tags($project->body))->limit(160)->toString(),
-            'body' => $project->body, // Menyimpan HTML mentah dari RichEditor Filament
+            'body' => $this->renderBody($project->body),
             'period' => $this->projectPeriod($project->start_project, $project->end_project),
             'tech_stack' => $project->tools->pluck('name')->all(),
             'tech_stack_labels' => $project->tools->pluck('name')->all(),
@@ -304,6 +304,21 @@ class ProjectController extends Controller
         $end = blank($endProject) ? 'Sekarang' : $endProject->translatedFormat('M Y');
 
         return trim(($start ?? 'Mulai').' - '.$end);
+    }
+
+    private function renderBody(?string $body): string
+    {
+        if (blank($body)) {
+            return '';
+        }
+
+        if (str_contains($body, '<')) {
+            return $body;
+        }
+
+        return collect(preg_split('/\n{2,}/', trim($body)))
+            ->map(fn (string $paragraph): string => '<p>'.e(trim($paragraph)).'</p>')
+            ->implode("\n");
     }
 
     private function techStackLabels(array $items): array

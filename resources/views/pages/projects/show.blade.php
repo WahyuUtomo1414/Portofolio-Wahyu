@@ -85,7 +85,7 @@
                     @if(!empty($project['images']))
                         <div class="bg-white border-neo p-6 sm:p-8 rounded-2xl shadow-neo space-y-4">
                             <h3 class="font-heading font-extrabold text-lg text-[#0F172A] border-neo-b pb-3 uppercase">
-                                📸 GALERI ANTAARMUKA SYSTEM
+                                📸 GALERI ANTARMUKA SISTEM
                             </h3>
                             <x-project.gallery :images="$project['images']" />
                         </div>
