@@ -1,0 +1,15 @@
+{
+  "name": "Platform Booking Wisata Online dengan Payment Gateway & Integrasi WhatsApp",
+  "slug": "pesona-trip",
+  "thumbnail": null,
+  "category": "Web Development",
+  "client": "Pesona Trip Travel Indonesia",
+  "body": "Pesona Trip adalah platform pemesanan perjalanan wisata yang dikembangkan untuk menghubungkan pelanggan dengan berbagai pilihan paket perjalanan sekaligus membantu bisnis travel mengelola proses pemesanan secara terintegrasi.\n\nMelalui platform ini, pelanggan dapat menjelajahi berbagai pilihan One Day Trip, Open Trip, dan Private Trip, mencari paket berdasarkan kebutuhan dan rentang harga, melihat detail destinasi, itinerary perjalanan, fasilitas yang didapatkan, pilihan add-on, hingga melakukan pemesanan langsung melalui website.\n\nProses pemesanan terhubung dengan payment gateway sehingga pelanggan dapat melakukan pembayaran secara digital sebagai bagian dari alur transaksi. Setiap pesanan kemudian dikelola melalui sistem order management yang membantu bisnis memantau transaksi, status pembayaran, data peserta, serta perjalanan yang telah dipesan dalam satu alur yang terstruktur.\n\nPelanggan juga memiliki area transaksi untuk memantau pesanan dan melengkapi kebutuhan data peserta setelah melakukan booking. Dengan pendekatan ini, proses yang sebelumnya bergantung pada komunikasi manual dapat dialihkan menjadi pengalaman pemesanan yang lebih cepat dan mudah diakses secara online.\n\nDi sisi bisnis, platform membantu Pesona Trip mengelola katalog paket wisata, jadwal perjalanan, harga, add-on, informasi destinasi, pemesanan pelanggan, pembayaran, serta konten pendukung dalam satu sistem. Frontend dikembangkan menggunakan Vue untuk menghadirkan pengalaman pengguna yang lebih interaktif dalam menjelajahi dan melakukan pemesanan perjalanan.\n\nPlatform ini dikembangkan sebagai solusi digital end-to-end untuk mendukung proses bisnis travel mulai dari pencarian paket, pemesanan, pembayaran, pengelolaan order, hingga pengelolaan perjalanan pelanggan.",
+  "start_project": null,
+  "end_project": null,
+  "url": "https://pesonatrip.id",
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Vue.js", "Tailwind CSS", "Midtrans", "WhatsApp Business API"],
+  "images": []
+}
