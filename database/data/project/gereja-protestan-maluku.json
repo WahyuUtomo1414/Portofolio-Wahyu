@@ -1,0 +1,15 @@
+{
+  "name": "Platform Digital Gereja dengan Portal Jemaat & Manajemen Kegiatan",
+  "slug": "gereja-protestan-maluku",
+  "thumbnail": null,
+  "category": "Web Development",
+  "client": "Gereja Protestan Maluku",
+  "body": "Gereja Protestan Maluku (GPM) adalah platform digital gereja yang dikembangkan untuk menjadi pusat informasi, pelayanan, dan pengelolaan kegiatan jemaat dalam satu sistem yang terintegrasi.\n\nMelalui website publik, jemaat dan masyarakat dapat mengenal profil gereja, melihat struktur pelayanan, mendapatkan informasi kegiatan yang akan datang, mengenal pembicara, serta melihat dokumentasi dan laporan dari berbagai kegiatan yang telah diselenggarakan.\n\nPlatform ini juga menyediakan akun khusus bagi jemaat sehingga proses partisipasi kegiatan dapat dilakukan secara digital. Jemaat dapat membuat akun, mendaftar kegiatan yang sedang dibuka, melihat agenda yang akan diikuti, mengakses riwayat kegiatan, serta mengelola informasi profil mereka secara mandiri.\n\nDi sisi internal, sistem mendukung pengelolaan kegiatan dari awal hingga selesai. Pengajuan kegiatan dapat melalui proses review dan revisi sebelum disetujui, dilanjutkan dengan pembukaan pendaftaran peserta, pengelolaan kuota, pelaksanaan kegiatan, hingga pembuatan laporan dan dokumentasi setelah acara selesai. Alur ini membantu setiap pihak yang terlibat menjalankan tanggung jawabnya melalui proses yang lebih terstruktur dan transparan.\n\nPengelola gereja juga memiliki admin panel terpusat untuk mengelola profil gereja, struktur organisasi, jemaat, pembicara, jenis kegiatan, peserta, FAQ, dokumentasi, serta berbagai informasi yang ditampilkan pada website publik.\n\nPlatform ini dikembangkan sebagai solusi digital end-to-end yang menghubungkan informasi publik, partisipasi jemaat, pengelolaan kegiatan, dan administrasi gereja dalam satu sistem yang lebih mudah diakses dan dikelola.",
+  "start_project": null,
+  "end_project": null,
+  "url": "https://gpmaluku.jasanya.id",
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Filament", "Tailwind CSS"],
+  "images": []
+}
