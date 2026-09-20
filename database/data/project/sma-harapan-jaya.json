@@ -1,0 +1,15 @@
+{
+  "name": "Sistem Informasi Sekolah dengan Portal PPDB & Manajemen Akademik",
+  "slug": "sma-harapan-jaya",
+  "thumbnail": null,
+  "category": "Web Development",
+  "client": "SMA Harapan Jaya",
+  "body": "SMA Harapan Jaya adalah platform digital sekolah yang dikembangkan untuk mengintegrasikan kebutuhan informasi publik, penerimaan siswa baru, serta aktivitas akademik dalam satu sistem.\n\nMelalui website publik, calon siswa dan orang tua dapat mengenal profil sekolah, melihat informasi dan berita terbaru, serta mengikuti proses PPDB secara online mulai dari melihat informasi pendaftaran, mengisi formulir, hingga melanjutkan proses pembayaran. Dengan sistem ini, proses penerimaan siswa baru menjadi lebih mudah diakses tanpa bergantung pada proses administrasi secara manual.\n\nPlatform ini juga menyediakan dashboard khusus untuk guru dan siswa. Guru dapat mengakses jadwal mengajar, melihat data siswa, mengelola absensi, serta melakukan input dan pembaruan nilai. Sementara itu, siswa dapat melihat jadwal pelajaran, nilai akademik, riwayat kehadiran, serta informasi pembayaran melalui akun masing-masing.\n\nDi sisi pengelolaan sekolah, tersedia admin panel terpusat untuk mengelola data sekolah, guru, siswa, kelas, mata pelajaran, jadwal, fasilitas, struktur organisasi, PPDB, konten berita, hingga data akademik. Hak akses pada sistem dibedakan berdasarkan peran pengguna sehingga setiap pengguna hanya dapat mengakses informasi dan fitur yang sesuai dengan kebutuhannya.\n\nPlatform ini dikembangkan sebagai solusi digital end-to-end untuk membantu sekolah menyampaikan informasi kepada publik sekaligus mempermudah pengelolaan aktivitas akademik dan administrasi dalam satu sistem yang terintegrasi.",
+  "start_project": null,
+  "end_project": null,
+  "url": "https://smaharapanjaya.jasanya.id",
+  "is_featured": true,
+  "active": true,
+  "tools": ["Laravel", "Filament", "Tailwind CSS"],
+  "images": []
+}
